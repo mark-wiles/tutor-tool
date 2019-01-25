@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +20,7 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::where(['user_id' => auth()->id()])->get();
-
-        return ($students);
+        return($students);
     }
 
     /**
@@ -46,9 +50,10 @@ class StudentController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function show(Student $student)
+    public function show($id)
     {
-        //
+        $student = Student::where(['id' => $id, 'user_id' => auth()->id()])->get();
+        return($student);
     }
 
     /**
@@ -77,7 +82,7 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\student  $student
+     * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
     public function destroy(Student $student)
