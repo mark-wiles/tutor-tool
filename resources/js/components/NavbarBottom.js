@@ -12,7 +12,7 @@ class NavbarBottom extends Component {
 
 		return(
 
-			<nav className="container nav-bottom">
+			<nav className="container nav-bottom row">
 
 				<Link to="/home">
 					<Icon className="fas fa-users orange" title="Students"/>
@@ -22,9 +22,13 @@ class NavbarBottom extends Component {
 					<Icon className="fas fa-calendar-alt orange" title="Lessons"/>
 				</Link>
 
-				<Icon className="fas fa-comment orange" title="Messages"/>
+				<Link to="/messages">
+					<Icon className="fas fa-comment orange" title="Messages"/>
+				</Link>
 
-				<Icon className="fas fa-dollar-sign orange" title="Earnings"/>
+				<Link to="/earnings">
+					<Icon className="fas fa-dollar-sign orange" title="Earnings"/>
+				</Link>
 
 			</nav>
 
