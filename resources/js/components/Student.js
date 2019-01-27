@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
 import axios from 'axios';
+import NavbarTop from './NavbarTop';
 
 class Student extends Component {
 
@@ -18,7 +18,6 @@ class Student extends Component {
 		)
 		.then((response) => {
 			var student = response.data[0];
-			console.log('student', student);
 			this.setState({student});
 		})
 		.catch((error) => {
@@ -30,22 +29,33 @@ class Student extends Component {
 		var student = this.state.student;
 
 		return(
-			<div className="content-container">
-				<div className="student-info">
-					<h5>{student.first_name} {student.last_name}</h5>
-				</div>
+			<div className="row">
+				<NavbarTop iconClass="fas fa-edit orange" linkLeft="/settings" linkRight="/student/edit" title={student.first_name} />
 
-				<div className="student-info">
-					<h5>{student.phone}</h5>
-				</div>
+				<div className="container content-container">
+					<div className="student-info">
+						<h5 className="info-title">Name</h5>
+						<h5 className="info">{student.first_name} {student.last_name}</h5>
+					</div>
 
-				<div className="student-info">
-					<h5>{student.email}</h5>
-				</div>
+					<div className="student-info">
+						<h5 className="info-title">Phone</h5>
+						<h5 className="info">{student.phone}</h5>
+					</div>
 
-				<div className="student-info">
-					<h5>{student.street}</h5>
-					<h5>{student.city}, {student.state} {student.zip}</h5>
+					<div className="student-info">
+						<h5 className="info-title">Email</h5>
+						<h5 className="info">{student.email}</h5>
+					</div>
+
+					<div className="student-info">
+						<h5 className="info-title">Address</h5>
+						<div className="info">
+							<h5 className="text-right">{student.street}</h5>
+							<h5 className="text-right">{student.city}, {student.state}</h5>
+							<h5 className="text-right">{student.zip}</h5>
+						</div>
+					</div>
 				</div>
 			</div>
 		);
