@@ -19,7 +19,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::where(['user_id' => auth()->id()])->get();
+        $students = Student::where(['user_id' => auth()->id()])->latest()->get();
+        
         return($students);
     }
 
@@ -41,7 +42,13 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes = $this->validateStudent();
+
+		$attributes['user_id'] = auth()->id();
+
+        $student = Student::create($attributes);
+        
+        return ($student);
     }
 
     /**
@@ -53,6 +60,7 @@ class StudentController extends Controller
     public function show($id)
     {
         $student = Student::where(['id' => $id, 'user_id' => auth()->id()])->get();
+
         return($student);
     }
 
@@ -89,4 +97,27 @@ class StudentController extends Controller
     {
         //
     }
+
+    public function validateStudent() {
+
+		return request()->validate([
+
+			'first_name' => ['required', 'min:2', 'max:255'],
+
+            'last_name' => ['nullable', 'min:1', 'max:255'],
+
+            'phone' => ['nullable', 'min:7', 'max:25'],
+
+            'email' => ['nullable', 'email', 'max:255'],
+
+            'street' => ['nullable', 'max:255'],
+
+            'city' => ['nullable', 'max:255'],
+
+            'state' => ['nullable', 'min:2', 'max:2'],
+
+            'zip' => ['nullable', 'min:5', 'max:255'],
+        ]);
+			
+	}
 }
