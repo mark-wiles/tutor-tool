@@ -21,7 +21,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="container">
+    <div class="container" id="container">
         @guest
             <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
                 <div class="container">
