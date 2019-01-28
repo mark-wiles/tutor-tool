@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import NavbarTop from './NavbarTop';
 import Axios from 'axios';
+import NavbarTop from './NavbarTop';
 
 class StudentNew extends Component {
 	constructor(props) {
@@ -42,7 +42,6 @@ class StudentNew extends Component {
 		})
 		.then((response) => {
 			if (response.request.status === 201) {
-				alert('success');
 				this.props.history.push('/home');
 			}
 			else {
@@ -56,6 +55,12 @@ class StudentNew extends Component {
 	  }
 
 	render() {
+		const stateError = this.state.state.length > 2 || this.state.state.length === 1;
+		const isValidZip = (/^\d{5}(-\d{4})?(?!-)$/).test(this.state.zip);
+		const zipError = !isValidZip && this.state.zip.length > 0;
+		const isValidPhone = (/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/).test(this.state.phone);
+		const phoneError = !isValidPhone && this.state.phone.length > 0;
+		const disableBtn = stateError || zipError || phoneError;
 
 		return (
 			<div className="row">
@@ -74,8 +79,8 @@ class StudentNew extends Component {
 						</div>
 
 						<div className="form-group">
-							<label htmlFor="phone">Phone:</label>
-							<input type="text" className="form-control" id="phone" name="phone" value={this.state.phone} onChange={this.handleInputChange} />
+							<label htmlFor="phone">Phone:</label>{phoneError ? <span className="text-danger"> Enter a valid 10 digit phone number</span> : ''}
+							<input type="text" className={`form-control ${ phoneError ? 'error' : ''}`} id="phone" name="phone" value={this.state.phone} onChange={this.handleInputChange} />
 						</div>
 
 						<div className="form-group">
@@ -94,16 +99,16 @@ class StudentNew extends Component {
 						</div>
 
 						<div className="form-group">
-							<label htmlFor="state">State:</label>
-							<input type="text" className="form-control" id="state" name="state" value={this.state.state} onChange={this.handleInputChange} />
+							<label htmlFor="state">State: </label>{stateError ? <span className="text-danger"> Please use the state's two letter abbreviation</span> : ''}
+							<input type="text" className={`form-control ${ stateError ? 'error' : ''}`} id="state" name="state" value={this.state.state.toUpperCase()} onChange={this.handleInputChange} />
 						</div>
 
 						<div className="form-group">
-							<label htmlFor="zip">Zip:</label>
-							<input type="text" className="form-control" id="zip" name="zip" value={this.state.zip} onChange={this.handleInputChange} />
+							<label htmlFor="zip">Zip:</label>{zipError ? <span className="text-danger"> Valid formats are xxxxx or xxxxx-xxxx</span> : ''}
+							<input type="text" className={`form-control ${ zipError ? 'error' : ''}`} id="zip" name="zip" value={this.state.zip} onChange={this.handleInputChange} />
 						</div>
 
-						<button type="submit" className="btn btn-default">Submit</button>
+						<button type="submit" className="btn btn-primary mb-5"  disabled={disableBtn ? true : false} >Submit</button>
 					</form>
 				</div>
 			</div>
