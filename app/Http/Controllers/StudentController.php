@@ -57,9 +57,9 @@ class StudentController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($student)
     {
-        $student = Student::where(['id' => $id, 'user_id' => auth()->id()])->get();
+        $student = Student::where(['id' => $student, 'user_id' => auth()->id()])->get();
 
         return($student);
     }
@@ -84,7 +84,11 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
-        //
+        $attributes = $this->validateStudent();
+
+        $updatedStudent = Student::where(['id' => $student->id, 'user_id' => auth()->id()])->update($attributes);
+        
+        return ($student->id);
     }
 
     /**
