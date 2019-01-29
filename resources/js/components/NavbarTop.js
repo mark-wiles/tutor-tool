@@ -28,9 +28,9 @@ class NavbarTop extends Component {
 	render() {
 		return(
 			<nav className="container nav-top">
-				<Link to={this.props.linkLeft}><Icon className="fas fa-cog orange" /></Link>
+				<Link to={this.props.linkLeft}><Icon className={this.props.classLeft} /></Link>
 				<h2 className="mb-0 text-center">{this.props.title}</h2>
-				<Link to={this.props.linkRight}><Icon className={this.props.iconClass} /></Link>
+				<Link to={this.props.linkRight}><Icon className={this.props.classRight} /></Link>
 			</nav>
 		)
 	}
