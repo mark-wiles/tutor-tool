@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/students', 'StudentController@index');
 Route::get('/student/{id}', 'StudentController@show');
+Route::post('/student', 'StudentController@store');
+Route::put('/student/{student}', 'StudentController@update');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
