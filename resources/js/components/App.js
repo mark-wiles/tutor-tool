@@ -6,6 +6,7 @@ import Lessons from './Lessons';
 import Messages from './Messages';
 import NavbarBottom from './NavbarBottom';
 import Student from './Student';
+import StudentEdit from './StudentEdit';
 import StudentNew from './StudentNew';
 import Students from './Students';
 import Earnings from './Earnings';
@@ -19,6 +20,7 @@ export default class App extends Component {
 
                     <Switch>
                         <Route exact path="/home" component={Students} />
+                        <Route exact path="/student/edit/:id" component={StudentEdit} />
                         <Route exact path="/student/new" component={StudentNew} />
                         <Route exact path="/student/:id" component={Student} />
                         <Route exact path="/lessons" component={Lessons} />
