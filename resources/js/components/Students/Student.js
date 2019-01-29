@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-import NavbarTop from './NavbarTop';
+import Icon from '../Icon';
+import NavbarTop from '../NavbarTop';
 
 class Student extends Component {
 
@@ -30,9 +32,20 @@ class Student extends Component {
 
 		return(
 			<div className="row">
-				<NavbarTop iconClass="fas fa-edit orange" linkLeft="/settings" linkRight="/student/edit" title={student.first_name} />
+				<NavbarTop classLeft="fas fa-arrow-left orange" classRight="fas fa-edit orange" linkLeft="/home" linkRight={`/student/edit/${student.id}`} title={student.first_name} />
 
 				<div className="container content-container">
+					<div className="student-icons row">
+						<a className={!student.email ? "disabled-link" : ""} href={`mailto:${student.email}`} target="_blank">
+							<Icon className="far fa-envelope" title="Email" />
+						</a>
+						<a className={!student.phone ? "disabled-link" : ""} href={`tel:${student.phone}`}>
+							<Icon className="fas fa-mobile-alt" title="Call" />
+						</a>
+						<Link to={`/lesson/${student.id}`}>
+							<Icon className="far fa-calendar-plus" title="Lesson" />
+						</Link>
+					</div>
 					<div className="student-info">
 						<h5 className="info-title">Name</h5>
 						<h5 className="info">{student.first_name} {student.last_name}</h5>

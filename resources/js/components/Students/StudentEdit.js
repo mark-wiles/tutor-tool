@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
-import NavbarTop from './NavbarTop';
+import NavbarTop from '../NavbarTop';
 
 class StudentEdit extends Component {
 	constructor(props) {
@@ -89,7 +89,7 @@ class StudentEdit extends Component {
 
 		return (
 			<div className="row">
-				<NavbarTop iconClass="fas fa-plus orange" linkLeft="/settings" linkRight="/student/new" title="Edit Student" />
+				<NavbarTop classLeft="fas fa-arrow-left orange" classRight="fas fa-times orange" linkLeft={`/student/${this.props.match.params.id}`} linkRight={`/student/${this.props.match.params.id}`} title="Edit Student" />
 				
 				<div className="container content-container pt-2">
 					<form onSubmit={this.handleSubmit}>

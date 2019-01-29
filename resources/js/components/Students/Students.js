@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import NavbarTop from './NavbarTop';
+import NavbarTop from '../NavbarTop';
 
 class Students extends Component {
 
@@ -38,7 +38,7 @@ class Students extends Component {
 
 		return (
 			<div className="row">
-				<NavbarTop iconClass="fas fa-plus orange" linkLeft="/settings" linkRight="/student/new" title="Students" />
+				<NavbarTop classLeft="fas fa-cog orange" classRight="fas fa-plus orange" linkLeft="/settings" linkRight="/student/new" title="Students" />
 
 				<div className="container content-container">
 					{ allStudents }

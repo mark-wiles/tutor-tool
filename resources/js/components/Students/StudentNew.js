@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
-import NavbarTop from './NavbarTop';
+import NavbarTop from '../NavbarTop';
 
 class StudentNew extends Component {
 	constructor(props) {
@@ -64,7 +64,7 @@ class StudentNew extends Component {
 
 		return (
 			<div className="row">
-				<NavbarTop iconClass="fas fa-plus orange" linkLeft="/settings" linkRight="/student/new" title="Add Student" />
+				<NavbarTop classLeft="fas fa-arrow-left orange" linkLeft="/home" linkRight="" title="Add Student" />
 				
 				<div className="container content-container pt-2">
 					<form onSubmit={this.handleSubmit}>
