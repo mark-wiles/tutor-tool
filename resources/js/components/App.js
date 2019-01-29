@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import Lessons from './Lessons';
+import Lessons from './Lessons/Lessons';
 import Messages from './Messages';
 import NavbarBottom from './NavbarBottom';
-import Student from './Student';
-import StudentEdit from './StudentEdit';
-import StudentNew from './StudentNew';
-import Students from './Students';
-import Earnings from './Earnings';
+import Student from './Students/Student';
+import StudentEdit from './Students/StudentEdit';
+import StudentNew from './Students/StudentNew';
+import Students from './Students/Students';
+import Earnings from './Earnings/Earnings';
 
 
 export default class App extends Component {
