@@ -10491,8 +10491,96 @@ a.text-dark:focus {
   }
 }
 
+a {
+  color: #000;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+i {
+  font-size: 1.2rem;
+}
+
+nav {
+  align-items: center;
+  background-color: lightgray;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+nav.nav-bottom {
+  bottom: 0;
+  position: fixed;
+}
+
+.app-container {
+  padding: 0;
+}
+
+.content-container {
+  border-left: 1px solid silver;
+  border-right: 1px solid silver;
+  margin-bottom: 55px;
+}
+
+.content-container h5 {
+  margin: 10px 0;
+}
+
+.content-container .student-icons {
+  border-bottom: 1px solid silver;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.content-container .student-icons i {
+  font-size: 1.3rem;
+}
+
+.content-container .student-info {
+  align-content: center;
+  border-bottom: 1px solid silver;
+  display: flex;
+  justify-content: space-between;
+}
+
+.content-container .student-info .info-title {
+  align-items: center;
+  display: flex;
+  width: 30%;
+}
+
+.content-container .student-summary {
+  border-bottom: 1px solid #C0C0C0;
+  padding: 10px 0;
+}
+
+.disabled-link {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.error {
+  border: 1px solid red;
+}
+
+.error:focus {
+  border: 1px solid red;
+}
+
+.icon-text {
+  font-size: 0.7rem;
+}
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.orange {
+  color: orange;
 }
 

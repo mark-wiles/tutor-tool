@@ -19,14 +19,6 @@ i {
   font-size: 1.2rem;
 }
 
-.error {
-  border: 1px solid red;
-
-  &:focus {
-    border: 1px solid red;
-  }
-}
-
 nav {
   align-items: center;
   background-color: lightgray;
@@ -44,25 +36,23 @@ nav {
   padding: 0;
 }
 
-.icon-text {
-  font-size: 0.7rem;
-}
-
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
-
-.orange {
-  color: orange;
-}
-
 .content-container {
-  margin-bottom: 60px;
+  border-left: 1px solid silver;
+  border-right: 1px solid silver;
+  margin-bottom: 55px;
 
-  .student-summary {
-    border-bottom: 1px solid #C0C0C0;
-    padding: 10px 0;  
+  h5 {
+    margin: 10px 0;
+  }
+
+  .student-icons {
+    border-bottom: 1px solid silver;
+    justify-content: space-around;
+    padding: 10px;
+
+    i {
+      font-size: 1.3rem;
+    }
   }
 
   .student-info {
@@ -78,7 +68,34 @@ nav {
     }
   }
 
-  h5 {
-    margin: 10px 0;
+  .student-summary {
+    border-bottom: 1px solid #C0C0C0;
+    padding: 10px 0;  
   }
+}
+
+.disabled-link {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.error {
+  border: 1px solid red;
+
+  &:focus {
+    border: 1px solid red;
+  }
+}
+
+.icon-text {
+  font-size: 0.7rem;
+}
+
+.navbar-laravel {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.orange {
+  color: orange;
 }
