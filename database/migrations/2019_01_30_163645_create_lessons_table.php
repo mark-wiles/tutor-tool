@@ -20,7 +20,7 @@ class CreateLessonsTable extends Migration
             $table->unsignedInteger('rate');
             $table->unsignedInteger('student_id');
             $table->unsignedInteger('user_id');
-            $table->string('location')->nullable();
+            $table->unsignedInteger('location_id')->nullable();
             $table->string('subject')->nullable();
             $table->timestamps();
 
