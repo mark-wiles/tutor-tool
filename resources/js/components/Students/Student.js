@@ -46,16 +46,21 @@ class Student extends Component {
 							<Icon className="far fa-calendar-plus" title="Lesson" />
 						</Link>
 					</div>
+
 					<div className="student-info">
 						<h5 className="info-title">Name</h5>
 						<h5 className="info">{student.first_name} {student.last_name}</h5>
 					</div>
 
 					<div className="student-info">
+						<h5 className="info-title">Hourly Rate</h5>
+						<h5 className="info">{`$${student.rate}`}</h5>
+					</div>
+
+					<div className="student-info">
 						<h5 className="info-title">Phone</h5>
 						<h5 className="info">{student.phone}</h5>
 					</div>
-
 					<div className="student-info">
 						<h5 className="info-title">Email</h5>
 						<h5 className="info">{student.email}</h5>
