@@ -110,6 +110,8 @@ class StudentController extends Controller
 
             'last_name' => ['nullable', 'min:1', 'max:255'],
 
+            'rate' => ['nullable', 'integer', 'min:1', 'max:10'],
+
             'phone' => ['nullable', 'min:7', 'max:25'],
 
             'email' => ['nullable', 'email', 'max:255'],

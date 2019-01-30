@@ -17,6 +17,7 @@ class CreateStudentsTable extends Migration
             $table->increments('id');
             $table->string('first_name');
             $table->string('last_name')->nullable();
+            $table->unsignedInteger('rate')->nullable();
             $table->string('street')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
