@@ -8,6 +8,7 @@ class StudentNew extends Component {
 		this.state = {
 			firstName: '',
 			lastName: '',
+			rate: '',
 			phone: '',
 			email: '',
 			street: '',
@@ -33,6 +34,7 @@ class StudentNew extends Component {
 		Axios.post('/student', {
 			first_name: this.state.firstName,
 			last_name: this.state.lastName,
+			rate: Math.trunc(Number(this.state.rate)),
 			phone: this.state.phone,
 			email: this.state.email,
 			street: this.state.street,
@@ -55,12 +57,13 @@ class StudentNew extends Component {
 	  }
 
 	render() {
+		const rateError = this.state.rate > 1000;
 		const stateError = this.state.state.length > 2 || this.state.state.length === 1;
 		const isValidZip = (/^\d{5}(-\d{4})?(?!-)$/).test(this.state.zip);
 		const zipError = !isValidZip && this.state.zip.length > 0;
 		const isValidPhone = (/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/).test(this.state.phone);
 		const phoneError = !isValidPhone && this.state.phone.length > 0;
-		const disableBtn = stateError || zipError || phoneError;
+		const disableBtn = rateError || stateError || zipError || phoneError;
 
 		return (
 			<div className="row">
@@ -76,6 +79,11 @@ class StudentNew extends Component {
 						<div className="form-group">
 							<label htmlFor="lastName">Last Name:</label>
 							<input type="text" className="form-control" id="lastName" name="lastName" value={this.state.lastName} onChange={this.handleInputChange} />
+						</div>
+
+						<div className="form-group">
+							<label htmlFor="rate">Hourly Rate:</label>{rateError ? <span className="text-danger"> Please enter a reasonable hourly rate</span> : ''}
+							<input type="number" className={`form-control ${ rateError ? 'error' : ''}`} id="rate" name="rate" value={this.state.rate.length > 0 ? Math.trunc(Number(this.state.rate)) : ''} onChange={this.handleInputChange} required/>
 						</div>
 
 						<div className="form-group">
