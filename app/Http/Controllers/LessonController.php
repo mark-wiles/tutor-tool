@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class LessonController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,9 @@ class LessonController extends Controller
      */
     public function index()
     {
-        //
+        $lessons = Lesson::where(['user_id' => auth()->id()])->orderBy('start_time')->get();
+        
+        return($lessons);
     }
 
     /**
@@ -35,7 +42,14 @@ class LessonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes = $this->validateLesson();
+
+		$attributes['user_id'] = auth()->id();
+
+        $lesson = Lesson::create($attributes);
+        
+        return ($lesson);
+
     }
 
     /**
@@ -81,5 +95,20 @@ class LessonController extends Controller
     public function destroy(Lesson $lesson)
     {
         //
+    }
+
+    public function validateLesson() {
+
+        return request()->validate([
+
+            'start_time' => ['required', 'date', 'max:255'],
+
+            'end_time' => ['required', 'date', 'max:255'],
+
+            'student_id' => ['required', 'integer'],
+
+            'rate' => ['required', 'integer', 'min:1', 'max:1000'],
+
+        ]);
     }
 }
