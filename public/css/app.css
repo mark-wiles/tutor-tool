@@ -10558,6 +10558,11 @@ nav.nav-bottom {
   padding: 10px 0;
 }
 
+.date-time {
+  float: left;
+  width: 50%;
+}
+
 .disabled-link {
   opacity: 0.7;
   pointer-events: none;
