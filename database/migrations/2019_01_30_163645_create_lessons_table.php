@@ -22,6 +22,7 @@ class CreateLessonsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('location_id')->nullable();
             $table->string('subject')->nullable();
+            $table->Decimal('payment', 13, 2)->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
