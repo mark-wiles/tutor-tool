@@ -8,6 +8,7 @@ class StudentEdit extends Component {
 		this.state = {
 			first_name: '',
 			last_name: '',
+			rate: '',
 			phone: '',
 			email: '',
 			street: '',
@@ -30,6 +31,7 @@ class StudentEdit extends Component {
 			this.setState({
 				first_name: student.first_name ? student.first_name : '',
 				last_name: student.last_name ? student.last_name : '',
+				rate: student.rate ? student.rate : '',
 				phone: student.phone ? student.phone : '',
 				email: student.email ? student.email : '',
 				street: student.street ? student.street : '',
@@ -57,6 +59,7 @@ class StudentEdit extends Component {
 		Axios.put(url, {
 			first_name: this.state.first_name,
 			last_name: this.state.last_name,
+			rate: Math.trunc(Number(this.state.rate)),
 			phone: this.state.phone,
 			email: this.state.email,
 			street: this.state.street,
@@ -80,12 +83,13 @@ class StudentEdit extends Component {
 	  }
 
 	render() {
-			const stateError = this.state.state.length > 2 || this.state.state.length === 1;
-			const isValidZip = (/^\d{5}(-\d{4})?(?!-)$/).test(this.state.zip);
-			const zipError = !isValidZip && this.state.zip.length > 0;
-			const isValidPhone = (/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/).test(this.state.phone);
-			const phoneError = !isValidPhone && this.state.phone.length > 0;
-			const disableBtn = stateError || zipError || phoneError;
+		const rateError = this.state.rate > 1000;
+		const stateError = this.state.state.length > 2 || this.state.state.length === 1;
+		const isValidZip = (/^\d{5}(-\d{4})?(?!-)$/).test(this.state.zip);
+		const zipError = !isValidZip && this.state.zip.length > 0;
+		const isValidPhone = (/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/).test(this.state.phone);
+		const phoneError = !isValidPhone && this.state.phone.length > 0;
+		const disableBtn = rateError || stateError || zipError || phoneError;
 
 		return (
 			<div className="row">
@@ -101,6 +105,11 @@ class StudentEdit extends Component {
 						<div className="form-group">
 							<label htmlFor="last_name">Last Name:</label>
 							<input type="text" className="form-control" id="last_name" name="last_name" value={this.state.last_name ? this.state.last_name : ''} onChange={this.handleInputChange} />
+						</div>
+
+						<div className="form-group">
+							<label htmlFor="rate">Hourly Rate:</label>{rateError ? <span className="text-danger"> Please enter a reasonable hourly rate</span> : ''}
+							<input type="number" className={`form-control ${ rateError ? 'error' : ''}`} id="rate" name="rate" value={this.state.rate ? Math.trunc(Number(this.state.rate)) : ''} onChange={this.handleInputChange} required/>
 						</div>
 
 						<div className="form-group">
