@@ -19,7 +19,10 @@ class LessonController extends Controller
      */
     public function index()
     {
-        $lessons = Lesson::where(['user_id' => auth()->id()])->orderBy('start_time')->get();
+        $lessons = Lesson::where([['lessons.user_id', '=', auth()->id()], ['lessons.unix_time', '>=', time()]])
+            ->join('students', 'lessons.student_id', '=', 'students.id')
+            ->select('lessons.*', 'students.first_name', 'students.last_name')
+            ->orderBy('start_time')->get();
         
         return($lessons);
     }
@@ -42,13 +45,14 @@ class LessonController extends Controller
      */
     public function store(Request $request)
     {
+        
         $attributes = $this->validateLesson();
 
 		$attributes['user_id'] = auth()->id();
 
         $lesson = Lesson::create($attributes);
         
-        return ($lesson);
+        return ($attributes);
 
     }
 
@@ -104,6 +108,8 @@ class LessonController extends Controller
             'start_time' => ['required', 'date', 'max:255'],
 
             'end_time' => ['required', 'date', 'max:255'],
+
+            'utc_time' => ['required'],
 
             'student_id' => ['required', 'integer'],
 

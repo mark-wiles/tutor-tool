@@ -17,6 +17,7 @@ class CreateLessonsTable extends Migration
             $table->increments('id');
             $table->timestamp('start_time');
             $table->timestamp('end_time');
+            $table->unsignedBigInteger('unix_time');
             $table->unsignedInteger('rate');
             $table->unsignedInteger('student_id');
             $table->unsignedInteger('user_id');

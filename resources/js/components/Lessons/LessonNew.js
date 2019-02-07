@@ -84,17 +84,20 @@ class LessonNew extends Component {
 		event.preventDefault();
 		var startTime = this.state.start_date + ' ' + this.state.start_time;
 		var endTime = this.state.end_date + ' ' + this.state.end_time;
+		var unixTime = new Date(startTime);
+		unixTime = unixTime.getTime();
 		
 		Axios.post('/lesson', {
 			start_time: startTime,
 			end_time: endTime,
+			unix_time: Math.round(unixTime/1000),
 			rate: Math.trunc(Number(this.state.rate)),
 			student_id: parseInt(this.state.student_id),
 			location: this.state.location
 		})
 		.then((response) => {
 			console.log(response);
-			if (response.request.status === 201) {
+			if (response.request.status === 200) {
 				this.props.history.push('/lessons');
 			}
 			else {
