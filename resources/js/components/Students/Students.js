@@ -30,15 +30,15 @@ class Students extends Component {
 			
 				<div className="student-summary" key={student.id}>
 					<Link to={'/student/' + student.id}>
-						<h4 className="font-weight-bold mb-1">{student.first_name}</h4>
-						<h6>{student.city}, {student.state} {student.zip}</h6>
+						<h4 className="font-weight-bold mb-1">{student.first_name} {student.last_name}</h4>
+						<h6 className="mb-0">{student.city}, {student.state}</h6>
 					</Link>
 				</div>
 		)
 
 		return (
 			<div className="row">
-				<NavbarTop classLeft="fas fa-cog orange" classRight="fas fa-plus orange" linkLeft="/settings" linkRight="/student/new" title="Students" />
+				<NavbarTop classLeft="fas fa-cog orange" classRight="fas fa-plus orange" linkLeft="/logout" linkRight="/student/new" title="Students" />
 
 				<div className="container content-container">
 					{ allStudents }
