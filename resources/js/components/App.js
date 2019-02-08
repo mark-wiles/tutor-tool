@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import LessonNew from './Lessons/LessonNew';
+import Lesson from './Lessons/Lesson';
 import Lessons from './Lessons/Lessons';
 import Messages from './Messages';
 import NavbarBottom from './NavbarBottom';
@@ -25,6 +26,7 @@ export default class App extends Component {
                         <Route exact path="/student/new" component={StudentNew} />
                         <Route exact path="/student/:id" component={Student} />
                         <Route exact path="/lesson/new" component={LessonNew} />
+                        <Route exact path="/lesson/:id" component={Lesson} />
                         <Route exact path="/lessons" component={Lessons} />
                         <Route exact path="/messages" component={Messages} />
                         <Route exact path="/earnings" component={Earnings} />
