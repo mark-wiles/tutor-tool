@@ -12,6 +12,7 @@ class LessonNew extends Component {
 			start_time: '12:00',
 			end_time: '13:00',
 			rate: '',
+			subject: '',
 			student_id: '',
 			location: '',
 			students: []
@@ -92,6 +93,7 @@ class LessonNew extends Component {
 			end_time: endTime,
 			unix_time: Math.round(unixTime/1000),
 			rate: Math.trunc(Number(this.state.rate)),
+			subject: this.state.subject,
 			student_id: parseInt(this.state.student_id),
 			location: this.state.location
 		})
@@ -120,8 +122,9 @@ class LessonNew extends Component {
 
 		const dateError = startDate > endDate;
 		const rateError = this.state.rate > 1000;
+		const subjectError = this.state.subject.length > 40;
 		const timeError = startDate.getDate() === endDate.getDate() && this.state.start_time >= this.state.end_time;
-		const disableBtn = dateError || rateError || timeError;
+		const disableBtn = dateError || rateError || subjectError || timeError;
 
 		const students = this.state.students.map((student) =>
 			<option key={student.id} data-rate={student.rate} value={student.id}>{student.first_name} {student.last_name}</option>
@@ -144,6 +147,11 @@ class LessonNew extends Component {
 						<div className="form-group">
 							<label htmlFor="rate">Hourly Rate:</label>{rateError ? <span className="text-danger"> Please enter a reasonable hourly rate</span> : ''}
 							<input type="number" className={`form-control ${ rateError ? 'error' : ''}`} id="rate" name="rate" value={this.state.rate} onChange={this.handleInputChange} required/>
+						</div>
+
+						<div className="form-group">
+							<label htmlFor="subject">Subject:</label>{subjectError ? <span className="text-danger"> Must be less than 40 characters</span> : ''}
+							<input type="text" className={`form-control ${ subjectError ? 'error' : ''}`} id="subject" name="subject" value={this.state.subject} onChange={this.handleInputChange}/>
 						</div>
 
 						<div className="date-time form-group">
