@@ -27,6 +27,26 @@ class LessonController extends Controller
         return($lessons);
     }
 
+    public function submitted()
+    {
+        $lessons = Lesson::where([['lessons.user_id', '=', auth()->id()], ['lessons.unix_time', '<', time()], ['lessons.payment', '>', 0]])
+            ->join('students', 'lessons.student_id', '=', 'students.id')
+            ->select('lessons.*', 'students.first_name', 'students.last_name')
+            ->orderBy('start_time')->get();
+        
+        return($lessons);
+    }
+
+    public function unsubmitted()
+    {
+        $lessons = Lesson::where([['lessons.user_id', '=', auth()->id()], ['lessons.unix_time', '<', time()], ['lessons.payment', '=', 0]])
+            ->join('students', 'lessons.student_id', '=', 'students.id')
+            ->select('lessons.*', 'students.first_name', 'students.last_name')
+            ->orderBy('start_time')->get();
+        
+        return($lessons);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -62,9 +82,14 @@ class LessonController extends Controller
      * @param  \App\Lesson  $lesson
      * @return \Illuminate\Http\Response
      */
-    public function show(Lesson $lesson)
+    public function show($id)
     {
-        //
+        $lesson = Lesson::where(['lessons.id' => $id, 'lessons.user_id' => auth()->id()])
+        ->join('students', 'lessons.student_id', '=', 'students.id')
+        ->select('lessons.*', 'students.first_name', 'students.last_name')
+        ->get();
+
+        return($lesson);
     }
 
     /**
@@ -109,11 +134,13 @@ class LessonController extends Controller
 
             'end_time' => ['required', 'date', 'max:255'],
 
-            'utc_time' => ['required'],
+            'unix_time' => ['required'],
 
             'student_id' => ['required', 'integer'],
 
             'rate' => ['required', 'integer', 'min:1', 'max:1000'],
+
+            'subject' => ['nullable', 'min:2', 'max:255'],
 
         ]);
     }
