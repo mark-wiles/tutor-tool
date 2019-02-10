@@ -112,7 +112,13 @@ class LessonController extends Controller
      */
     public function update(Request $request, Lesson $lesson)
     {
-        //
+
+        $attributes = $this->validateLesson();
+
+        $updatedLesson = Lesson::where(['id' => $lesson->id, 'user_id' => auth()->id()])->update($attributes);
+        
+        return ($attributes);
+
     }
 
     /**
@@ -141,6 +147,8 @@ class LessonController extends Controller
             'rate' => ['required', 'integer', 'min:1', 'max:1000'],
 
             'subject' => ['nullable', 'min:2', 'max:255'],
+
+            'payment' => ['min:0', 'max:1000'],
 
         ]);
     }
