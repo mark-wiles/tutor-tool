@@ -76,12 +76,16 @@ class Lesson extends Component {
 						<h5 className="info">{this.handleTime(lesson.end_time)}</h5>
 					</div>
 
-					<div className="lesson-info">
-						<h5 className="info-title">Location</h5>
-						<div className="info">
-							<h5 className="text-right">{lesson.location}</h5>
+					{lesson.payment > 0 ? 
+						<div className="lesson-info">
+							<h5 className="info-title orange">Paid</h5>
+							<h5 className="info orange">{`$${lesson.payment}`}</h5>
 						</div>
-					</div>
+						:
+						<div className="lesson-info">
+							<h5 className="info-title orange">Unsubmitted</h5>
+						</div>
+					}
 				</div>
 			</div>
 		);
