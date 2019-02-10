@@ -98,7 +98,6 @@ class LessonNew extends Component {
 			location: this.state.location
 		})
 		.then((response) => {
-			console.log(response);
 			if (response.request.status === 200) {
 				this.props.history.push('/lessons');
 			}
