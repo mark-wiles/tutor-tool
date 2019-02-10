@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+import LessonEdit from './Lessons/LessonEdit';
 import LessonNew from './Lessons/LessonNew';
 import Lesson from './Lessons/Lesson';
 import Lessons from './Lessons/Lessons';
@@ -25,6 +26,7 @@ export default class App extends Component {
                         <Route exact path="/student/edit/:id" component={StudentEdit} />
                         <Route exact path="/student/new" component={StudentNew} />
                         <Route exact path="/student/:id" component={Student} />
+                        <Route exact path="/lesson/edit/:id" component={LessonEdit} />
                         <Route exact path="/lesson/new" component={LessonNew} />
                         <Route exact path="/lesson/:id" component={Lesson} />
                         <Route exact path="/lessons" component={Lessons} />
