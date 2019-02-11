@@ -13,6 +13,7 @@ import StudentEdit from './Students/StudentEdit';
 import StudentNew from './Students/StudentNew';
 import Students from './Students/Students';
 import Earnings from './Earnings/Earnings';
+import Settings from './Settings';
 
 
 export default class App extends Component {
@@ -32,6 +33,7 @@ export default class App extends Component {
                         <Route exact path="/lessons" component={Lessons} />
                         <Route exact path="/messages" component={Messages} />
                         <Route exact path="/earnings" component={Earnings} />
+                        <Route exact path="/settings" component={Settings} />
                     </Switch>
 
                     <NavbarBottom />
