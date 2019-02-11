@@ -13,9 +13,10 @@ class Students extends Component {
 	}
 
 	componentDidMount() {
-		axios.get('/students'
+		axios.get('/api/students'
 		)
 		.then((response) => {
+			console.log(response);
 			var students = response.data;
 			this.setState({students});
 		})
@@ -38,7 +39,7 @@ class Students extends Component {
 
 		return (
 			<div className="row">
-				<NavbarTop classLeft="fas fa-cog orange" classRight="fas fa-plus orange" linkLeft="/logout" linkRight="/student/new" title="Students" />
+				<NavbarTop classLeft="fas fa-cog orange" classRight="fas fa-plus orange" linkLeft="/settings" linkRight="/student/new" title="Students" />
 
 				<div className="container content-container">
 					{ allStudents }

@@ -22,7 +22,7 @@ class StudentEdit extends Component {
 	}
 
 	componentDidMount() {
-		var url = '/student/' + this.props.match.params.id;
+		var url = '/api/student/' + this.props.match.params.id;
 
 		axios.get(url
 		)
@@ -55,7 +55,7 @@ class StudentEdit extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
-		let url = '/student/' + this.props.match.params.id;
+		let url = '/api/student/' + this.props.match.params.id;
 		Axios.put(url, {
 			first_name: this.state.first_name,
 			last_name: this.state.last_name,

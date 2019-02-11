@@ -14,7 +14,7 @@ class Student extends Component {
 	}
 
 	componentDidMount() {
-		var url = '/student/' + this.props.match.params.id;
+		var url = '/api/student/' + this.props.match.params.id;
 
 		axios.get(url
 		)
@@ -42,7 +42,7 @@ class Student extends Component {
 						<a className={!student.phone ? "disabled-link" : ""} href={`tel:${student.phone}`}>
 							<Icon className="fas fa-mobile-alt" title="Call" />
 						</a>
-						<Link to={`/lesson/${student.id}`}>
+						<Link to="/lesson/new">
 							<Icon className="far fa-calendar-plus" title="Lesson" />
 						</Link>
 					</div>

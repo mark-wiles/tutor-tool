@@ -31,7 +31,7 @@ class StudentNew extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
-		Axios.post('/student', {
+		Axios.post('/api/student', {
 			first_name: this.state.firstName,
 			last_name: this.state.lastName,
 			rate: Math.trunc(Number(this.state.rate)),
