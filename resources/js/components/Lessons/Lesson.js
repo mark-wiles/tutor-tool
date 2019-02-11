@@ -13,7 +13,7 @@ class Lesson extends Component {
 	}
 
 	componentDidMount() {
-		var url = '/lesson/' + this.props.match.params.id;
+		var url = '/api/lesson/' + this.props.match.params.id;
 
 		axios.get(url
 		)

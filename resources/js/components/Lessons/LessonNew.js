@@ -28,7 +28,7 @@ class LessonNew extends Component {
 	componentDidMount() {
 		var date = new Date();
 		var theDate = moment(date).format('YYYY-MM-DD');
-		axios.get('/students'
+		axios.get('/api/students'
 		)
 		.then((response) => {
 			var students = response.data;
@@ -88,7 +88,7 @@ class LessonNew extends Component {
 		var unixTime = new Date(startTime);
 		unixTime = unixTime.getTime();
 		
-		Axios.post('/lesson', {
+		Axios.post('/api/lesson', {
 			start_time: startTime,
 			end_time: endTime,
 			unix_time: Math.round(unixTime/1000),

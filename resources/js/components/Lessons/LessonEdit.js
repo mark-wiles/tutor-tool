@@ -23,7 +23,7 @@ class LessonEdit extends Component {
 	}
 
 	componentDidMount() {
-		var url = '/lesson/' + this.props.match.params.id;
+		var url = '/api/lesson/' + this.props.match.params.id;
 
 		axios.get(url
 		)
@@ -75,7 +75,7 @@ class LessonEdit extends Component {
 		var endTime = this.state.end_date + ' ' + this.state.end_time;
 		var unixTime = new Date(startTime);
 		unixTime = unixTime.getTime();
-		var url = '/lesson/' + this.props.match.params.id;
+		var url = '/api/lesson/' + this.props.match.params.id;
 
 		Axios.put(url, {
 			start_time: startTime,
@@ -88,7 +88,7 @@ class LessonEdit extends Component {
 		})
 		.then((response) => {
 			if (response.request.status === 200) {
-				this.props.history.push(url);
+				this.props.history.push('/lessons');
 			}
 			else {
 				alert('There was a problem saving the data. Please check your entries and try again.')

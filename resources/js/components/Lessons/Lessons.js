@@ -16,7 +16,7 @@ class Lessons extends Component {
 	}
 
 	componentDidMount() {
-		axios.get('/lessons'
+		axios.get('/api/lessons'
 		)
 		.then((response) => {
 			let lessons = response.data;
@@ -44,13 +44,13 @@ class Lessons extends Component {
 		var url;
 		switch (event.target.id) {
 			case 'unsubmitted':
-				url = '/lessons/unsubmitted';
+				url = '/api/lessons/unsubmitted';
 				break;
 			case 'submitted':
-				url = '/lessons/submitted';
+				url = '/api/lessons/submitted';
 				break;
 			default:
-				url = '/lessons';
+				url = '/api/lessons';
 		}
 		axios.get(url
 		)
