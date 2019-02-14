@@ -19,7 +19,8 @@ class Student extends Component {
 		axios.get(url
 		)
 		.then((response) => {
-			var student = response.data[0];
+			console.log(response.data);
+			var student = response.data;
 			this.setState({student});
 		})
 		.catch((error) => {
@@ -28,7 +29,13 @@ class Student extends Component {
 	}
 
 	render() {
-		var student = this.state.student;
+		const student = this.state.student;
+
+		const notes = this.state.student.notes ? (this.state.student.notes.map((note) =>
+				<div className="note-summary" key={note.id}>
+						<h6>{note.note}</h6>
+				</div>
+			)) : null
 
 		return(
 			<div className="row">
@@ -73,6 +80,16 @@ class Student extends Component {
 							<h5 className="text-right">{student.city}, {student.state}</h5>
 							<h5 className="text-right">{student.zip}</h5>
 						</div>
+					</div>
+
+					<div className="notes">
+						<h5 className="info-title pt-2">Notes</h5>
+
+						{ notes }
+
+						<Link to={'/note/new/' + student.id}>
+							<h5 className="info-title orange pt-2">Add Note</h5>
+						</Link>
 					</div>
 				</div>
 			</div>
