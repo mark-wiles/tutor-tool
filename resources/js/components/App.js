@@ -8,6 +8,7 @@ import Lesson from './Lessons/Lesson';
 import Lessons from './Lessons/Lessons';
 import Messages from './Messages';
 import NavbarBottom from './NavbarBottom';
+import NoteNew from './Students/NoteNew';
 import Student from './Students/Student';
 import StudentEdit from './Students/StudentEdit';
 import StudentNew from './Students/StudentNew';
@@ -24,16 +25,18 @@ export default class App extends Component {
 
                     <Switch>
                         <Route exact path="/home" component={Students} />
-                        <Route exact path="/student/edit/:id" component={StudentEdit} />
-                        <Route exact path="/student/new" component={StudentNew} />
-                        <Route exact path="/student/:id" component={Student} />
                         <Route exact path="/lesson/edit/:id" component={LessonEdit} />
                         <Route exact path="/lesson/new" component={LessonNew} />
                         <Route exact path="/lesson/:id" component={Lesson} />
                         <Route exact path="/lessons" component={Lessons} />
                         <Route exact path="/messages" component={Messages} />
+                        <Route exact path="/note/new/:id" component={NoteNew} />
                         <Route exact path="/earnings" component={Earnings} />
                         <Route exact path="/settings" component={Settings} />
+                        <Route exact path="/student/edit/:id" component={StudentEdit} />
+                        <Route exact path="/student/new" component={StudentNew} />
+                        <Route exact path="/student/:id" component={Student} />
+                        <Route path="*" component={Students} />
                     </Switch>
 
                     <NavbarBottom />
