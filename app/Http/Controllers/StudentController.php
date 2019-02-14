@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Student;
+use App\Note;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -59,7 +60,15 @@ class StudentController extends Controller
      */
     public function show($student)
     {
-        $student = Student::where(['id' => $student, 'user_id' => auth()->id()])->get();
+        $id = $student;
+        
+        $user = auth()->id();
+
+        $student = Student::where(['id' => $id, 'user_id' => $user])->first();
+
+        $notes = Note::where(['notes.student_id' => $id, 'notes.user_id' => $user])->get();
+        
+        $student['notes'] = $notes;
 
         return($student);
     }
