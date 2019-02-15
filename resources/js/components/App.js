@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+import AddressNew from './Addresses/AddressNew';
 import LessonEdit from './Lessons/LessonEdit';
 import LessonNew from './Lessons/LessonNew';
 import Lesson from './Lessons/Lesson';
 import Lessons from './Lessons/Lessons';
 import Messages from './Messages';
 import NavbarBottom from './NavbarBottom';
-import NoteNew from './Students/NoteNew';
+import NoteNew from './Notes/NoteNew';
 import Student from './Students/Student';
 import StudentEdit from './Students/StudentEdit';
 import StudentNew from './Students/StudentNew';
@@ -25,6 +26,7 @@ export default class App extends Component {
 
                     <Switch>
                         <Route exact path="/home" component={Students} />
+                        <Route exact path="/address/new/:id" component={AddressNew} />
                         <Route exact path="/lesson/edit/:id" component={LessonEdit} />
                         <Route exact path="/lesson/new" component={LessonNew} />
                         <Route exact path="/lesson/:id" component={Lesson} />
