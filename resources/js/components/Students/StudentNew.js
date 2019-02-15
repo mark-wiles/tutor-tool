@@ -10,11 +10,7 @@ class StudentNew extends Component {
 			lastName: '',
 			rate: '',
 			phone: '',
-			email: '',
-			street: '',
-			city: '',
-			state: '',
-			zip: ''
+			email: ''
 		};
 
 		this.handleInputChange = this.handleInputChange.bind(this);
@@ -36,11 +32,7 @@ class StudentNew extends Component {
 			last_name: this.state.lastName,
 			rate: Math.trunc(Number(this.state.rate)),
 			phone: this.state.phone,
-			email: this.state.email,
-			street: this.state.street,
-			city: this.state.city,
-			state: this.state.state,
-			zip: this.state.zip
+			email: this.state.email
 		})
 		.then((response) => {
 			if (response.request.status === 201) {
@@ -58,12 +50,9 @@ class StudentNew extends Component {
 
 	render() {
 		const rateError = this.state.rate > 1000;
-		const stateError = this.state.state.length > 2 || this.state.state.length === 1;
-		const isValidZip = (/^\d{5}(-\d{4})?(?!-)$/).test(this.state.zip);
-		const zipError = !isValidZip && this.state.zip.length > 0;
 		const isValidPhone = (/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/).test(this.state.phone);
 		const phoneError = !isValidPhone && this.state.phone.length > 0;
-		const disableBtn = rateError || stateError || zipError || phoneError;
+		const disableBtn = rateError || phoneError;
 
 		return (
 			<div className="row">
@@ -94,26 +83,6 @@ class StudentNew extends Component {
 						<div className="form-group">
 							<label htmlFor="email">Email:</label>
 							<input type="email" className="form-control" id="email" name="email" value={this.state.email} onChange={this.handleInputChange}/>
-						</div>
-
-						<div className="form-group">
-							<label htmlFor="street">Street:</label>
-							<input type="text" className="form-control" id="street" name="street" value={this.state.street} onChange={this.handleInputChange} />
-						</div>
-
-						<div className="form-group">
-							<label htmlFor="city">City:</label>
-							<input type="text" className="form-control" id="city" name="city" value={this.state.city} onChange={this.handleInputChange} />
-						</div>
-
-						<div className="form-group">
-							<label htmlFor="state">State: </label>{stateError ? <span className="text-danger"> Please use the state's two letter abbreviation</span> : ''}
-							<input type="text" className={`form-control ${ stateError ? 'error' : ''}`} id="state" name="state" value={this.state.state.toUpperCase()} onChange={this.handleInputChange} />
-						</div>
-
-						<div className="form-group">
-							<label htmlFor="zip">Zip:</label>{zipError ? <span className="text-danger"> Valid formats are xxxxx or xxxxx-xxxx</span> : ''}
-							<input type="text" className={`form-control ${ zipError ? 'error' : ''}`} id="zip" name="zip" value={this.state.zip} onChange={this.handleInputChange} />
 						</div>
 
 						<button type="submit" className="btn btn-primary mb-5"  disabled={disableBtn ? true : false} >Submit</button>
