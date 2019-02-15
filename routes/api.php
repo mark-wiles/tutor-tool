@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 
+Route::post('/address', 'AddressController@store');
+
 Route::get('/lessons', 'LessonController@index');
 Route::get('/lesson/{id}', 'LessonController@show');
 Route::get('/lessons/unsubmitted', 'LessonController@unsubmitted');
