@@ -30,12 +30,22 @@ class Student extends Component {
 
 	render() {
 		const student = this.state.student;
+		
+		const addresses = student.addresses ? (student.addresses.map((address) =>
+			<div className="address-summary" key={address.id}>
+				<h6 className="m-0">{address.venue}</h6>
+				<h6 className="m-0">{address.street}</h6>
+				<h6 className="m-0">{address.city}, {address.state}</h6>
+				<h6 className="m-0">{address.zip}</h6>
+			</div>
+		)) : null
 
-		const notes = this.state.student.notes ? (this.state.student.notes.map((note) =>
-				<div className="note-summary" key={note.id}>
-						<h6>{note.note}</h6>
-				</div>
-			)) : null
+		const notes = student.notes ? (student.notes.map((note) =>
+			<div className="note-summary" key={note.id}>
+				<h6 className="m-0">{note.note}</h6>
+			</div>
+		)) : null
+		
 
 		return(
 			<div className="row">
@@ -54,42 +64,63 @@ class Student extends Component {
 						</Link>
 					</div>
 
-					<div className="student-info">
-						<h5 className="info-title">Name</h5>
-						<h5 className="info">{student.first_name} {student.last_name}</h5>
-					</div>
+					<div className="row">
+						<div className="col-md-12 p-0">
+							<h5 className="info-title info-header"><b>Info</b></h5>
+						</div>
+						
+						<div className="container">
+							<div className="student-info">
+								<h5 className="info-title">Name</h5>
+								<h5 className="info">{student.first_name} {student.last_name}</h5>
+							</div>
 
-					<div className="student-info">
-						<h5 className="info-title">Hourly Rate</h5>
-						<h5 className="info">{`$${student.rate}`}</h5>
-					</div>
+							<div className="student-info">
+								<h5 className="info-title">Hourly Rate</h5>
+								<h5 className="info">{`$${student.rate}`}</h5>
+							</div>
 
-					<div className="student-info">
-						<h5 className="info-title">Phone</h5>
-						<h5 className="info">{student.phone}</h5>
-					</div>
-					<div className="student-info">
-						<h5 className="info-title">Email</h5>
-						<h5 className="info">{student.email}</h5>
-					</div>
+							<div className="student-info">
+								<h5 className="info-title">Phone</h5>
+								<h5 className="info">{student.phone}</h5>
+							</div>
 
-					<div className="student-info">
-						<h5 className="info-title">Address</h5>
-						<div className="info">
-							<h5 className="text-right">{student.street}</h5>
-							<h5 className="text-right">{student.city}, {student.state}</h5>
-							<h5 className="text-right">{student.zip}</h5>
+							<div className="student-info">
+								<h5 className="info-title">Email</h5>
+								<h5 className="info">{student.email}</h5>
+							</div>
 						</div>
 					</div>
 
-					<div className="notes">
-						<h5 className="info-title pt-2">Notes</h5>
+					<div className="row">
+						<div className="col-md-12 p-0">
+							<h5 className="info-header info-title"><b>Address</b></h5>
 
-						{ notes }
+							<div className="container">
 
-						<Link to={'/note/new/' + student.id}>
-							<h5 className="info-title orange pt-2">Add Note</h5>
-						</Link>
+								{ addresses }
+
+								<Link to={'/address/new/' + student.id}>
+									<h5 className="info-title orange pt-2">Add Address</h5>
+								</Link>
+							</div>
+						</div>	
+					</div>
+					
+
+					<div className="row">
+						<div className="col-md-12 p-0">
+							<h5 className="info-title info-header"><b>Notes</b></h5>
+
+							<div className="container notes">
+
+								{ notes }
+
+								<Link to={'/note/new/' + student.id}>
+									<h5 className="info-title orange pt-2">Add Note</h5>
+								</Link>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
