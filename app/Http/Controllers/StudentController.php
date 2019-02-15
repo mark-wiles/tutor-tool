@@ -21,7 +21,11 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::where(['user_id' => auth()->id()])->latest()->get();
+        $students = Student::where(['students.user_id' => auth()->id()])
+            ->with(['addresses' => function($query) {
+                $query->get();
+            }])
+            ->get();
         
         return($students);
     }
