@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Student;
 use App\Note;
+use App\Address;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -23,16 +24,6 @@ class StudentController extends Controller
         $students = Student::where(['user_id' => auth()->id()])->latest()->get();
         
         return($students);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -67,21 +58,14 @@ class StudentController extends Controller
         $student = Student::where(['id' => $id, 'user_id' => $user])->first();
 
         $notes = Note::where(['notes.student_id' => $id, 'notes.user_id' => $user])->get();
+
+        $addresses = Address::where(['addresses.student_id' => $id, 'addresses.user_id' => $user])->get();
         
         $student['notes'] = $notes;
 
-        return($student);
-    }
+        $student['addresses'] = $addresses;
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Student  $student
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Student $student)
-    {
-        //
+        return($student);
     }
 
     /**
@@ -125,13 +109,6 @@ class StudentController extends Controller
 
             'email' => ['nullable', 'email', 'max:255'],
 
-            'street' => ['nullable', 'max:255'],
-
-            'city' => ['nullable', 'max:255'],
-
-            'state' => ['nullable', 'min:2', 'max:2'],
-
-            'zip' => ['nullable', 'min:5', 'max:255'],
         ]);
 			
 	}

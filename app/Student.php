@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-  protected $fillable = ['first_name', 'last_name', 'rate', 'street', 'city', 'state', 'zip', 'phone', 'email', 'user_id'];
+  protected $fillable = ['first_name', 'last_name', 'rate', 'phone', 'email', 'user_id'];
 
 	public function user()
 	  {
@@ -16,5 +16,10 @@ class Student extends Model
 		public function notes()
 	  {
 		return $this->hasMany(Note::class);
+		}
+		
+		public function addresses()
+	  {
+		return $this->hasMany(Address::class);
 	  }
 }
