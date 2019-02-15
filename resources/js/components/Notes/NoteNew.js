@@ -48,7 +48,7 @@ class NoteNew extends Component {
 
 		return (
 			<div className="row">
-				<NavbarTop classLeft="fas fa-arrow-left orange" linkLeft="/home" linkRight="" title="Add Student" />
+				<NavbarTop classLeft="fas fa-arrow-left orange" linkLeft={`/student/${this.props.match.params.id}`} classRight="fas fa-times orange" linkRight={`/student/${this.props.match.params.id}`} title="Add Student" />
 				
 				<div className="container content-container pt-2">
 					<form onSubmit={this.handleSubmit}>
