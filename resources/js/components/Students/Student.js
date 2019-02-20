@@ -11,6 +11,7 @@ class Student extends Component {
 		this.state = {
 			student: []
 		};
+		this.handleAddressClick = this.handleAddressClick.bind(this);
 	}
 
 	componentDidMount() {
@@ -19,7 +20,6 @@ class Student extends Component {
 		axios.get(url
 		)
 		.then((response) => {
-			console.log(response.data);
 			var student = response.data;
 			this.setState({student});
 		})
@@ -28,16 +28,31 @@ class Student extends Component {
 		});
 	}
 
+	handleAddressClick() {
+		var id = '#address-options' + event.target.dataset.id;
+		$(id).toggleClass('hidden');
+	}
+
 	render() {
 		const student = this.state.student;
 		
-		const addresses = student.addresses ? (student.addresses.map((address) =>
-			<div className="address-summary" key={address.id}>
-				<h6 className="m-0">{address.venue}</h6>
-				<h6 className="m-0">{address.street}</h6>
-				<h6 className="m-0">{address.city}, {address.state}</h6>
-				<h6 className="m-0">{address.zip}</h6>
-			</div>
+		const addresses = student.addresses ? (student.addresses.map((address) =>			
+				<div className="address-summary" data-id={address.id} key={address.id} onClick={this.handleAddressClick}>
+					<h6 className="m-0" data-id={address.id}>{address.venue}</h6>
+					<h6 className="m-0" data-id={address.id}>{address.street}</h6>
+					<h6 className="m-0" data-id={address.id}>{address.city}, {address.state}</h6>
+					<h6 className="m-0" data-id={address.id}>{address.zip}</h6>
+				
+					<div className="address-options hidden" id={'address-options' + address.id}>
+						<Link to={'/address/edit/' + address.id}>
+							<h5 className="orange">Edit</h5>
+						</Link>
+
+						<a href={`https://www.google.com/maps/place/${address.street}+${address.city}+${address.state}+${address.zip}`} target="_blank">
+							<h5 className="orange">Show on Map</h5>
+						</a>
+					</div>
+				</div>
 		)) : null
 
 		const notes = student.notes ? (student.notes.map((note) =>
