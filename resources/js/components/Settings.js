@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
+import NavbarTop from './NavbarTop';
 
 class Earnings extends Component {
 
@@ -30,9 +30,11 @@ class Earnings extends Component {
 	render() {
 
 		return(
-			<div className="content-container">
-				<h2 className="font-weight-bold">Settings</h2>
-				<button className="btn btn-primary" onClick={this.handleLogout}>Logout</button>
+			<div className="row">
+				<NavbarTop classLeft="fas fa-arrow-left orange" classRight="fas fa-times orange" linkLeft="/home" linkRight="/home" title="Settings" />
+				<div className="container content-container">
+					<h4 className="orange pt-2" onClick={this.handleLogout}>Logout</h4>
+				</div>
 			</div>
 		);
 	}
