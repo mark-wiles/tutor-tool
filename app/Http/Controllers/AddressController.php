@@ -73,9 +73,15 @@ class AddressController extends Controller
      * @param  \App\Address  $address
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Address $address)
+    public function destroy($address)
     {
-        //
+        $id = $address;
+        
+        $user = auth()->id();
+
+        $result = Address::where(['id' => $id, 'user_id' => $user])->delete();
+
+        return($result);
     }
 
     public function validateAddress() {
