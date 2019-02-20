@@ -58,11 +58,11 @@ class StudentNew extends Component {
 			<div className="row">
 				<NavbarTop classLeft="fas fa-arrow-left orange" linkLeft="/home" linkRight="" title="Add Student" />
 				
-				<div className="container content-container pt-2">
-					<form onSubmit={this.handleSubmit}>
+				<div className="container content-container">
+					<form className="pt-2" onSubmit={this.handleSubmit}>
 						<div className="form-group">
 							<label htmlFor="firstName">First Name:</label>
-							<input type="text" className="form-control" id="firstName" name="firstName" value={this.state.firstName} onChange={this.handleInputChange} required />
+							<input type="text" className="form-control" id="firstName" name="firstName" value={this.state.firstName} onChange={this.handleInputChange} autoFocus required />
 						</div>
 
 						<div className="form-group">
