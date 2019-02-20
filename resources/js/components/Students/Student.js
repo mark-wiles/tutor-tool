@@ -57,7 +57,9 @@ class Student extends Component {
 
 		const notes = student.notes ? (student.notes.map((note) =>
 			<div className="note-summary" key={note.id}>
-				<h6 className="m-0">{note.note}</h6>
+				<Link to={'/note/edit/' + note.id}>
+					<h6 className="m-0">{note.note}</h6>
+				</Link>
 			</div>
 		)) : null
 		
