@@ -44,13 +44,13 @@ class Student extends Component {
 					<h6 className="m-0" data-id={address.id}>{address.zip}</h6>
 				
 					<div className="address-options hidden" id={'address-options' + address.id}>
-						<Link to={'/address/edit/' + address.id}>
-							<h5 className="orange">Edit</h5>
-						</Link>
-
 						<a href={`https://www.google.com/maps/place/${address.street}+${address.city}+${address.state}+${address.zip}`} target="_blank">
 							<h5 className="orange">Show on Map</h5>
 						</a>
+
+						<Link to={'/address/edit/' + address.id}>
+							<h5 className="orange">Edit</h5>
+						</Link>
 					</div>
 				</div>
 		)) : null
