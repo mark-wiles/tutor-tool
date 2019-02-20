@@ -14,6 +14,7 @@ class AddressEdit extends Component {
 			student_id: ''
 		};
 
+		this.handleDelete = this.handleDelete.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
@@ -39,6 +40,27 @@ class AddressEdit extends Component {
 		});
 	}
 
+	handleDelete() {
+		var confirmed = confirm('Are you sure you would like to delete the address? This action cannot be undone.');
+		if (confirmed) {
+			let url = '/api/address/' + this.props.match.params.id;
+			axios.delete(url
+			)
+			.then((response) => {
+				if (response.request.status === 200) {
+					let url = '/student/' + this.state.student_id;
+					this.props.history.push(url);
+				}
+				else {
+					alert('A problem occurred. Please try again later.');
+				}
+			})
+			.catch((error)=> {
+				console.log(error);
+			})
+		}
+	}
+
 	handleInputChange(event) {
 		const name = event.target.name;
 		const value = event.target.value;
@@ -58,7 +80,6 @@ class AddressEdit extends Component {
 			zip: this.state.zip
 		})
 		.then((response) => {
-			console.log(response);
 			if (response.request.status === 200) {
 				let url = '/student/' + this.state.student_id;
 				this.props.history.push(url);
@@ -115,6 +136,10 @@ class AddressEdit extends Component {
 
 						<button type="submit" className="btn btn-primary mb-5"  disabled={disableBtn ? true : false} >Submit</button>
 					</form>
+
+					<div className="row">
+						<h6 className="col-md-12 text-center orange" onClick={this.handleDelete}>Delete Address</h6>
+					</div>
 				</div>
 			</div>
 		);
