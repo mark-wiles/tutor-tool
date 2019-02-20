@@ -16,7 +16,6 @@ class Students extends Component {
 		axios.get('/api/students'
 		)
 		.then((response) => {
-			console.log(response);
 			var students = response.data;
 			this.setState({students});
 		})
