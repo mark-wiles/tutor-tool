@@ -40,9 +40,15 @@ class AddressController extends Controller
      * @param  \App\Address  $address
      * @return \Illuminate\Http\Response
      */
-    public function show(Address $address)
+    public function show($address)
     {
-        //
+        $id = $address;
+        
+        $user = auth()->id();
+
+        $address = Address::where(['id' => $id, 'user_id' => $user])->first();
+
+        return($address);
     }
 
     /**
@@ -52,9 +58,13 @@ class AddressController extends Controller
      * @param  \App\Address  $address
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Address $address)
+    public function update($address)
     {
-        //
+        $attributes = $this->validateAddress();
+
+        $updatedAddress = Address::where(['id' => $address, 'user_id' => auth()->id()])->update($attributes);
+        
+        return ($updatedAddress);
     }
 
     /**
@@ -83,6 +93,7 @@ class AddressController extends Controller
             'zip' => ['nullable', 'min:5', 'max:25'],
 
             'student_id' => ['min:1', 'integer'],
+
         ]);
 			
 	}
