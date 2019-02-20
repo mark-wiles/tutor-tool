@@ -10499,6 +10499,10 @@ a:hover {
   text-decoration: none;
 }
 
+body {
+  background-color: lightgray;
+}
+
 i {
   font-size: 1.2rem;
 }
@@ -10509,6 +10513,7 @@ nav {
   display: flex;
   justify-content: space-between;
   padding: 10px;
+  z-index: 10;
 }
 
 nav.nav-bottom {
@@ -10516,18 +10521,53 @@ nav.nav-bottom {
   position: fixed;
 }
 
+nav.nav-top {
+  position: fixed;
+}
+
+textarea {
+  min-height: 150px;
+}
+
+.address-options {
+  background-color: #FFF;
+  bottom: 0;
+  left: 0;
+  padding-top: 15px;
+  position: relative;
+  width: 100%;
+  z-index: 10;
+}
+
 .app-container {
   padding: 0;
 }
 
 .content-container {
-  border-left: 1px solid silver;
-  border-right: 1px solid silver;
-  margin-bottom: 55px;
+  background-color: #FFF;
+  padding-bottom: 60px;
+  padding-top: 55px;
+  min-height: 100vh;
 }
 
 .content-container h5 {
-  margin: 10px 0;
+  margin: 5px 0;
+}
+
+.content-container .info-header {
+  background-color: lightgray;
+  margin: 0;
+  padding: 10px 15px;
+}
+
+.content-container .lesson-buttons {
+  border-bottom: 1px solid silver;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+
+.content-container .lesson-buttons .lesson-btn {
+  cursor: pointer;
 }
 
 .content-container .student-icons {
@@ -10540,20 +10580,29 @@ nav.nav-bottom {
   font-size: 1.3rem;
 }
 
-.content-container .student-info {
+.content-container .hidden {
+  display: none;
+}
+
+.content-container .student-info,
+.content-container .lesson-info {
   align-content: center;
   border-bottom: 1px solid silver;
   display: flex;
   justify-content: space-between;
 }
 
-.content-container .student-info .info-title {
+.content-container .student-info .info-title,
+.content-container .lesson-info .info-title {
   align-items: center;
   display: flex;
   width: 30%;
 }
 
-.content-container .student-summary {
+.content-container .lesson-summary,
+.content-container .note-summary,
+.content-container .student-summary,
+.content-container .address-summary {
   border-bottom: 1px solid #C0C0C0;
   padding: 10px 0;
 }

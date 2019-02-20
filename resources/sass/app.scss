@@ -15,6 +15,10 @@ a {
   }
 }
 
+body {
+  background-color: lightgray;
+}
+
 i {
   font-size: 1.2rem;
 }
@@ -25,11 +29,30 @@ nav {
   display: flex;
   justify-content: space-between;
   padding: 10px;
+  z-index: 10;
 
   &.nav-bottom {
     bottom: 0;
     position: fixed;
   }
+
+  &.nav-top {
+    position: fixed;
+  }
+}
+
+textarea {
+  min-height: 150px;
+}
+
+.address-options {
+  background-color: #FFF;
+  bottom: 0;
+  left: 0;
+  padding-top: 15px;
+  position: relative;
+  width: 100%;
+  z-index: 10;
 }
 
 .app-container {
@@ -37,12 +60,29 @@ nav {
 }
 
 .content-container {
-  border-left: 1px solid silver;
-  border-right: 1px solid silver;
-  margin-bottom: 55px;
+  background-color: #FFF;
+  padding-bottom: 60px;
+  padding-top: 55px;
+  min-height: 100vh;
 
   h5 {
-    margin: 10px 0;
+    margin: 5px 0;
+  }
+
+  .info-header {
+    background-color: lightgray;
+    margin: 0;
+    padding: 10px 15px;
+  }
+
+  .lesson-buttons {
+    border-bottom: 1px solid silver;
+    justify-content: space-evenly;
+    padding: 10px;
+  
+    .lesson-btn {
+      cursor: pointer;
+    }
   }
 
   .student-icons {
@@ -55,7 +95,11 @@ nav {
     }
   }
 
-  .student-info {
+  .hidden {
+    display: none;
+  }
+
+  .student-info, .lesson-info {
     align-content: center;
     border-bottom: 1px solid silver;
     display: flex;
@@ -68,7 +112,7 @@ nav {
     }
   }
 
-  .student-summary {
+  .lesson-summary, .note-summary, .student-summary, .address-summary {
     border-bottom: 1px solid #C0C0C0;
     padding: 10px 0;  
   }
