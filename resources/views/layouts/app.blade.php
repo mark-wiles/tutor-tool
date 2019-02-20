@@ -23,7 +23,7 @@
 <body>
     <div class="container" id="container">
         @guest
-            <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+            <nav class="row navbar navbar-expand-md navbar-light">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
