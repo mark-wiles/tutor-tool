@@ -116,8 +116,8 @@ class LessonEdit extends Component {
 			<div className="row">
 				<NavbarTop classLeft="fas fa-arrow-left orange" classRight="fas fa-times orange" linkLeft={`/lesson/${this.props.match.params.id}`} linkRight={`/lesson/${this.props.match.params.id}`} title="Edit Lesson" />
 				
-				<div className="container content-container pt-2">
-					<h3>{lesson.first_name} {lesson.last_name}</h3>
+				<div className="container content-container">
+					<h3 className="pt-2">{lesson.first_name} {lesson.last_name}</h3>
 					<form onSubmit={this.handleSubmit}>
 						<div className="form-group">
 							<label htmlFor="rate">Hourly Rate:</label>{rateError ? <span className="text-danger"> Please enter a reasonable hourly rate</span> : ''}

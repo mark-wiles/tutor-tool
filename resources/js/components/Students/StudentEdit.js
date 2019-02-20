@@ -80,8 +80,8 @@ class StudentEdit extends Component {
 			<div className="row">
 				<NavbarTop classLeft="fas fa-arrow-left orange" classRight="fas fa-times orange" linkLeft={`/student/${this.props.match.params.id}`} linkRight={`/student/${this.props.match.params.id}`} title="Edit Student" />
 				
-				<div className="container content-container pt-2">
-					<form onSubmit={this.handleSubmit}>
+				<div className="container content-container">
+					<form className="pt-2" onSubmit={this.handleSubmit}>
 						<div className="form-group">
 							<label htmlFor="first_name">First Name:</label>
 							<input type="text" className="form-control" id="first_name" name="first_name" value={this.state.first_name ? this.state.first_name : ''} onChange={this.handleInputChange} required />

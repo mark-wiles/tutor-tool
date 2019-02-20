@@ -133,11 +133,11 @@ class LessonNew extends Component {
 			<div className="row">
 				<NavbarTop classLeft="fas fa-arrow-left orange" linkLeft="/lessons" linkRight="" title="Add Lesson" />
 				
-				<div className="container content-container pt-2">
-					<form onSubmit={this.handleSubmit}>
+				<div className="container content-container">
+					<form className="pt-2" onSubmit={this.handleSubmit}>
 						<div className="form-group">
 							<label htmlFor="student_id">Student</label>
-							<select className="form-control" id="student_id" name="student_id" onChange={this.handleSelect} required >
+							<select className="form-control" id="student_id" name="student_id" onChange={this.handleSelect} autoFocus required >
 								<option value="">Select a Student</option>
 								{ students }
 							</select>

@@ -107,8 +107,8 @@ class AddressEdit extends Component {
 			<div className="row">
 				<NavbarTop classLeft="fas fa-arrow-left orange" linkLeft={`/student/${this.state.student_id}`} classRight="fas fa-times orange" linkRight={`/student/${this.state.student_id}`} title="Edit Address" />
 				
-				<div className="container content-container pt-2">
-					<form onSubmit={this.handleSubmit}>
+				<div className="container content-container">
+					<form className="pt-2" onSubmit={this.handleSubmit}>
 						<div className="form-group">
 							<label htmlFor="venue">Venu:</label>{venueError ? <span className="text-danger"> Location name is too long</span> : ''}
 							<input type="text" className={`form-control ${ venueError ? 'error' : ''}`} id="venue" name="venue" placeholder="Ex: Starbucks" value={this.state.venue} onChange={this.handleInputChange} />
