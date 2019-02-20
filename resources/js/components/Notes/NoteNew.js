@@ -43,18 +43,18 @@ class NoteNew extends Component {
 	  }
 
 	render() {
-		const noteError = this.state.note.length > 500;
+		const noteError = this.state.note.length > 255;
 		const disableBtn = noteError;
 
 		return (
 			<div className="row">
-				<NavbarTop classLeft="fas fa-arrow-left orange" linkLeft={`/student/${this.props.match.params.id}`} classRight="fas fa-times orange" linkRight={`/student/${this.props.match.params.id}`} title="Add Student" />
+				<NavbarTop classLeft="fas fa-arrow-left orange" linkLeft={`/student/${this.props.match.params.id}`} classRight="fas fa-times orange" linkRight={`/student/${this.props.match.params.id}`} title="Add Note" />
 				
 				<div className="container content-container pt-2">
 					<form onSubmit={this.handleSubmit}>
 						<div className="form-group">
-							<label htmlFor="note">Note:</label>
-							<input type="text" className="form-control" id="note" name="note" value={this.state.note} onChange={this.handleInputChange} required />
+							<label htmlFor="note">Note:</label>{noteError ? <span className="text-danger"> Max Length is 255 characters</span> : ''}
+							<textarea className={`form-control ${ noteError ? 'error' : ''}`} id="note" name="note" value={this.state.note} onChange={this.handleInputChange} required />
 						</div>
 
 						<button type="submit" className="btn btn-primary mb-5"  disabled={disableBtn ? true : false} >Submit</button>
