@@ -2,7 +2,10 @@
 
 use Illuminate\Http\Request;
 
+Route::get('/address/{address}', 'AddressController@show');
 Route::post('/address', 'AddressController@store');
+Route::put('/address/{address}', 'AddressController@update');
+Route::delete('/address/{address}', 'AddressController@destroy');
 
 Route::get('/lessons', 'LessonController@index');
 Route::get('/lesson/{id}', 'LessonController@show');
