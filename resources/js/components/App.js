@@ -11,6 +11,7 @@ import Lessons from './Lessons/Lessons';
 import Messages from './Messages';
 import NavbarBottom from './NavbarBottom';
 import NoteNew from './Notes/NoteNew';
+import NoteEdit from './Notes/NoteEdit';
 import Student from './Students/Student';
 import StudentEdit from './Students/StudentEdit';
 import StudentNew from './Students/StudentNew';
@@ -34,6 +35,7 @@ export default class App extends Component {
                         <Route exact path="/lesson/:id" component={Lesson} />
                         <Route exact path="/lessons" component={Lessons} />
                         <Route exact path="/messages" component={Messages} />
+                        <Route exact path="/note/edit/:id" component={NoteEdit} />
                         <Route exact path="/note/new/:id" component={NoteNew} />
                         <Route exact path="/earnings" component={Earnings} />
                         <Route exact path="/settings" component={Settings} />
