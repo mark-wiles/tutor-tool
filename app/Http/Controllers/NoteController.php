@@ -12,15 +12,8 @@ class NoteController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
 	public function store(Request $request)
-    {
-        
+    { 
         $attributes = $this->validateNote();
 
 		$attributes['user_id'] = auth()->id();
@@ -28,8 +21,30 @@ class NoteController extends Controller
         $note = Note::create($attributes);
         
         return ($note);
+    }
+    
+    public function show(Note $note)
+    {
+        $result = Note::where(['id' => $note->id, 'user_id' => auth()->id()])->first();
 
-	}
+        return($result);
+    }
+
+    public function update(Request $request, Note $note)
+    {
+        $attributes = $this->validateNote();
+
+        $updatedNote = Note::where(['id' => $note->id, 'user_id' => auth()->id()])->update($attributes);
+        
+        return ($updatedNote);
+    }
+
+    public function destroy(Note $note)
+    {   
+        $result = Note::where(['id' => $note->id, 'user_id' => auth()->id()])->delete();
+
+        return($result);
+    }
 	
 	public function validateNote()
 	{
