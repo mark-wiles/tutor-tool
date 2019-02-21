@@ -82645,16 +82645,24 @@ function (_Component) {
   }, {
     key: "handleDate",
     value: function handleDate(date) {
-      var theDate = new Date(date);
-      theDate = moment__WEBPACK_IMPORTED_MODULE_2___default()(theDate).format('ddd, MMM D YYYY');
-      return theDate;
+      if (date) {
+        console.log('date', date);
+        console.log(date.replace(/-/g, '/'));
+        var theDate = new Date(date.replace(/-/g, '/'));
+        theDate = moment__WEBPACK_IMPORTED_MODULE_2___default()(theDate).format('ddd, MMM D YYYY');
+        return theDate;
+      }
     }
   }, {
     key: "handleTime",
     value: function handleTime(time) {
-      var theTime = new Date(time);
-      theTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(theTime.getTime()).format('h:mm A');
-      return theTime;
+      if (time) {
+        console.log('time', time);
+        console.log(time.replace(/-/g, '/'));
+        var theTime = new Date(time.replace(/-/g, '/'));
+        theTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(theTime.getTime()).format('h:mm A');
+        return theTime;
+      }
     }
   }, {
     key: "render",
@@ -83382,16 +83390,24 @@ function (_Component) {
   }, {
     key: "handleDate",
     value: function handleDate(date) {
-      var theDate = new Date(date);
-      theDate = moment__WEBPACK_IMPORTED_MODULE_4___default()(theDate).format('ddd, MMM D YYYY');
-      return theDate;
+      if (date) {
+        console.log(date);
+        console.log(date.replace(/-/g, '/'));
+        var theDate = new Date(date.replace(/-/g, '/'));
+        theDate = moment__WEBPACK_IMPORTED_MODULE_4___default()(theDate).format('ddd, MMM D YYYY');
+        return theDate;
+      }
     }
   }, {
     key: "handleTime",
     value: function handleTime(time) {
-      var theTime = new Date(time);
-      theTime = moment__WEBPACK_IMPORTED_MODULE_4___default()(theTime.getTime()).format('h:mm A');
-      return theTime;
+      if (time) {
+        console.log('time', time);
+        console.log(time.replace(/-/g, '/'));
+        var theTime = new Date(time.replace(/-/g, '/'));
+        theTime = moment__WEBPACK_IMPORTED_MODULE_4___default()(theTime.getTime()).format('h:mm A');
+        return theTime;
+      }
     }
   }, {
     key: "handleClick",
