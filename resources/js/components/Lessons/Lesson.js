@@ -28,8 +28,6 @@ class Lesson extends Component {
 
 	handleDate(date) {
 		if (date) {
-			console.log('date', date);
-			console.log(date.replace(/-/g, '/'));
 			var theDate = new Date(date.replace(/-/g, '/'));
 			theDate = moment(theDate).format('ddd, MMM D YYYY');
 			return theDate;

@@ -82646,8 +82646,6 @@ function (_Component) {
     key: "handleDate",
     value: function handleDate(date) {
       if (date) {
-        console.log('date', date);
-        console.log(date.replace(/-/g, '/'));
         var theDate = new Date(date.replace(/-/g, '/'));
         theDate = moment__WEBPACK_IMPORTED_MODULE_2___default()(theDate).format('ddd, MMM D YYYY');
         return theDate;
@@ -83114,7 +83112,7 @@ function (_Component) {
     key: "handleTime",
     value: function handleTime(event) {
       var startTime = event.target.value;
-      var dateTime = new Date(this.state.start_date + ' ' + startTime);
+      var dateTime = new Date(this.state.start_date.replace(/-/g, '/') + ' ' + startTime);
       var endTime = moment__WEBPACK_IMPORTED_MODULE_3___default()(dateTime.getTime() + 1000 * 60 * 60).format('HH:mm');
       this.setState({
         start_time: startTime,

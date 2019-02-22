@@ -55,7 +55,7 @@ class LessonNew extends Component {
 
 	handleTime(event) {
 		let startTime = event.target.value;
-		let dateTime = new Date(this.state.start_date + ' ' + startTime);
+		let dateTime = new Date(this.state.start_date.replace(/-/g, '/') + ' ' + startTime);
 		let endTime = moment(dateTime.getTime() + (1000 * 60 * 60)).format('HH:mm');
 		
 		this.setState({
