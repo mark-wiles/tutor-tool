@@ -82657,8 +82657,6 @@ function (_Component) {
     key: "handleTime",
     value: function handleTime(time) {
       if (time) {
-        console.log('time', time);
-        console.log(time.replace(/-/g, '/'));
         var theTime = new Date(time.replace(/-/g, '/'));
         theTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(theTime.getTime()).format('h:mm A');
         return theTime;
@@ -83172,11 +83170,11 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var startDate = new Date(this.state.start_date);
-      var endDate = new Date(this.state.end_date);
-      var dateTime1 = new Date(this.state.start_date + ' ' + this.state.start_time);
-      var dateTime2 = new Date(this.state.end_date + ' ' + this.state.end_time);
-      var duration = Math.round(100 * (dateTime2.getTime() - dateTime1.getTime()) / (1000 * 60 * 60)) / 100;
+      var startDate = new Date(this.state.start_date.replace(/-/g, '/'));
+      var endDate = new Date(this.state.end_date.replace(/-/g, '/'));
+      var dateTime1 = new Date(this.state.start_date.replace(/-/g, '/') + ' ' + this.state.start_time);
+      var dateTime2 = new Date(this.state.end_date.replace(/-/g, '/') + ' ' + this.state.end_time);
+      var duration = Math.round(100 * Number(dateTime2.getTime() - dateTime1.getTime()) / (1000 * 60 * 60)) / 100;
       var payAmount = (this.state.rate * duration).toFixed(2);
       var dateError = startDate > endDate;
       var rateError = this.state.rate > 1000;
@@ -83211,7 +83209,6 @@ function (_Component) {
         id: "student_id",
         name: "student_id",
         onChange: this.handleSelect,
-        autoFocus: true,
         required: true
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: ""
@@ -83297,7 +83294,7 @@ function (_Component) {
         required: true
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "duration"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Rate: $", this.state.rate), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Duration: ", duration, " ", duration === 1 ? 'hour' : 'hours'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Lesson Total: $", payAmount)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Rate: $", this.state.rate), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Duration: ", isNaN(duration) ? '' : duration, " ", duration === 1 ? 'hour' : 'hours'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Lesson Total: $", isNaN(payAmount) ? '' : payAmount)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
         className: "btn btn-primary mb-5",
         disabled: disableBtn ? true : false
@@ -83391,8 +83388,6 @@ function (_Component) {
     key: "handleDate",
     value: function handleDate(date) {
       if (date) {
-        console.log(date);
-        console.log(date.replace(/-/g, '/'));
         var theDate = new Date(date.replace(/-/g, '/'));
         theDate = moment__WEBPACK_IMPORTED_MODULE_4___default()(theDate).format('ddd, MMM D YYYY');
         return theDate;
@@ -83402,8 +83397,6 @@ function (_Component) {
     key: "handleTime",
     value: function handleTime(time) {
       if (time) {
-        console.log('time', time);
-        console.log(time.replace(/-/g, '/'));
         var theTime = new Date(time.replace(/-/g, '/'));
         theTime = moment__WEBPACK_IMPORTED_MODULE_4___default()(theTime.getTime()).format('h:mm A');
         return theTime;

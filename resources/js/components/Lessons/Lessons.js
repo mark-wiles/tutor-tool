@@ -29,8 +29,6 @@ class Lessons extends Component {
 
 	handleDate(date) {
 		if (date) {
-			console.log(date);
-			console.log(date.replace(/-/g, '/'));
 			var theDate = new Date(date.replace(/-/g, '/'));
 			theDate = moment(theDate).format('ddd, MMM D YYYY');
 			return theDate;
@@ -39,8 +37,6 @@ class Lessons extends Component {
 
 	handleTime(time) {
 		if (time) {
-			console.log('time', time);
-			console.log(time.replace(/-/g, '/'));
 			var theTime = new Date(time.replace(/-/g, '/'));
 			theTime = moment(theTime.getTime()).format('h:mm A');
 			return theTime;

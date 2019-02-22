@@ -112,13 +112,12 @@ class LessonNew extends Component {
 	  }
 
 	render() {
-		const startDate = new Date(this.state.start_date);
-		const endDate = new Date(this.state.end_date);
-		const dateTime1 = new Date(this.state.start_date + ' ' + this.state.start_time);
-		const dateTime2 = new Date(this.state.end_date + ' ' + this.state.end_time);
-		const duration = Math.round(100 * (dateTime2.getTime() - dateTime1.getTime()) / (1000 * 60 * 60))/100;
+		const startDate = new Date(this.state.start_date.replace(/-/g, '/'));
+		const endDate = new Date(this.state.end_date.replace(/-/g, '/'));
+		const dateTime1 = new Date(this.state.start_date.replace(/-/g, '/') + ' ' + this.state.start_time);
+		const dateTime2 = new Date(this.state.end_date.replace(/-/g, '/') + ' ' + this.state.end_time);
+		const duration = Math.round(100 * Number(dateTime2.getTime() - dateTime1.getTime()) / (1000 * 60 * 60))/100;
 		const payAmount = (this.state.rate * duration).toFixed(2);
-
 		const dateError = startDate > endDate;
 		const rateError = this.state.rate > 1000;
 		const subjectError = this.state.subject.length > 40;
@@ -137,7 +136,7 @@ class LessonNew extends Component {
 					<form className="pt-2" onSubmit={this.handleSubmit}>
 						<div className="form-group">
 							<label htmlFor="student_id">Student</label>
-							<select className="form-control" id="student_id" name="student_id" onChange={this.handleSelect} autoFocus required >
+							<select className="form-control" id="student_id" name="student_id" onChange={this.handleSelect} required >
 								<option value="">Select a Student</option>
 								{ students }
 							</select>
@@ -175,8 +174,8 @@ class LessonNew extends Component {
 
 						<div id="duration">
 							<h6>Rate: ${this.state.rate}</h6>
-							<h6>Duration: {duration} {duration === 1 ? 'hour' : 'hours'}</h6>
-							<h6>Lesson Total: ${payAmount}</h6>
+							<h6>Duration: {isNaN(duration) ? '' : duration} {duration === 1 ? 'hour' : 'hours'}</h6>
+							<h6>Lesson Total: ${isNaN(payAmount) ? '' : payAmount}</h6>
 						</div>
 
 						<button type="submit" className="btn btn-primary mb-5"  disabled={disableBtn ? true : false} >Submit</button>
