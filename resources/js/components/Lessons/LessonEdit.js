@@ -29,8 +29,8 @@ class LessonEdit extends Component {
 		)
 		.then((response) => {
 			var lesson = response.data[0];
-			var start_date = new Date(lesson.start_time);
-			var end_date = new Date(lesson.end_time);
+			var start_date = new Date(lesson.start_time.replace(/-/g, '/'));
+			var end_date = new Date(lesson.end_time.replace(/-/g, '/'));
 			var start_time = moment(start_date).format('HH:mm');
 			var end_time = moment(end_date).format('HH:mm');
 			start_date = moment(start_date).format('YYYY-MM-DD');
@@ -73,7 +73,7 @@ class LessonEdit extends Component {
 		event.preventDefault();
 		var startTime = this.state.start_date + ' ' + this.state.start_time;
 		var endTime = this.state.end_date + ' ' + this.state.end_time;
-		var unixTime = new Date(startTime);
+		var unixTime = new Date(startTime.replace(/-/g, '/'));
 		unixTime = unixTime.getTime();
 		var url = '/api/lesson/' + this.props.match.params.id;
 
@@ -103,10 +103,10 @@ class LessonEdit extends Component {
 	render() {
 		const lesson = this.state.lesson;
 		const currentTime = new Date();
-		const lessonTime = new Date(this.state.end_date + ' ' + this.state.end_time);
+		const lessonTime = new Date(this.state.end_date.replace(/-/g, '/') + ' ' + this.state.end_time);
 		const isPast = lessonTime.getTime() < currentTime.getTime();
-		const dateError = new Date(this.state.start_date) > new Date(this.state.end_date);
-		const timeError = new Date(this.state.start_date).getDate() === new Date(this.state.end_date).getDate() && this.state.start_time >= this.state.end_time;
+		const dateError = new Date(this.state.start_date.replace(/-/g, '/')) > new Date(this.state.end_date.replace(/-/g, '/'));
+		const timeError = new Date(this.state.start_date.replace(/-/g, '/')).getDate() === new Date(this.state.end_date.replace(/-/g, '/')).getDate() && this.state.start_time >= this.state.end_time;
 		const rateError = parseInt(this.state.rate) > 1000;
 		const subjectError = this.state.subject ? this.state.subject.length > 40 : '';
 		const paymentError = this.state.payment.length > 6;
@@ -140,7 +140,7 @@ class LessonEdit extends Component {
 						</div>
 
 						<div className="date-time form-group">
-							<label htmlFor="end_date">Date:</label> {dateError ? <span className="text-danger"> May not be earlier than start date.</span> : ""}
+							<label htmlFor="end_date">Date:</label>
 							<input type="date" className={`form-control ${ dateError ? 'error' : ''}`} value={this.state.end_date} id="end_date" name="end_date" onChange={this.handleInputChange} required/>
 						</div>
 

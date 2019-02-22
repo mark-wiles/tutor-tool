@@ -82807,8 +82807,8 @@ function (_Component) {
       var url = '/api/lesson/' + this.props.match.params.id;
       axios.get(url).then(function (response) {
         var lesson = response.data[0];
-        var start_date = new Date(lesson.start_time);
-        var end_date = new Date(lesson.end_time);
+        var start_date = new Date(lesson.start_time.replace(/-/g, '/'));
+        var end_date = new Date(lesson.end_time.replace(/-/g, '/'));
         var start_time = moment__WEBPACK_IMPORTED_MODULE_2___default()(start_date).format('HH:mm');
         var end_time = moment__WEBPACK_IMPORTED_MODULE_2___default()(end_date).format('HH:mm');
         start_date = moment__WEBPACK_IMPORTED_MODULE_2___default()(start_date).format('YYYY-MM-DD');
@@ -82850,7 +82850,7 @@ function (_Component) {
       event.preventDefault();
       var startTime = this.state.start_date + ' ' + this.state.start_time;
       var endTime = this.state.end_date + ' ' + this.state.end_time;
-      var unixTime = new Date(startTime);
+      var unixTime = new Date(startTime.replace(/-/g, '/'));
       unixTime = unixTime.getTime();
       var url = '/api/lesson/' + this.props.match.params.id;
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.put(url, {
@@ -82877,10 +82877,10 @@ function (_Component) {
     value: function render() {
       var lesson = this.state.lesson;
       var currentTime = new Date();
-      var lessonTime = new Date(this.state.end_date + ' ' + this.state.end_time);
+      var lessonTime = new Date(this.state.end_date.replace(/-/g, '/') + ' ' + this.state.end_time);
       var isPast = lessonTime.getTime() < currentTime.getTime();
-      var dateError = new Date(this.state.start_date) > new Date(this.state.end_date);
-      var timeError = new Date(this.state.start_date).getDate() === new Date(this.state.end_date).getDate() && this.state.start_time >= this.state.end_time;
+      var dateError = new Date(this.state.start_date.replace(/-/g, '/')) > new Date(this.state.end_date.replace(/-/g, '/'));
+      var timeError = new Date(this.state.start_date.replace(/-/g, '/')).getDate() === new Date(this.state.end_date.replace(/-/g, '/')).getDate() && this.state.start_time >= this.state.end_time;
       var rateError = parseInt(this.state.rate) > 1000;
       var subjectError = this.state.subject ? this.state.subject.length > 40 : '';
       var paymentError = this.state.payment.length > 6;
@@ -82955,9 +82955,7 @@ function (_Component) {
         className: "date-time form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "end_date"
-      }, "Date:"), " ", dateError ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "text-danger"
-      }, " May not be earlier than start date.") : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Date:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "date",
         className: "form-control ".concat(dateError ? 'error' : ''),
         value: this.state.end_date,
@@ -83241,7 +83239,7 @@ function (_Component) {
         className: "date-time form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "start_date"
-      }, "Date:"), " ", this.state.start_date, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Date:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "date",
         className: "form-control",
         defaultValue: this.state.start_date,
@@ -83266,11 +83264,9 @@ function (_Component) {
         className: "date-time form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "end_date"
-      }, "Date:"), " ", dateError ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "text-danger"
-      }, " May not be earlier than start date.") : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Date:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "date",
-        className: "form-control",
+        className: "form-control ".concat(dateError ? 'error' : ''),
         defaultValue: this.state.start_date,
         id: "end_date",
         min: this.state.start_date,

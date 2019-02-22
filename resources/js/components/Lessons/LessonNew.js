@@ -153,7 +153,7 @@ class LessonNew extends Component {
 						</div>
 
 						<div className="date-time form-group">
-							<label htmlFor="start_date">Date:</label> {this.state.start_date}
+							<label htmlFor="start_date">Date:</label>
 							<input type="date" className="form-control" defaultValue={this.state.start_date} id="start_date" name="start_date" onChange={this.handleDate} required/>
 						</div>
 
@@ -163,8 +163,8 @@ class LessonNew extends Component {
 						</div>
 
 						<div className="date-time form-group">
-							<label htmlFor="end_date">Date:</label> {dateError ? <span className="text-danger"> May not be earlier than start date.</span> : ""}
-							<input type="date" className="form-control" defaultValue={this.state.start_date} id="end_date" min={this.state.start_date} name="end_date" onChange={this.handleInputChange} required/>
+							<label htmlFor="end_date">Date:</label>
+							<input type="date" className={`form-control ${ dateError ? 'error' : ''}`} defaultValue={this.state.start_date} id="end_date" min={this.state.start_date} name="end_date" onChange={this.handleInputChange} required/>
 						</div>
 
 						<div className="date-time form-group">
