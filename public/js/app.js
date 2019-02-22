@@ -84196,7 +84196,7 @@ function (_Component) {
         }, address.street), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
           className: "m-0",
           "data-id": address.id
-        }, address.city, ", ", address.state), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
+        }, address.city ? address.city + ', ' : '', address.state), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
           className: "m-0",
           "data-id": address.id
         }, address.zip), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -84800,7 +84800,7 @@ function (_Component) {
           className: "font-weight-bold mb-1"
         }, student.first_name, " ", student.last_name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
           className: "mb-0"
-        }, student.addresses[0] ? student.addresses[0].city : '', ", ", student.addresses[0] ? student.addresses[0].state : '')));
+        }, student.addresses[0] ? student.addresses[0].city + ', ' : '', student.addresses[0] ? student.addresses[0].state : '')));
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"

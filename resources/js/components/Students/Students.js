@@ -31,7 +31,7 @@ class Students extends Component {
 				<div className="student-summary" key={student.id}>
 					<Link to={'/student/' + student.id}>
 						<h4 className="font-weight-bold mb-1">{student.first_name} {student.last_name}</h4>
-						<h6 className="mb-0">{student.addresses[0] ? student.addresses[0].city : ''}, {student.addresses[0] ? student.addresses[0].state : ''}</h6>
+						<h6 className="mb-0">{student.addresses[0] ? student.addresses[0].city + ', ' : ''}{student.addresses[0] ? student.addresses[0].state : ''}</h6>
 					</Link>
 				</div>
 		)

@@ -40,7 +40,7 @@ class Student extends Component {
 				<div className="address-summary" data-id={address.id} key={address.id} onClick={this.handleAddressClick}>
 					<h6 className="m-0" data-id={address.id}>{address.venue}</h6>
 					<h6 className="m-0" data-id={address.id}>{address.street}</h6>
-					<h6 className="m-0" data-id={address.id}>{address.city}, {address.state}</h6>
+					<h6 className="m-0" data-id={address.id}>{address.city ? address.city + ', ' : ''}{address.state}</h6>
 					<h6 className="m-0" data-id={address.id}>{address.zip}</h6>
 				
 					<div className="address-options hidden" id={'address-options' + address.id}>
