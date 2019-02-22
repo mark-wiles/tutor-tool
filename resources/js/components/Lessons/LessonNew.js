@@ -85,7 +85,7 @@ class LessonNew extends Component {
 		event.preventDefault();
 		var startTime = this.state.start_date + ' ' + this.state.start_time;
 		var endTime = this.state.end_date + ' ' + this.state.end_time;
-		var unixTime = new Date(startTime);
+		var unixTime = new Date(startTime.replace(/-/g, '/'));
 		unixTime = unixTime.getTime();
 		
 		Axios.post('/api/lesson', {
