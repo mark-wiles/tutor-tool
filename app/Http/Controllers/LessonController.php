@@ -32,7 +32,7 @@ class LessonController extends Controller
         $lessons = Lesson::where([['lessons.user_id', '=', auth()->id()], ['lessons.unix_time', '<', time()], ['lessons.payment', '>', 0]])
             ->join('students', 'lessons.student_id', '=', 'students.id')
             ->select('lessons.*', 'students.first_name', 'students.last_name')
-            ->orderBy('start_time')->get();
+            ->orderBy('start_time', 'desc')->get();
         
         return($lessons);
     }
