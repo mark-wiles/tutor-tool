@@ -24,6 +24,8 @@ Route::delete('/note/{note}', 'NoteController@destroy');
 
 //student routes
 Route::get('/students', 'StudentController@index');
+Route::get('/students/inactive', 'StudentController@inactive');
 Route::get('/student/{student}', 'StudentController@show');
 Route::post('/student', 'StudentController@store');
 Route::put('/student/{student}', 'StudentController@update');
+Route::put('/student/active/{student}', 'StudentController@active');

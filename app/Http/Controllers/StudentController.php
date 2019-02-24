@@ -14,14 +14,11 @@ class StudentController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // Display a listing of active students.
+
     public function index()
     {
-        $students = Student::where(['students.user_id' => auth()->id()])
+        $students = Student::where(['students.user_id' => auth()->id(), 'students.active' => true])
             ->with(['addresses' => function($query) {
                 $query->get();
             }])
@@ -30,12 +27,21 @@ class StudentController extends Controller
         return($students);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    // Display a listing of inactive students
+
+    public function inactive()
+    {
+        $students = Student::where(['students.user_id' => auth()->id(), 'students.active' => false])
+            ->with(['addresses' => function($query) {
+                $query->get();
+            }])
+            ->get();
+        
+        return($students);
+    }
+
+    // Store a newly created student
+
     public function store(Request $request)
     {
         $attributes = $this->validateStudent();
@@ -47,12 +53,8 @@ class StudentController extends Controller
         return ($student);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Student  $student
-     * @return \Illuminate\Http\Response
-     */
+    // Display a specific student
+
     public function show($student)
     {
         $id = $student;
@@ -72,13 +74,8 @@ class StudentController extends Controller
         return($student);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Student  $student
-     * @return \Illuminate\Http\Response
-     */
+    // Update a specific student
+
     public function update(Request $request, Student $student)
     {
         $attributes = $this->validateStudent();
@@ -88,15 +85,15 @@ class StudentController extends Controller
         return ($student->id);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Student  $student
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Student $student)
+    // Mark a specific student as inactive
+    
+    public function active(Request $request, Student $student)
     {
-        //
+        $validatedData = $request->validate(['active' => 'required|boolean']);
+
+        $updatedStudent = Student::where(['id' => $student->id, 'user_id' => auth()->id()])->update($validatedData);
+
+        return($updatedStudent);
     }
 
     public function validateStudent() {
@@ -112,6 +109,8 @@ class StudentController extends Controller
             'phone' => ['nullable', 'min:7', 'max:25'],
 
             'email' => ['nullable', 'email', 'max:255'],
+
+            'active' => ['boolean'],
 
         ]);
 			
