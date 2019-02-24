@@ -16,6 +16,7 @@ import Student from './Students/Student';
 import StudentEdit from './Students/StudentEdit';
 import StudentNew from './Students/StudentNew';
 import Students from './Students/Students';
+import StudentsInactive from './Students/StudentsInactive';
 import Earnings from './Earnings/Earnings';
 import Settings from './Settings';
 
@@ -42,6 +43,7 @@ export default class App extends Component {
                         <Route exact path="/student/edit/:id" component={StudentEdit} />
                         <Route exact path="/student/new" component={StudentNew} />
                         <Route exact path="/student/:id" component={Student} />
+                        <Route exact path="/students/inactive" component={StudentsInactive} />
                         <Route path="*" component={Students} />
                     </Switch>
 
