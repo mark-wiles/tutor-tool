@@ -12,10 +12,11 @@ class Student extends Component {
 			student: []
 		};
 		this.handleAddressClick = this.handleAddressClick.bind(this);
+		this.toggleActive = this.toggleActive.bind(this);
 	}
 
 	componentDidMount() {
-		var url = '/api/student/' + this.props.match.params.id;
+		let url = '/api/student/' + this.props.match.params.id;
 
 		axios.get(url
 		)
@@ -31,6 +32,28 @@ class Student extends Component {
 	handleAddressClick() {
 		var id = '#address-options' + event.target.dataset.id;
 		$(id).toggleClass('hidden');
+	}
+
+	toggleActive() {
+		let confirmed = confirm('Confirm you would like to hide this student?');
+		if (confirmed) {
+			let url = '/api/student/active/' + this.props.match.params.id;
+			axios.put(url, {
+				active: this.state.student.active === 1 ? 0 : 1
+			})
+			.then((response) => {
+				if (response.request.status === 200) {
+					this.props.history.push('/students');
+				}
+				else {
+					alert('There was a problem saving the data. Please try again.')
+				}
+			})
+			.catch((error) => {
+				alert('An error occurred. Please try again.');
+				console.log(error);
+			})
+		}
 	}
 
 	render() {
@@ -102,7 +125,7 @@ class Student extends Component {
 								<h5 className="info">{student.phone}</h5>
 							</div>
 
-							<div className="student-info">
+							<div className="student-info border-bottom-0">
 								<h5 className="info-title">Email</h5>
 								<h5 className="info">{student.email}</h5>
 							</div>
@@ -137,6 +160,13 @@ class Student extends Component {
 									<h5 className="info-title orange pt-2">Add Note</h5>
 								</Link>
 							</div>
+						</div>
+					</div>
+
+					<div className="row">
+						<div className="col-md-12 mt-4 p-0" onClick={this.toggleActive}>
+							{student.active === 1 ? <Icon className="far fa-eye-slash orange" title="Hide Student" /> : null}
+							{student.active === 0 ?	<Icon className="far fa-eye orange" title="Un-Hide" /> : null}
 						</div>
 					</div>
 				</div>
