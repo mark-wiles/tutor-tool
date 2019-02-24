@@ -84193,7 +84193,8 @@ function (_Component) {
     value: function toggleActive() {
       var _this3 = this;
 
-      var confirmed = confirm('Confirm you would like to hide this student?');
+      var status = this.state.student.active === 1 ? 'inactive' : 'active';
+      var confirmed = confirm('Change the status of this student to ' + status);
 
       if (confirmed) {
         var url = '/api/student/active/' + this.props.match.params.id;

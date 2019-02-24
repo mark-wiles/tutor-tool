@@ -35,7 +35,8 @@ class Student extends Component {
 	}
 
 	toggleActive() {
-		let confirmed = confirm('Confirm you would like to hide this student?');
+		let status = this.state.student.active === 1 ? 'inactive' : 'active';
+		let confirmed = confirm('Change the status of this student to ' + status);
 		if (confirmed) {
 			let url = '/api/student/active/' + this.props.match.params.id;
 			axios.put(url, {
