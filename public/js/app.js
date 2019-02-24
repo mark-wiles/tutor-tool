@@ -82319,8 +82319,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Students_StudentEdit__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Students/StudentEdit */ "./resources/js/components/Students/StudentEdit.js");
 /* harmony import */ var _Students_StudentNew__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./Students/StudentNew */ "./resources/js/components/Students/StudentNew.js");
 /* harmony import */ var _Students_Students__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./Students/Students */ "./resources/js/components/Students/Students.js");
-/* harmony import */ var _Earnings_Earnings__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./Earnings/Earnings */ "./resources/js/components/Earnings/Earnings.js");
-/* harmony import */ var _Settings__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./Settings */ "./resources/js/components/Settings.js");
+/* harmony import */ var _Students_StudentsInactive__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./Students/StudentsInactive */ "./resources/js/components/Students/StudentsInactive.js");
+/* harmony import */ var _Earnings_Earnings__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./Earnings/Earnings */ "./resources/js/components/Earnings/Earnings.js");
+/* harmony import */ var _Settings__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./Settings */ "./resources/js/components/Settings.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -82338,6 +82339,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -82418,11 +82420,11 @@ function (_Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/earnings",
-        component: _Earnings_Earnings__WEBPACK_IMPORTED_MODULE_17__["default"]
+        component: _Earnings_Earnings__WEBPACK_IMPORTED_MODULE_18__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/settings",
-        component: _Settings__WEBPACK_IMPORTED_MODULE_18__["default"]
+        component: _Settings__WEBPACK_IMPORTED_MODULE_19__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/student/edit/:id",
@@ -82435,6 +82437,10 @@ function (_Component) {
         exact: true,
         path: "/student/:id",
         component: _Students_Student__WEBPACK_IMPORTED_MODULE_13__["default"]
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        exact: true,
+        path: "/students/inactive",
+        component: _Students_StudentsInactive__WEBPACK_IMPORTED_MODULE_17__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "*",
         component: _Students_Students__WEBPACK_IMPORTED_MODULE_16__["default"]
@@ -84011,9 +84017,10 @@ function (_Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _NavbarTop__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NavbarTop */ "./resources/js/components/NavbarTop.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _NavbarTop__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./NavbarTop */ "./resources/js/components/NavbarTop.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -84031,6 +84038,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -84062,7 +84070,7 @@ function (_Component) {
     key: "handleLogout",
     value: function handleLogout() {
       event.preventDefault();
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/logout', {}).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/logout', {}).then(function (response) {
         window.location.replace('/login');
       }).catch(function (error) {
         console.log(error);
@@ -84073,7 +84081,7 @@ function (_Component) {
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NavbarTop__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NavbarTop__WEBPACK_IMPORTED_MODULE_3__["default"], {
         classLeft: "fas fa-arrow-left orange",
         classRight: "fas fa-times orange",
         linkLeft: "/home",
@@ -84081,7 +84089,11 @@ function (_Component) {
         title: "Settings"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container content-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: '/students/inactive'
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+        className: "pt-4"
+      }, "View Hidden Students")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
         className: "orange pt-2",
         onClick: this.handleLogout
       }, "Logout")));
@@ -84150,6 +84162,7 @@ function (_Component) {
       student: []
     };
     _this.handleAddressClick = _this.handleAddressClick.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.toggleActive = _this.toggleActive.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
@@ -84176,9 +84189,32 @@ function (_Component) {
       $(id).toggleClass('hidden');
     }
   }, {
+    key: "toggleActive",
+    value: function toggleActive() {
+      var _this3 = this;
+
+      var confirmed = confirm('Confirm you would like to hide this student?');
+
+      if (confirmed) {
+        var url = '/api/student/active/' + this.props.match.params.id;
+        axios__WEBPACK_IMPORTED_MODULE_2___default.a.put(url, {
+          active: this.state.student.active === 1 ? 0 : 1
+        }).then(function (response) {
+          if (response.request.status === 200) {
+            _this3.props.history.push('/students');
+          } else {
+            alert('There was a problem saving the data. Please try again.');
+          }
+        }).catch(function (error) {
+          alert('An error occurred. Please try again.');
+          console.log(error);
+        });
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var student = this.state.student;
       var addresses = student.addresses ? student.addresses.map(function (address) {
@@ -84186,7 +84222,7 @@ function (_Component) {
           className: "address-summary",
           "data-id": address.id,
           key: address.id,
-          onClick: _this3.handleAddressClick
+          onClick: _this4.handleAddressClick
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
           className: "m-0",
           "data-id": address.id
@@ -84280,7 +84316,7 @@ function (_Component) {
       }, "Phone"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info"
       }, student.phone)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "student-info"
+        className: "student-info border-bottom-0"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info-title"
       }, "Email"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
@@ -84309,7 +84345,18 @@ function (_Component) {
         to: '/note/new/' + student.id
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info-title orange pt-2"
-      }, "Add Note")))))));
+      }, "Add Note"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-md-12 mt-4 p-0",
+        onClick: this.toggleActive
+      }, student.active === 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Icon__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        className: "far fa-eye-slash orange",
+        title: "Hide Student"
+      }) : null, student.active === 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Icon__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        className: "far fa-eye orange",
+        title: "Un-Hide"
+      }) : null))));
     }
   }]);
 
@@ -84820,6 +84867,112 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (Students);
+
+/***/ }),
+
+/***/ "./resources/js/components/Students/StudentsInactive.js":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/Students/StudentsInactive.js ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _NavbarTop__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../NavbarTop */ "./resources/js/components/NavbarTop.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+var StudentsInactive =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(StudentsInactive, _Component);
+
+  function StudentsInactive(props) {
+    var _this;
+
+    _classCallCheck(this, StudentsInactive);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(StudentsInactive).call(this, props));
+    _this.state = {
+      students: []
+    };
+    return _this;
+  }
+
+  _createClass(StudentsInactive, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/students/inactive').then(function (response) {
+        var students = response.data;
+
+        _this2.setState({
+          students: students
+        });
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var allStudents = this.state.students.map(function (student) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "student-summary",
+          key: student.id
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+          to: '/student/' + student.id
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "font-weight-bold mb-1"
+        }, student.first_name, " ", student.last_name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
+          className: "mb-0"
+        }, student.addresses[0] ? student.addresses[0].city + ', ' : '', student.addresses[0] ? student.addresses[0].state : '')));
+      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NavbarTop__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        classLeft: "fas fa-cog orange",
+        classRight: "fas fa-plus orange",
+        linkLeft: "/settings",
+        linkRight: "/student/new",
+        title: "Inactive"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "container content-container"
+      }, allStudents));
+    }
+  }]);
+
+  return StudentsInactive;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (StudentsInactive);
 
 /***/ }),
 
