@@ -83450,9 +83450,9 @@ function (_Component) {
           className: "mb-1"
         }, lesson.first_name, " ", lesson.last_name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
           className: "mb-0"
-        }, _this4.handleTime(lesson.start_time), " - ", _this4.handleTime(lesson.end_time)), lesson.payment > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
+        }, _this4.handleTime(lesson.start_time), " - ", _this4.handleTime(lesson.end_time)), Number(lesson.payment) > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
           className: "mb-0 mt-1 orange"
-        }, "$", lesson.payment) : null));
+        }, '$' + lesson.payment) : null));
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
