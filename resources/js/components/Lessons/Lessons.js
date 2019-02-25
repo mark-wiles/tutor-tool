@@ -75,6 +75,7 @@ class Lessons extends Component {
 						<h5 className="font-weight-bold">{ this.handleDate(lesson.start_time) }</h5>
 						<h5 className="mb-1">{lesson.first_name} {lesson.last_name}</h5>
 						<h6 className="mb-0">{ this.handleTime(lesson.start_time) } - { this.handleTime(lesson.end_time) }</h6>
+						{lesson.payment > 0 ? <h6 className="mb-0 mt-1 orange">${lesson.payment}</h6> : null }
 					</Link>
 				</div>
 			
