@@ -10533,7 +10533,7 @@ textarea {
   background-color: #FFF;
   bottom: 0;
   left: 0;
-  padding-top: 15px;
+  padding-top: 10px;
   position: relative;
   width: 100%;
   z-index: 10;
@@ -10541,6 +10541,14 @@ textarea {
 
 .app-container {
   padding: 0;
+}
+
+.bb-1-s {
+  border-bottom: 1px solid #C0C0C0;
+}
+
+.hidden {
+  display: none;
 }
 
 .content-container {
@@ -10580,22 +10588,7 @@ textarea {
   font-size: 1.3rem;
 }
 
-.content-container .hidden {
-  display: none;
-}
-
-.content-container .student-info,
-.content-container .lesson-info,
-.content-container .earnings-info {
-  align-content: center;
-  border-bottom: 1px solid silver;
-  display: flex;
-  justify-content: space-between;
-}
-
-.content-container .student-info .earnings-title,
-.content-container .lesson-info .earnings-title,
-.content-container .earnings-info .earnings-title {
+.content-container .earnings-title {
   align-items: center;
   display: flex;
   margin-bottom: 0;
@@ -10603,25 +10596,18 @@ textarea {
   width: 50%;
 }
 
-.content-container .student-info .info,
-.content-container .lesson-info .info,
-.content-container .earnings-info .info {
+.content-container .info {
   align-items: center;
   display: flex;
 }
 
-.content-container .student-info .info-title,
-.content-container .lesson-info .info-title,
-.content-container .earnings-info .info-title {
+.content-container .info-title {
   align-items: center;
   display: flex;
   width: 30%;
 }
 
-.content-container .lesson-summary,
-.content-container .note-summary,
-.content-container .student-summary,
-.content-container .address-summary {
+.content-container .summary {
   border-bottom: 1px solid #C0C0C0;
   padding: 10px 0;
 }

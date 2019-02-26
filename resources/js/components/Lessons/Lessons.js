@@ -70,7 +70,7 @@ class Lessons extends Component {
 	render() {
 		
 		const allLessons = this.state.lessons.map((lesson) =>
-				<div className="lesson-summary" key={lesson.id}>
+				<div className="summary" key={lesson.id}>
 					<Link to={'lesson/' + lesson.id}>
 						<h5 className="font-weight-bold">{ this.handleDate(lesson.start_time) }</h5>
 						<h5 className="mb-1">{lesson.first_name} {lesson.last_name}</h5>

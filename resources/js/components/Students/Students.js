@@ -28,7 +28,7 @@ class Students extends Component {
 
 		const allStudents = this.state.students.map((student) =>
 			
-				<div className="student-summary" key={student.id}>
+				<div className="summary" key={student.id}>
 					<Link to={'/student/' + student.id}>
 						<h4 className="font-weight-bold mb-1">{student.first_name} {student.last_name}</h4>
 						<h6 className="mb-0">{student.addresses[0] ? student.addresses[0].city + ', ' : ''}{student.addresses[0] ? student.addresses[0].state : ''}</h6>

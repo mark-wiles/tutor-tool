@@ -50,43 +50,43 @@ class Lesson extends Component {
 				<NavbarTop classLeft="fas fa-arrow-left orange" classRight="fas fa-edit orange" linkLeft="/lessons" linkRight={`/lesson/edit/${lesson.id}`} title={lesson.first_name} />
 
 				<div className="container content-container">
-					<div className="lesson-info">
+					<div className="d-flex justify-content-between bb-1-s">
 						<h5 className="info-title">Name</h5>
 						<h5 className="info">{lesson.first_name} {lesson.last_name}</h5>
 					</div>
 
-					<div className="lesson-info">
+					<div className="d-flex justify-content-between bb-1-s">
 						<h5 className="info-title">Date</h5>
 						<h5 className="info">{this.handleDate(lesson.start_time)}</h5>
 					</div>
 
-					<div className="lesson-info">
+					<div className="d-flex justify-content-between bb-1-s">
 						<h5 className="info-title">Subject</h5>
 						<h5 className="info">{lesson.subject}</h5>
 					</div>
 
-					<div className="lesson-info">
+					<div className="d-flex justify-content-between bb-1-s">
 						<h5 className="info-title">Hourly Rate</h5>
 						<h5 className="info">{`$${lesson.rate}`}</h5>
 					</div>
 
-					<div className="lesson-info">
+					<div className="d-flex justify-content-between bb-1-s">
 						<h5 className="info-title">Start Time</h5>
 						<h5 className="info">{this.handleTime(lesson.start_time)}</h5>
 					</div>
 
-					<div className="lesson-info">
+					<div className="d-flex justify-content-between bb-1-s">
 						<h5 className="info-title">End Time</h5>
 						<h5 className="info">{this.handleTime(lesson.end_time)}</h5>
 					</div>
 
 					{lesson.payment > 0 ? 
-						<div className="lesson-info">
+						<div className="d-flex justify-content-between bb-1-s">
 							<h5 className="info-title orange">Paid</h5>
 							<h5 className="info orange">{`$${lesson.payment}`}</h5>
 						</div>
 						:
-						<div className="lesson-info">
+						<div className="d-flex justify-content-between">
 							<h5 className="info-title orange">Unsubmitted</h5>
 						</div>
 					}

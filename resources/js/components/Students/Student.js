@@ -61,7 +61,7 @@ class Student extends Component {
 		const student = this.state.student;
 		
 		const addresses = student.addresses ? (student.addresses.map((address) =>			
-				<div className="address-summary" data-id={address.id} key={address.id} onClick={this.handleAddressClick}>
+				<div className="summary" data-id={address.id} key={address.id} onClick={this.handleAddressClick}>
 					<h6 className="m-0" data-id={address.id}>{address.venue}</h6>
 					<h6 className="m-0" data-id={address.id}>{address.street}</h6>
 					<h6 className="m-0" data-id={address.id}>{address.city ? address.city + ', ' : ''}{address.state}</h6>
@@ -80,7 +80,7 @@ class Student extends Component {
 		)) : null
 
 		const notes = student.notes ? (student.notes.map((note) =>
-			<div className="note-summary" key={note.id}>
+			<div className="summary" key={note.id}>
 				<Link to={'/note/edit/' + note.id}>
 					<h6 className="m-0">{note.note}</h6>
 				</Link>
@@ -107,26 +107,26 @@ class Student extends Component {
 
 					<div className="row">
 						<div className="col-md-12 p-0">
-							<h5 className="info-title info-header"><b>Info</b></h5>
+							<h5 className="info-header"><b>Info</b></h5>
 						</div>
 						
 						<div className="container">
-							<div className="student-info">
+							<div className="d-flex justify-content-between bb-1-s">
 								<h5 className="info-title">Name</h5>
 								<h5 className="info">{student.first_name} {student.last_name}</h5>
 							</div>
 
-							<div className="student-info">
+							<div className="d-flex justify-content-between bb-1-s">
 								<h5 className="info-title">Hourly Rate</h5>
 								<h5 className="info">{`$${student.rate}`}</h5>
 							</div>
 
-							<div className="student-info">
+							<div className="d-flex justify-content-between bb-1-s">
 								<h5 className="info-title">Phone</h5>
 								<h5 className="info">{student.phone}</h5>
 							</div>
 
-							<div className="student-info border-bottom-0">
+							<div className="d-flex justify-content-between">
 								<h5 className="info-title">Email</h5>
 								<h5 className="info">{student.email}</h5>
 							</div>
@@ -135,14 +135,14 @@ class Student extends Component {
 
 					<div className="row">
 						<div className="col-md-12 p-0">
-							<h5 className="info-header info-title"><b>Address</b></h5>
+							<h5 className="info-header"><b>Address</b></h5>
 
 							<div className="container">
 
 								{ addresses }
 
 								<Link to={'/address/new/' + student.id}>
-									<h5 className="info-title orange pt-2">Add Address</h5>
+									<h5 className="orange pb-2 pt-2">Add Address</h5>
 								</Link>
 							</div>
 						</div>	
@@ -151,14 +151,14 @@ class Student extends Component {
 
 					<div className="row">
 						<div className="col-md-12 p-0">
-							<h5 className="info-title info-header"><b>Notes</b></h5>
+							<h5 className="info-header"><b>Notes</b></h5>
 
 							<div className="container notes">
 
 								{ notes }
 
 								<Link to={'/note/new/' + student.id}>
-									<h5 className="info-title orange pt-2">Add Note</h5>
+									<h5 className="orange pb-2 pt-2">Add Note</h5>
 								</Link>
 							</div>
 						</div>

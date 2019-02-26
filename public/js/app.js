@@ -82471,6 +82471,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _NavbarTop__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../NavbarTop */ "./resources/js/components/NavbarTop.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -82489,9 +82491,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
- // import { Link } from 'react-router-dom';
 
- // import axios from 'axios';
+
+
 
 var Earnings =
 /*#__PURE__*/
@@ -82515,8 +82517,7 @@ function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      axios.get('/api/earnings').then(function (response) {
-        console.log(response);
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/earnings').then(function (response) {
         var earnings = response.data;
 
         _this2.setState({
@@ -82540,32 +82541,30 @@ function (_Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container content-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "earnings-info col-md-12"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+        className: "d-flex justify-content-between bb-1-s"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "earnings-title"
-      }, "7 Days: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+      }, "7 Days: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info mb-0 orange"
       }, '$' + this.state.earnings.week)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "lesson-info col-md-12"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+        className: "d-flex justify-content-between bb-1-s"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "earnings-title"
-      }, "30 Days: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+      }, "30 Days: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info mb-0 orange"
       }, '$' + this.state.earnings.month)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "lesson-info col-md-12"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+        className: "d-flex justify-content-between bb-1-s"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "earnings-title"
-      }, "YTD: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+      }, "YTD: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info mb-0 orange"
       }, '$' + this.state.earnings.year)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "lesson-info col-md-12"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+        className: "d-flex justify-content-between bb-1-s"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "earnings-title"
-      }, "All Time: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+      }, "All Time: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info mb-0 orange"
-      }, '$' + this.state.earnings.total)))));
+      }, '$' + this.state.earnings.total))));
     }
   }]);
 
@@ -82708,49 +82707,49 @@ function (_Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container content-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "lesson-info"
+        className: "d-flex justify-content-between bb-1-s"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info-title"
       }, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info"
       }, lesson.first_name, " ", lesson.last_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "lesson-info"
+        className: "d-flex justify-content-between bb-1-s"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info-title"
       }, "Date"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info"
       }, this.handleDate(lesson.start_time))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "lesson-info"
+        className: "d-flex justify-content-between bb-1-s"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info-title"
       }, "Subject"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info"
       }, lesson.subject)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "lesson-info"
+        className: "d-flex justify-content-between bb-1-s"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info-title"
       }, "Hourly Rate"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info"
       }, "$".concat(lesson.rate))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "lesson-info"
+        className: "d-flex justify-content-between bb-1-s"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info-title"
       }, "Start Time"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info"
       }, this.handleTime(lesson.start_time))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "lesson-info"
+        className: "d-flex justify-content-between bb-1-s"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info-title"
       }, "End Time"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info"
       }, this.handleTime(lesson.end_time))), lesson.payment > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "lesson-info"
+        className: "d-flex justify-content-between bb-1-s"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info-title orange"
       }, "Paid"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info orange"
       }, "$".concat(lesson.payment))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "lesson-info"
+        className: "d-flex justify-content-between"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info-title orange"
       }, "Unsubmitted"))));
@@ -83467,7 +83466,7 @@ function (_Component) {
 
       var allLessons = this.state.lessons.map(function (lesson) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "lesson-summary",
+          className: "summary",
           key: lesson.id
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           to: 'lesson/' + lesson.id
@@ -83673,10 +83672,10 @@ function (_Component) {
         className: "fas fa-dollar-sign orange",
         title: "Earnings"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/messages"
+        to: "/settings"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Icon__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        className: "fas fa-comment orange",
-        title: "Messages"
+        className: "fas fa-cog orange orange",
+        title: "Settings"
       })));
     }
   }]);
@@ -84091,11 +84090,6 @@ function (_Component) {
   }
 
   _createClass(Earnings, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      console.log('settings mounted');
-    }
-  }, {
     key: "handleLogout",
     value: function handleLogout() {
       event.preventDefault();
@@ -84120,9 +84114,9 @@ function (_Component) {
         className: "container content-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: '/students/inactive'
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-        className: "pt-4"
-      }, "View Hidden Students")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+        className: "orange pb-2 pt-2 bb-1-s"
+      }, "View Hidden Students")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "orange pt-2",
         onClick: this.handleLogout
       }, "Logout")));
@@ -84249,7 +84243,7 @@ function (_Component) {
       var student = this.state.student;
       var addresses = student.addresses ? student.addresses.map(function (address) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "address-summary",
+          className: "summary",
           "data-id": address.id,
           key: address.id,
           onClick: _this4.handleAddressClick
@@ -84281,7 +84275,7 @@ function (_Component) {
       }) : null;
       var notes = student.notes ? student.notes.map(function (note) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "note-summary",
+          className: "summary",
           key: note.id
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           to: '/note/edit/' + note.id
@@ -84324,29 +84318,29 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-md-12 p-0"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-        className: "info-title info-header"
+        className: "info-header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Info"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "student-info"
+        className: "d-flex justify-content-between bb-1-s"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info-title"
       }, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info"
       }, student.first_name, " ", student.last_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "student-info"
+        className: "d-flex justify-content-between bb-1-s"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info-title"
       }, "Hourly Rate"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info"
       }, "$".concat(student.rate))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "student-info"
+        className: "d-flex justify-content-between bb-1-s"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info-title"
       }, "Phone"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info"
       }, student.phone)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "student-info border-bottom-0"
+        className: "d-flex justify-content-between"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info-title"
       }, "Email"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
@@ -84356,25 +84350,25 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-md-12 p-0"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-        className: "info-header info-title"
+        className: "info-header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Address")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
       }, addresses, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: '/address/new/' + student.id
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-        className: "info-title orange pt-2"
+        className: "orange pb-2 pt-2"
       }, "Add Address"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-md-12 p-0"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-        className: "info-title info-header"
+        className: "info-header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Notes")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container notes"
       }, notes, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: '/note/new/' + student.id
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-        className: "info-title orange pt-2"
+        className: "orange pb-2 pt-2"
       }, "Add Note"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -84869,7 +84863,7 @@ function (_Component) {
     value: function render() {
       var allStudents = this.state.students.map(function (student) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "student-summary",
+          className: "summary",
           key: student.id
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           to: '/student/' + student.id
@@ -84988,10 +84982,10 @@ function (_Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NavbarTop__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        classLeft: "fas fa-cog orange",
-        classRight: "fas fa-plus orange",
+        classLeft: "fas fa-arrow-left orange",
+        classRight: "",
         linkLeft: "/settings",
-        linkRight: "/student/new",
+        linkRight: "",
         title: "Inactive"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container content-container"
