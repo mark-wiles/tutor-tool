@@ -84969,7 +84969,7 @@ function (_Component) {
     value: function render() {
       var allStudents = this.state.students.map(function (student) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "student-summary",
+          className: "summary",
           key: student.id
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           to: '/student/' + student.id
