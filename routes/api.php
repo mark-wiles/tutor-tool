@@ -8,6 +8,9 @@ Route::post('/address', 'AddressController@store');
 Route::put('/address/{address}', 'AddressController@update');
 Route::delete('/address/{address}', 'AddressController@destroy');
 
+// earnings routes
+Route::get('/earnings', 'EarningsController@index');
+
 //lesson routes
 Route::get('/lessons', 'LessonController@index');
 Route::get('/lesson/{lesson}', 'LessonController@show');
