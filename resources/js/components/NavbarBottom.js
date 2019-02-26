@@ -26,8 +26,8 @@ class NavbarBottom extends Component {
 					<Icon className="fas fa-dollar-sign orange" title="Earnings"/>
 				</Link>
 
-				<Link to="/messages">
-					<Icon className="fas fa-comment orange" title="Messages"/>
+				<Link to="/settings">
+					<Icon className="fas fa-cog orange orange" title="Settings"/>
 				</Link>
 
 			</nav>
