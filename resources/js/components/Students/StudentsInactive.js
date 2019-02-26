@@ -38,7 +38,7 @@ class StudentsInactive extends Component {
 
 		return (
 			<div className="row">
-				<NavbarTop classLeft="fas fa-cog orange" classRight="fas fa-plus orange" linkLeft="/settings" linkRight="/student/new" title="Inactive" />
+				<NavbarTop classLeft="fas fa-arrow-left orange" classRight="" linkLeft="/settings" linkRight="" title="Inactive" />
 
 				<div className="container content-container">
 					{ allStudents }
