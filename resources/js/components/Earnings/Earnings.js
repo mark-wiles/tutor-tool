@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+// import { Link } from 'react-router-dom';
+import NavbarTop from '../NavbarTop';
+// import axios from 'axios';
 
 class Earnings extends Component {
 
@@ -11,35 +12,54 @@ class Earnings extends Component {
 		};
 	}
 
-	// componentDidMount() {
-	// 	axios.get('/earnings'
-	// 	)
-	// 	.then((response) => {
-	// 		var earnings = response.data;
-	// 		this.setState({earnings});
-	// 	})
-	// 	.catch((error) => {
-	// 		console.log(error)
-	// 	});
-	// }
+	componentDidMount() {
+		axios.get('/api/earnings'
+		)
+		.then((response) => {
+			console.log(response);
+			var earnings = response.data;
+			this.setState({earnings});
+		})
+		.catch((error) => {
+			console.log(error)
+		});
+	}
 
 	render() {
 
-		// const allEarnings = this.state.earnings.map((earning) =>
-			
-		// 		<div className="earning-summary" key={earning.id}>
-		// 			<Link to={'earning/' + earning.id}>
-		// 				<h4 className="font-weight-bold mb-1">{earning.first_name}</h4>
-		// 				<h6>{earning.city}, {earning.state} {earning.zip}</h6>
-		// 			</Link>
-		// 		</div>
-			
-		// )
-
 		return(
-			<div className="content-container">
-				<h2 className="font-weight-bold">Earnings</h2>
-				{/* { allEarnings } */}
+			<div className="row">
+				<NavbarTop 
+					classLeft="fas fa-arrow-left orange"
+					classRight=""
+					linkLeft="/home"
+					linkRight=""
+					title="Earnings"
+				/>
+				
+				<div className="container content-container">
+					<div className="row">
+						<div className="earnings-info col-md-12">
+							<h4 className="earnings-title">7 Days: </h4>
+							<h4 className="info mb-0 orange">{'$' + this.state.earnings.week}</h4>
+						</div>
+
+						<div className="lesson-info col-md-12">
+							<h4 className="earnings-title">30 Days: </h4>
+							<h4 className="info mb-0 orange">{'$' + this.state.earnings.month}</h4>
+						</div>
+
+						<div className="lesson-info col-md-12">
+							<h4 className="earnings-title">YTD: </h4>
+							<h4 className="info mb-0 orange">{'$' + this.state.earnings.year}</h4>
+						</div>
+
+						<div className="lesson-info col-md-12">
+							<h4 className="earnings-title">All Time: </h4>
+							<h4 className="info mb-0 orange">{'$' + this.state.earnings.total}</h4>
+						</div>
+					</div>
+				</div>
 			</div>
 		);
 	}
