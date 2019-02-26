@@ -12,10 +12,6 @@ class Earnings extends Component {
 		};
 	}
 
-	componentDidMount() {
-		console.log('settings mounted');
-	}
-
 	handleLogout() {
 		event.preventDefault();
 		axios.post('/logout', {
@@ -35,10 +31,10 @@ class Earnings extends Component {
 				<NavbarTop classLeft="fas fa-arrow-left orange" classRight="fas fa-times orange" linkLeft="/home" linkRight="/home" title="Settings" />
 				<div className="container content-container">
 					<Link to={'/students/inactive'}>
-						<h4 className="pt-4">View Hidden Students</h4>
+						<h5 className="orange pb-2 pt-2 bb-1-s">View Hidden Students</h5>
 					</Link>
 
-					<h4 className="orange pt-2" onClick={this.handleLogout}>Logout</h4>
+					<h5 className="orange pt-2" onClick={this.handleLogout}>Logout</h5>
 				</div>
 			</div>
 		);
