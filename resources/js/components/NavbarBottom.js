@@ -22,12 +22,12 @@ class NavbarBottom extends Component {
 					<Icon className="fas fa-calendar-alt orange" title="Lessons"/>
 				</Link>
 
-				<Link to="/messages">
-					<Icon className="fas fa-comment orange" title="Messages"/>
-				</Link>
-
 				<Link to="/earnings">
 					<Icon className="fas fa-dollar-sign orange" title="Earnings"/>
+				</Link>
+
+				<Link to="/messages">
+					<Icon className="fas fa-comment orange" title="Messages"/>
 				</Link>
 
 			</nav>
