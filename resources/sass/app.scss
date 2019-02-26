@@ -99,11 +99,24 @@ textarea {
     display: none;
   }
 
-  .student-info, .lesson-info {
+  .student-info, .lesson-info, .earnings-info {
     align-content: center;
     border-bottom: 1px solid silver;
     display: flex;
     justify-content: space-between;
+
+    .earnings-title {
+      align-items: center;
+      display: flex;
+      margin-bottom: 0;
+      height: 40px;
+      width: 50%;
+    }
+
+    .info {
+      align-items: center;
+      display: flex;
+    }
 
     .info-title {
       align-items: center;

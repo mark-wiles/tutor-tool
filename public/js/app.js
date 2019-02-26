@@ -82470,9 +82470,7 @@ if (document.getElementById('app')) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _NavbarTop__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../NavbarTop */ "./resources/js/components/NavbarTop.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -82491,9 +82489,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+ // import { Link } from 'react-router-dom';
 
-
-
+ // import axios from 'axios';
 
 var Earnings =
 /*#__PURE__*/
@@ -82510,35 +82508,64 @@ function (_Component) {
       earnings: []
     };
     return _this;
-  } // componentDidMount() {
-  // 	axios.get('/earnings'
-  // 	)
-  // 	.then((response) => {
-  // 		var earnings = response.data;
-  // 		this.setState({earnings});
-  // 	})
-  // 	.catch((error) => {
-  // 		console.log(error)
-  // 	});
-  // }
-
+  }
 
   _createClass(Earnings, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      axios.get('/api/earnings').then(function (response) {
+        console.log(response);
+        var earnings = response.data;
+
+        _this2.setState({
+          earnings: earnings
+        });
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      // const allEarnings = this.state.earnings.map((earning) =>
-      // 		<div className="earning-summary" key={earning.id}>
-      // 			<Link to={'earning/' + earning.id}>
-      // 				<h4 className="font-weight-bold mb-1">{earning.first_name}</h4>
-      // 				<h6>{earning.city}, {earning.state} {earning.zip}</h6>
-      // 			</Link>
-      // 		</div>
-      // )
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "content-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
-        className: "font-weight-bold"
-      }, "Earnings"));
+        className: "row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NavbarTop__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        classLeft: "fas fa-arrow-left orange",
+        classRight: "",
+        linkLeft: "/home",
+        linkRight: "",
+        title: "Earnings"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "container content-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "earnings-info col-md-12"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+        className: "earnings-title"
+      }, "7 Days: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+        className: "info mb-0 orange"
+      }, '$' + this.state.earnings.week)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "lesson-info col-md-12"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+        className: "earnings-title"
+      }, "30 Days: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+        className: "info mb-0 orange"
+      }, '$' + this.state.earnings.month)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "lesson-info col-md-12"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+        className: "earnings-title"
+      }, "YTD: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+        className: "info mb-0 orange"
+      }, '$' + this.state.earnings.year)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "lesson-info col-md-12"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+        className: "earnings-title"
+      }, "All Time: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+        className: "info mb-0 orange"
+      }, '$' + this.state.earnings.total)))));
     }
   }]);
 
@@ -83641,15 +83668,15 @@ function (_Component) {
         className: "fas fa-calendar-alt orange",
         title: "Lessons"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/messages"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Icon__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        className: "fas fa-comment orange",
-        title: "Messages"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/earnings"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Icon__WEBPACK_IMPORTED_MODULE_2__["default"], {
         className: "fas fa-dollar-sign orange",
         title: "Earnings"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/messages"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Icon__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        className: "fas fa-comment orange",
+        title: "Messages"
       })));
     }
   }]);
