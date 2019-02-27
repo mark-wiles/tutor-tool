@@ -83220,8 +83220,9 @@ function (_Component) {
         className: "row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NavbarTop__WEBPACK_IMPORTED_MODULE_2__["default"], {
         classLeft: "fas fa-arrow-left orange",
+        classRight: "fas fa-times orange",
         linkLeft: "/lessons",
-        linkRight: "",
+        linkRight: "/lessons",
         title: "Add Lesson"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container content-container"
@@ -84703,8 +84704,9 @@ function (_Component) {
         className: "row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NavbarTop__WEBPACK_IMPORTED_MODULE_2__["default"], {
         classLeft: "fas fa-arrow-left orange",
+        classRight: "fas fa-times orange",
         linkLeft: "/home",
-        linkRight: "",
+        linkRight: "/home",
         title: "Add Student"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container content-container"
