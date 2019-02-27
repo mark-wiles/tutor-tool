@@ -18,6 +18,7 @@ Route::get('/lessons/unsubmitted', 'LessonController@unsubmitted');
 Route::get('/lessons/submitted', 'LessonController@submitted');
 Route::post('/lesson', 'LessonController@store');
 Route::put('/lesson/{lesson}', 'LessonController@update');
+Route::delete('/lesson/{lesson}', 'LessonController@destroy');
 
 //note routes
 Route::get('/note/{note}', 'NoteController@show');

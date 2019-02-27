@@ -12,57 +12,69 @@ class LessonController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // Get all future lessons for a particular user
+
     public function index()
     {
-        $lessons = Lesson::where([['lessons.user_id', '=', auth()->id()], ['lessons.unix_time', '>=', time()]])
+        $lessons = Lesson::where([
+            
+            ['lessons.user_id', '=', auth()->id()],
+            
+            ['lessons.unix_time', '>=', time()]])
+
             ->join('students', 'lessons.student_id', '=', 'students.id')
+
             ->select('lessons.*', 'students.first_name', 'students.last_name')
+
             ->orderBy('start_time')->get();
         
         return($lessons);
     }
 
+    // get all submitted lessons for a particular user
+
     public function submitted()
     {
-        $lessons = Lesson::where([['lessons.user_id', '=', auth()->id()], ['lessons.unix_time', '<', time()], ['lessons.payment', '>', 0]])
+        $lessons = Lesson::where([
+
+            ['lessons.user_id', '=', auth()->id()],
+            
+            ['lessons.unix_time', '<', time()],
+            
+            ['lessons.payment', '>', 0]])
+
             ->join('students', 'lessons.student_id', '=', 'students.id')
+
             ->select('lessons.*', 'students.first_name', 'students.last_name')
+
             ->orderBy('start_time', 'desc')->get();
         
         return($lessons);
     }
 
+    // get all past lessons for a particular user that have not been submitted
+
     public function unsubmitted()
     {
-        $lessons = Lesson::where([['lessons.user_id', '=', auth()->id()], ['lessons.unix_time', '<', time()], ['lessons.payment', '=', 0]])
+        $lessons = Lesson::where([
+            
+            ['lessons.user_id', '=', auth()->id()],
+
+            ['lessons.unix_time', '<', time()],
+
+            ['lessons.payment', '=', 0]])
+
             ->join('students', 'lessons.student_id', '=', 'students.id')
+
             ->select('lessons.*', 'students.first_name', 'students.last_name')
+
             ->orderBy('start_time')->get();
         
         return($lessons);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    // Store a new lesson in the database
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         
@@ -76,61 +88,58 @@ class LessonController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Lesson  $lesson
-     * @return \Illuminate\Http\Response
-     */
+    // Show a specific lesson
+
     public function show($id)
     {
-        $lesson = Lesson::where(['lessons.id' => $id, 'lessons.user_id' => auth()->id()])
-        ->join('students', 'lessons.student_id', '=', 'students.id')
-        ->select('lessons.*', 'students.first_name', 'students.last_name')
-        ->get();
+        $lesson = Lesson::where([
+            
+            'lessons.id' => $id,
+            
+            'lessons.user_id' => auth()->id()
+            
+            ])
+
+            ->join('students', 'lessons.student_id', '=', 'students.id')
+
+            ->select('lessons.*', 'students.first_name', 'students.last_name')
+
+            ->get();
 
         return($lesson);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Lesson  $lesson
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Lesson $lesson)
-    {
-        //
-    }
+    // Update a specific lesson
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Lesson  $lesson
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Lesson $lesson)
     {
 
         $attributes = $this->validateLesson();
 
-        $updatedLesson = Lesson::where(['id' => $lesson->id, 'user_id' => auth()->id()])->update($attributes);
+        $updatedLesson = Lesson::where([
+            
+            'id' => $lesson->id,
+            
+            'user_id' => auth()->id()
+            
+            ])
+            
+            ->update($attributes);
         
         return ($attributes);
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Lesson  $lesson
-     * @return \Illuminate\Http\Response
-     */
+    // Delete a specific lesson
+
     public function destroy(Lesson $lesson)
     {
-        //
+        $result = Lesson::where(['id' => $lesson->id, 'user_id' => auth()->id()])->delete();
+
+        return($result);
     }
+    
+    // validate request
 
     public function validateLesson() {
 

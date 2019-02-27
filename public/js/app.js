@@ -82825,6 +82825,7 @@ function (_Component) {
       start_time: '',
       end_time: ''
     };
+    _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleInputChange = _this.handleInputChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handlePayment = _this.handlePayment.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
@@ -82857,8 +82858,31 @@ function (_Component) {
           subject: lesson.subject
         });
       }).catch(function (error) {
+        alert('An error occurred. Your session may have expired. Please verify login and try again.');
         console.log(error);
+        window.location.replace('/home');
       });
+    }
+  }, {
+    key: "handleDelete",
+    value: function handleDelete() {
+      var _this3 = this;
+
+      var confirmed = confirm('Are you sure you would like to delete this lesson? This action cannot be undone.');
+
+      if (confirmed) {
+        var url = '/api/lesson/' + this.props.match.params.id;
+        axios.delete(url).then(function (response) {
+          if (response.request.status === 200) {
+            _this3.props.history.push('/lessons');
+          } else {
+            alert('A problem occurred. Please try again later.');
+          }
+        }).catch(function (error) {
+          alert('An error occurred. Please try again.');
+          console.log(error);
+        });
+      }
     }
   }, {
     key: "handleInputChange",
@@ -82877,7 +82901,7 @@ function (_Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(event) {
-      var _this3 = this;
+      var _this4 = this;
 
       event.preventDefault();
       var startTime = this.state.start_date + ' ' + this.state.start_time;
@@ -82895,7 +82919,7 @@ function (_Component) {
         payment: Number(Number(this.state.payment).toFixed(2))
       }).then(function (response) {
         if (response.request.status === 200) {
-          _this3.props.history.push('/lessons');
+          _this4.props.history.push('/lessons');
         } else {
           alert('There was a problem saving the data. Please check your entries and try again.');
         }
@@ -83028,7 +83052,12 @@ function (_Component) {
         type: "submit",
         className: "btn btn-primary mb-5",
         disabled: disableBtn ? true : false
-      }, "Submit"))));
+      }, "Submit")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
+        className: "col-md-12 text-center orange",
+        onClick: this.handleDelete
+      }, "Delete Lesson"))));
     }
   }]);
 

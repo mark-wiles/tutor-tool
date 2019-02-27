@@ -17,6 +17,7 @@ class LessonEdit extends Component {
 			end_time: '',
 		};
 
+		this.handleDelete = this.handleDelete.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handlePayment = this.handlePayment.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -49,8 +50,31 @@ class LessonEdit extends Component {
 				});
 		})
 		.catch((error) => {
-			console.log(error)
+			alert('An error occurred. Your session may have expired. Please verify login and try again.');
+			console.log(error);
+			window.location.replace('/home');
 		});
+	}
+
+	handleDelete() {
+		var confirmed = confirm('Are you sure you would like to delete this lesson? This action cannot be undone.');
+		if (confirmed) {
+			let url = '/api/lesson/' + this.props.match.params.id;
+			axios.delete(url
+			)
+			.then((response) => {
+				if (response.request.status === 200) {
+					this.props.history.push('/lessons');
+				}
+				else {
+					alert('A problem occurred. Please try again later.');
+				}
+			})
+			.catch((error)=> {
+				alert('An error occurred. Please try again.');
+				console.log(error);
+			})
+		}
 	}
 
 	handleInputChange(event) {
@@ -159,6 +183,10 @@ class LessonEdit extends Component {
 
 						<button type="submit" className="btn btn-primary mb-5"  disabled={disableBtn ? true : false} >Submit</button>
 					</form>
+
+					<div className="row">
+						<h6 className="col-md-12 text-center orange" onClick={this.handleDelete}>Delete Lesson</h6>
+					</div>
 				</div>
 			</div>
 		);
