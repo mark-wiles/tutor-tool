@@ -42,6 +42,10 @@ class Students extends Component {
 
 				<div className="container content-container">
 					{ allStudents }
+
+					<Link to='/student/new'>
+						<h5 className="orange pb-2 pt-2">Add Student</h5>
+					</Link>
 				</div>
 			</div>
 		);

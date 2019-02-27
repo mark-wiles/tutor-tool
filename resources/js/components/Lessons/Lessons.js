@@ -102,6 +102,10 @@ class Lessons extends Component {
 					</div>
 
 					{ allLessons }
+
+					<Link to='/lesson/new'>
+						<h5 className="orange pb-2 pt-2">Add Lesson</h5>
+					</Link>
 				</div>
 			</div>
 		);

@@ -83534,7 +83534,11 @@ function (_Component) {
         className: "lesson-btn orange",
         id: "submitted",
         onClick: this.handleClick
-      }, "Submitted")), allLessons));
+      }, "Submitted")), allLessons, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/lesson/new"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+        className: "orange pb-2 pt-2"
+      }, "Add Lesson"))));
     }
   }]);
 
@@ -84914,7 +84918,11 @@ function (_Component) {
         title: "Students"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container content-container"
-      }, allStudents));
+      }, allStudents, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/student/new"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+        className: "orange pb-2 pt-2"
+      }, "Add Student"))));
     }
   }]);
 
