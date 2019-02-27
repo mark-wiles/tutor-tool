@@ -56,7 +56,7 @@ class StudentNew extends Component {
 
 		return (
 			<div className="row">
-				<NavbarTop classLeft="fas fa-arrow-left orange" linkLeft="/home" linkRight="" title="Add Student" />
+				<NavbarTop classLeft="fas fa-arrow-left orange" classRight="fas fa-times orange" linkLeft="/home" linkRight="/home" title="Add Student" />
 				
 				<div className="container content-container">
 					<form className="pt-2" onSubmit={this.handleSubmit}>

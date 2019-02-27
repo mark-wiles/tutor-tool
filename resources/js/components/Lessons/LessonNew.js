@@ -130,7 +130,7 @@ class LessonNew extends Component {
 
 		return (
 			<div className="row">
-				<NavbarTop classLeft="fas fa-arrow-left orange" linkLeft="/lessons" linkRight="" title="Add Lesson" />
+				<NavbarTop classLeft="fas fa-arrow-left orange" classRight="fas fa-times orange" linkLeft="/lessons" linkRight="/lessons" title="Add Lesson" />
 				
 				<div className="container content-container">
 					<form className="pt-2" onSubmit={this.handleSubmit}>
