@@ -17,7 +17,8 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
+                background: darkorange;
+                background: linear-gradient(to right, darkorange, #FFC233);
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
@@ -73,7 +74,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/students') }}">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
