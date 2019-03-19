@@ -84106,24 +84106,24 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var Earnings =
+var Settings =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(Earnings, _Component);
+  _inherits(Settings, _Component);
 
-  function Earnings(props) {
+  function Settings(props) {
     var _this;
 
-    _classCallCheck(this, Earnings);
+    _classCallCheck(this, Settings);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Earnings).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Settings).call(this, props));
     _this.state = {
       settings: []
     };
     return _this;
   }
 
-  _createClass(Earnings, [{
+  _createClass(Settings, [{
     key: "handleLogout",
     value: function handleLogout() {
       event.preventDefault();
@@ -84151,16 +84151,16 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "orange pb-2 pt-2 bb-1-s"
       }, "View Hidden Students")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-        className: "orange pt-2",
+        className: "orange pointer pt-2",
         onClick: this.handleLogout
       }, "Logout")));
     }
   }]);
 
-  return Earnings;
+  return Settings;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Earnings);
+/* harmony default export */ __webpack_exports__["default"] = (Settings);
 
 /***/ }),
 
