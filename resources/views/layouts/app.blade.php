@@ -28,8 +28,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div class="container" id="container">
         @guest
+        <div class="container-fluid" id="container">
             <nav class="row navbar navbar-expand-md navbar-light">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
@@ -48,10 +48,13 @@
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">
                             <!-- Authentication Links -->
+                                @if (Route::is('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
-                                @if (Route::has('register'))
+                                @endif
+
+                                @if (Route::is('login'))
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                     </li>
@@ -61,17 +64,19 @@
                 </div>
             </nav>
 
-            <main class="container">
+            <main class="align-items-center d-flex guest h-100 justify-content-center row">
                 @yield('content')
             </main>
+        </div>
         @endguest
 
         @auth
+        <div class="container" id="container">
             <main class="container">
                 @yield('react-content')
             </main>
+        </div>
         @endauth
 
-    </div>
 </body>
 </html>
