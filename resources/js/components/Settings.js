@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import NavbarTop from './NavbarTop';
 
-class Earnings extends Component {
+class Settings extends Component {
 
 	constructor(props) {
 		super(props);
@@ -34,11 +34,11 @@ class Earnings extends Component {
 						<h5 className="orange pb-2 pt-2 bb-1-s">View Hidden Students</h5>
 					</Link>
 
-					<h5 className="orange pt-2" onClick={this.handleLogout}>Logout</h5>
+					<h5 className="orange pointer pt-2" onClick={this.handleLogout}>Logout</h5>
 				</div>
 			</div>
 		);
 	}
 }
 
-export default Earnings;
+export default Settings;
