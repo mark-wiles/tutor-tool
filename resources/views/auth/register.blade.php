@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="col-sm-9 col-md-7 col-lg-5 mx-auto v-adjust">
+<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
     <div class="card card-register">
         <div class="card-body">
             <h5 class="card-title text-center">{{ __('Register') }}</h5>
