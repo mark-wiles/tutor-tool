@@ -5,7 +5,7 @@
     <div class="card card-signin">
         <div class="card-body">
             <h5 class="card-title text-center">{{ __('Reset Password') }}</h5>
-                <form method="POST" action="{{ route('password.update') }}">
+                <form class="form-reset" method="POST" action="{{ route('password.update') }}">
                     @csrf
                     <input type="hidden" name="token" value="{{ $token }}">
 
