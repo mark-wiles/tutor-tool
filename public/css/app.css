@@ -10526,6 +10526,8 @@ input:-webkit-autofill:active {
 main.guest {
   background: darkorange;
   background: linear-gradient(to right, darkorange, #FFC233);
+  padding-top: 60px;
+  padding-bottom: 60px;
   overflow: auto;
 }
 
@@ -10732,7 +10734,9 @@ textarea {
 }
 
 .form-signin .btn,
-.form-register .btn {
+.form-register .btn,
+.form-email .btn,
+.form-reset .btn {
   border-radius: 5rem;
   color: #FFF;
   font-size: 80%;
@@ -10741,7 +10745,9 @@ textarea {
 }
 
 .form-signin .btn-link,
-.form-register .btn-link {
+.form-register .btn-link,
+.form-email .btn-link,
+.form-reset .btn-link {
   color: #777;
   font-weight: 600;
 }
