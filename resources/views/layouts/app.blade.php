@@ -30,7 +30,7 @@
 <body>
         @guest
         <div class="container-fluid" id="container">
-            <nav class="row navbar navbar-expand-md navbar-light">
+            <nav class="fixed-top navbar navbar-expand-md navbar-light">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Tutor App') }}
@@ -48,13 +48,13 @@
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">
                             <!-- Authentication Links -->
-                                @if (Route::is('register'))
+                                @if (\Route::current()->getName() !== 'login')
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                                 @endif
 
-                                @if (Route::is('login'))
+                                @if (\Route::current()->getName() !== 'register')
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                     </li>
