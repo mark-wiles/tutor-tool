@@ -144,39 +144,114 @@ class LessonEdit extends Component {
 					<h3 className="pt-2">{lesson.first_name} {lesson.last_name}</h3>
 					<form onSubmit={this.handleSubmit}>
 						<div className="form-group">
-							<label htmlFor="rate">Hourly Rate:</label>{rateError ? <span className="text-danger"> Please enter a reasonable hourly rate</span> : ''}
-							<input type="number" className={`form-control ${ rateError ? 'error' : ''}`} id="rate" name="rate" value={this.state.rate} onChange={this.handleInputChange} required/>
+							<label htmlFor="rate">Hourly Rate:</label>
+							
+							{rateError ? <span className="text-danger"> Please enter a reasonable hourly rate</span> : ''}
+
+							<input
+								type="number"
+								className={`form-control ${ rateError ? 'error' : ''}`}
+								id="rate"
+								name="rate"
+								value={this.state.rate}
+								onChange={this.handleInputChange}
+								required
+							/>
 						</div>
 
 						<div className="form-group">
-							<label htmlFor="subject">Subject:</label>{subjectError ? <span className="text-danger"> Must be less than 40 characters</span> : ''}
-							<input type="text" className={`form-control ${ subjectError ? 'error' : ''}`} id="subject" name="subject" value={this.state.subject ? this.state.subject : ''} onChange={this.handleInputChange}/>
+							<label htmlFor="subject">Subject:</label>
+							
+							{subjectError ? <span className="text-danger"> Must be less than 40 characters</span> : ''}
+
+							<input
+								type="text"
+								className={`form-control ${ subjectError ? 'error' : ''}`}
+								id="subject"
+								name="subject"
+								value={this.state.subject ? this.state.subject : ''}
+								onChange={this.handleInputChange}
+							/>
 						</div>
 
 						<div className="date-time form-group">
 							<label htmlFor="start_date">Date:</label>
-							<input type="date" className="form-control" value={this.state.start_date} id="start_date" name="start_date" onChange={this.handleInputChange} required/>
+
+							<input
+								type="date"
+								className="form-control"
+								value={this.state.start_date}
+								id="start_date"
+								name="start_date"
+								onChange={this.handleInputChange}
+								required
+							/>
 						</div>
 
 						<div className="date-time form-group">
 							<label htmlFor="start_time">Start:</label>
-							<input type="time" className="form-control" value={this.state.start_time} id="start_time" name="start_time" onChange={this.handleInputChange} pattern="[0-9]{2}:[0-9]{2}" required/>
+
+							<input
+								type="time"
+								className="form-control"
+								value={this.state.start_time}
+								id="start_time"
+								name="start_time"
+								onChange={this.handleInputChange}
+								pattern="[0-9]{2}:[0-9]{2}"
+								required
+								step="300"
+							/>
 						</div>
 
 						<div className="date-time form-group">
 							<label htmlFor="end_date">Date:</label>
-							<input type="date" className={`form-control ${ dateError ? 'error' : ''}`} value={this.state.end_date} id="end_date" name="end_date" onChange={this.handleInputChange} required/>
+
+							<input
+								type="date"
+								className={`form-control ${ dateError ? 'error' : ''}`}
+								value={this.state.end_date}
+								id="end_date"
+								name="end_date"
+								onChange={this.handleInputChange}
+								required
+							/>
 						</div>
 
 						<div className="date-time form-group">
 							<label htmlFor="end_time">End:</label>
-							<input type="time" className={`form-control ${ timeError ? 'error' : ''}`} value={this.state.end_time} id="end_time" name="end_time" onChange={this.handleInputChange} pattern="[0-9]{2}:[0-9]{2}" required/>
+
+							<input
+								type="time"
+								className={`form-control ${ timeError ? 'error' : ''}`}
+								value={this.state.end_time}
+								id="end_time"
+								name="end_time"
+								onChange={this.handleInputChange}
+								pattern="[0-9]{2}:[0-9]{2}"
+								required
+								step="300"
+							/>
 						</div>
 
 						{isPast ?
 						<div className="form-group">
-							<label className="orange" htmlFor="payment">Payment recieved</label>{paymentError ? <span className="text-danger"> Payment seems high. Please check.</span> : ""}
-							<input type="number" className={`form-control ${ paymentError ? 'error' : ''}`} id="payment" name="payment" step=".01" value={this.state.payment} onChange={this.handlePayment} required/>
+							<label className="orange" htmlFor="payment">Payment recieved</label>
+							
+							{paymentError ? <span className="text-danger"> Payment seems high. Please check.</span> : ""}
+
+							<input
+								type="number"
+								className={`form-control ${ paymentError ? 'error' : ''}`}
+								id="payment"
+								name="payment"
+								min="0"
+								max="1001"
+								step="1"
+								value={this.state.payment}
+								onChange={this.handlePayment}
+								required
+							/>
 						</div>
 						: null
 						}

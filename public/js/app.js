@@ -83006,7 +83006,8 @@ function (_Component) {
         name: "start_time",
         onChange: this.handleInputChange,
         pattern: "[0-9]{2}:[0-9]{2}",
-        required: true
+        required: true,
+        step: "300"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "date-time form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -83031,7 +83032,8 @@ function (_Component) {
         name: "end_time",
         onChange: this.handleInputChange,
         pattern: "[0-9]{2}:[0-9]{2}",
-        required: true
+        required: true,
+        step: "300"
       })), isPast ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -83044,7 +83046,9 @@ function (_Component) {
         className: "form-control ".concat(paymentError ? 'error' : ''),
         id: "payment",
         name: "payment",
-        step: ".01",
+        min: "0",
+        max: "1001",
+        step: "1",
         value: this.state.payment,
         onChange: this.handlePayment,
         required: true
@@ -83321,7 +83325,8 @@ function (_Component) {
         name: "start_time",
         onChange: this.handleTime,
         pattern: "[0-9]{2}:[0-9]{2}",
-        required: true
+        required: true,
+        step: "300"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "date-time form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -83347,7 +83352,8 @@ function (_Component) {
         name: "end_time",
         onChange: this.handleInputChange,
         pattern: "[0-9]{2}:[0-9]{2}",
-        required: true
+        required: true,
+        step: "300"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "duration"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Rate: $", this.state.rate), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Duration: ", isNaN(duration) ? '' : duration, " ", duration === 1 ? 'hour' : 'hours'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Lesson Total: $", isNaN(payAmount) ? '' : payAmount)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
