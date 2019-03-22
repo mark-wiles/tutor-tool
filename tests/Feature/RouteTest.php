@@ -18,6 +18,8 @@ class RouteTest extends TestCase
         $response = $this->get('/');
 
         $response->assertStatus(200);
+
+        $this->assertGuest($guard = null);
     }
 
     public function test_get_login()
@@ -25,6 +27,8 @@ class RouteTest extends TestCase
         $response = $this->get('/login');
 
         $response->assertStatus(200);
+
+        $this->assertGuest($guard = null);
     }
 
     public function test_get_register()
@@ -32,6 +36,8 @@ class RouteTest extends TestCase
         $response = $this->get('/register');
 
         $response->assertStatus(200);
+
+        $this->assertGuest($guard = null);
     }
 
     public function test_get_students()
