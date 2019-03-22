@@ -88,7 +88,7 @@ class AddressController extends Controller
 
 		return request()->validate([
             
-            'venue' => ['nullable', 'min:2', 'max:255'],
+            'venue' => ['required', 'min:2', 'max:255'],
 
             'street' => ['nullable', 'min:3', 'max:255'],
 

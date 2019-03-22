@@ -66,7 +66,7 @@ class AddressNew extends Component {
 					<form className="pt-2" onSubmit={this.handleSubmit}>
 						<div className="form-group">
 							<label htmlFor="venue">Venu:</label>{venueError ? <span className="text-danger"> Location name is too long</span> : ''}
-							<input type="text" className={`form-control ${ venueError ? 'error' : ''}`} id="venue" name="venue" placeholder="Ex: Starbucks" value={this.state.venue} onChange={this.handleInputChange} autoFocus/>
+							<input type="text" className={`form-control ${ venueError ? 'error' : ''}`} id="venue" name="venue" placeholder="Ex: Starbucks" value={this.state.venue} onChange={this.handleInputChange} required autoFocus/>
 						</div>
 
 						<div className="form-group">
