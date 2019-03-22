@@ -36,4 +36,49 @@ class UserTest extends TestCase
 
         $this->assertDatabaseHas('students', ['id' => $student->id]);
     }
+
+    public function test_user_can_register()
+    {
+        $this->withoutExceptionHandling();
+
+        $data = [
+            'name' => 'Test',
+            'email' => 'test@example.com',
+            'password' => 'test123',
+            'password_confirmation' => 'test123',
+        ];
+
+        $response = $this->post('/register', $data);
+
+        $response->assertRedirect('/home');
+
+        $this->assertDatabaseHas('users', ['email' => $data['email']]);
+
+        $this->assertAuthenticated($guard = null);
+    }
+
+    public function test_user_can_login()
+    {
+        $this->withoutExceptionHandling();
+
+        $data = [
+            'name' => 'Test',
+            'email' => 'test@example.com',
+            'password' => 'test123',
+            'password_confirmation' => 'test123',
+        ];
+
+        $response = $this->post('/register', $data);
+
+        $userdata = [
+            'email' => 'test@example.com',
+            'password' => 'test123'
+        ];
+
+        $response = $this->post('/login', $userdata);
+
+        $response->assertRedirect('/home');
+
+        $this->assertAuthenticated($guard = null);
+    }
 }
