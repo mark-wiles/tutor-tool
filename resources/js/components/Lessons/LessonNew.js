@@ -7,6 +7,9 @@ class LessonNew extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			addresses: [],
+			students: [],
+			location: '',
 			start_date: '',
 			end_date: '',
 			start_time: '12:00',
@@ -14,13 +17,12 @@ class LessonNew extends Component {
 			rate: '',
 			subject: '',
 			student_id: '',
-			location: '',
-			students: []
 		};
 
 		this.handleDate = this.handleDate.bind(this);
 		this.handleTime = this.handleTime.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this);
+		this.handleLocation = this.handleLocation.bind(this);
 		this.handleSelect = this.handleSelect.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
@@ -73,11 +75,20 @@ class LessonNew extends Component {
 	};
 
 	handleSelect(event) {
-		const student_id = event.target.value;
+		const student_id = parseInt(event.target.value);
+		const addresses = this.state.students.find(x => x.id === student_id).addresses;
 		const rate = event.target.options[event.target.selectedIndex].dataset.rate;
 		this.setState({
 			student_id: student_id,
-			rate: rate
+			rate: rate,
+			addresses: addresses
+		})
+	}
+
+	handleLocation(event) {
+		const address_id = parseInt(event.target.value);
+		this.setState({
+			location: address_id
 		})
 	}
 
@@ -95,7 +106,7 @@ class LessonNew extends Component {
 			rate: Math.trunc(Number(this.state.rate)),
 			subject: this.state.subject,
 			student_id: parseInt(this.state.student_id),
-			location: this.state.location
+			location_id: parseInt(this.state.location)
 		})
 		.then((response) => {
 			if (response.request.status === 200) {
@@ -127,6 +138,9 @@ class LessonNew extends Component {
 		const students = this.state.students.map((student) =>
 			<option key={student.id} data-rate={student.rate} value={student.id}>{student.first_name} {student.last_name}</option>
 		)
+
+		const venues = this.state.addresses.length > 0 ? this.state.addresses.map((venue) =>
+			<option key={venue.id} value={venue.id}>{venue.venue}</option>) : '';
 
 		return (
 			<div className="row">
@@ -179,6 +193,22 @@ class LessonNew extends Component {
 								onChange={this.handleInputChange}
 							/>
 						</div>
+
+						{ venues && venues.length > 0 ?
+						<div className="form-group">
+							<label htmlFor="location">Location</label>
+
+							<select
+								className="form-control"
+								id="location"
+								name="location"
+								onChange={this.handleLocation}
+								required
+							>
+								{ venues }
+							</select>
+						</div>
+						: null }
 
 						<div className="date-time form-group">
 							<label htmlFor="start_date">Date:</label>
