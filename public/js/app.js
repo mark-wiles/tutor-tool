@@ -82219,6 +82219,7 @@ function (_Component) {
         placeholder: "Ex: Starbucks",
         value: this.state.venue,
         onChange: this.handleInputChange,
+        required: true,
         autoFocus: true
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
@@ -82287,6 +82288,111 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (AddressNew);
+
+/***/ }),
+
+/***/ "./resources/js/components/Addresses/AddressSelector.js":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/Addresses/AddressSelector.js ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+
+
+
+var AddressSelector =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(AddressSelector, _Component);
+
+  function AddressSelector(props) {
+    var _this;
+
+    _classCallCheck(this, AddressSelector);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(AddressSelector).call(this, props));
+    _this.state = {
+      addresses: []
+    };
+    _this.handleAddressSelect = _this.handleAddressSelect.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    return _this;
+  }
+
+  _createClass(AddressSelector, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      var url = '/api/addresses/' + this.props.studentId;
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(url).then(function (response) {
+        _this2.setState({
+          addresses: response.data
+        });
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  }, {
+    key: "handleAddressSelect",
+    value: function handleAddressSelect(event) {
+      var id = parseInt(event.target.value);
+      this.props.onSelectAddress(id);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var addresses = this.state.addresses.map(function (address) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          key: address.id,
+          value: address.id
+        }, address.venue);
+      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "location"
+      }, "Location"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        className: "form-control",
+        id: "location",
+        name: "location",
+        onChange: this.handleAddressSelect,
+        required: true,
+        value: this.props.locationId ? this.props.locationId : 'select'
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "select"
+      }, "Select a Location"), addresses));
+    }
+  }]);
+
+  return AddressSelector;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (AddressSelector);
 
 /***/ }),
 
@@ -82653,7 +82759,8 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Lesson).call(this, props));
     _this.state = {
-      lesson: []
+      lesson: [],
+      location: null
     };
     return _this;
   }
@@ -82665,14 +82772,21 @@ function (_Component) {
 
       var url = '/api/lesson/' + this.props.match.params.id;
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(url).then(function (response) {
-        var lesson = response.data[0];
+        console.log(response.data);
 
         _this2.setState({
-          lesson: lesson
+          lesson: response.data,
+          location: response.data.location
         });
       }).catch(function (error) {
         console.log(error);
       });
+    }
+  }, {
+    key: "handleAddressClick",
+    value: function handleAddressClick() {
+      var id = '#address-options' + event.target.dataset.id;
+      $(id).toggleClass('hidden');
     }
   }, {
     key: "handleDate",
@@ -82696,6 +82810,7 @@ function (_Component) {
     key: "render",
     value: function render() {
       var lesson = this.state.lesson;
+      var address = this.state.location;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NavbarTop__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -82718,13 +82833,13 @@ function (_Component) {
         className: "info-title"
       }, "Date"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info"
-      }, this.handleDate(lesson.start_time))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.handleDate(lesson.start_time))), lesson.subject ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "d-flex justify-content-between bb-1-s"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info-title"
       }, "Subject"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info"
-      }, lesson.subject)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, lesson.subject)) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "d-flex justify-content-between bb-1-s"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info-title"
@@ -82737,22 +82852,57 @@ function (_Component) {
       }, "Start Time"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info"
       }, this.handleTime(lesson.start_time))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "d-flex justify-content-between bb-1-s"
+        className: "d-flex justify-content-between"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info-title"
       }, "End Time"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info"
-      }, this.handleTime(lesson.end_time))), lesson.payment > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "d-flex justify-content-between bb-1-s"
+      }, this.handleTime(lesson.end_time))), address ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-md-12 p-0"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-        className: "info-title orange"
-      }, "Paid"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+        className: "info-header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Location")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "summary",
+        "data-id": address.id,
+        key: address.id,
+        onClick: this.handleAddressClick
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+        className: "m-0",
+        "data-id": address.id
+      }, address.venue), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+        className: "m-0",
+        "data-id": address.id
+      }, address.street), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+        className: "m-0",
+        "data-id": address.id
+      }, address.city ? address.city + ', ' : '', address.state), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+        className: "m-0",
+        "data-id": address.id
+      }, address.zip), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "address-options hidden",
+        id: 'address-options' + address.id
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "https://www.google.com/maps/place/".concat(address.street, "+").concat(address.city, "+").concat(address.state, "+").concat(address.zip),
+        target: "_blank"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+        className: "orange"
+      }, "Show on Map"))))))) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-md-12 p-0"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+        className: "info-header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Status")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "container"
+      }, lesson.payment > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info orange"
-      }, "$".concat(lesson.payment))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "d-flex justify-content-between"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+      }, "Paid: $".concat(lesson.payment)) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info-title orange"
-      }, "Unsubmitted"))));
+      }, "Unsubmitted"))))));
     }
   }]);
 
@@ -82779,6 +82929,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _NavbarTop__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../NavbarTop */ "./resources/js/components/NavbarTop.js");
+/* harmony import */ var _Addresses_AddressSelector__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Addresses/AddressSelector */ "./resources/js/components/Addresses/AddressSelector.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -82804,6 +82955,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 
 
+
 var LessonEdit =
 /*#__PURE__*/
 function (_Component) {
@@ -82823,8 +82975,11 @@ function (_Component) {
       start_date: '',
       end_date: '',
       start_time: '',
-      end_time: ''
+      end_time: '',
+      locationId: '',
+      studentId: null
     };
+    _this.handleAddress = _this.handleAddress.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleInputChange = _this.handleInputChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handlePayment = _this.handlePayment.bind(_assertThisInitialized(_assertThisInitialized(_this)));
@@ -82839,7 +82994,8 @@ function (_Component) {
 
       var url = '/api/lesson/' + this.props.match.params.id;
       axios.get(url).then(function (response) {
-        var lesson = response.data[0];
+        console.log('lessonEdit', response);
+        var lesson = response.data;
         var start_date = new Date(lesson.start_time.replace(/-/g, '/'));
         var end_date = new Date(lesson.end_time.replace(/-/g, '/'));
         var start_time = moment__WEBPACK_IMPORTED_MODULE_2___default()(start_date).format('HH:mm');
@@ -82853,9 +83009,11 @@ function (_Component) {
           end_date: end_date,
           start_time: start_time,
           end_time: end_time,
+          locationId: lesson.location_id,
           payment: lesson.payment,
           rate: lesson.rate,
-          subject: lesson.subject
+          subject: lesson.subject,
+          studentId: lesson.student_id
         });
       }).catch(function (error) {
         alert('An error occurred. Your session may have expired. Please verify login and try again.');
@@ -82899,6 +83057,13 @@ function (_Component) {
       this.setState(_defineProperty({}, name, value));
     }
   }, {
+    key: "handleAddress",
+    value: function handleAddress(id) {
+      this.setState({
+        locationId: id
+      });
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(event) {
       var _this4 = this;
@@ -82916,6 +83081,7 @@ function (_Component) {
         rate: Math.trunc(Number(this.state.rate)),
         subject: this.state.subject,
         student_id: parseInt(this.state.lesson.student_id),
+        location_id: parseInt(this.state.locationId),
         payment: Number(Number(this.state.payment).toFixed(2))
       }).then(function (response) {
         if (response.request.status === 200) {
@@ -82982,7 +83148,11 @@ function (_Component) {
         name: "subject",
         value: this.state.subject ? this.state.subject : '',
         onChange: this.handleInputChange
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), this.state.studentId && this.state.locationId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Addresses_AddressSelector__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        locationId: this.state.locationId,
+        studentId: this.state.studentId,
+        onSelectAddress: this.handleAddress
+      }) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "date-time form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "start_date"
@@ -83088,6 +83258,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _NavbarTop__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../NavbarTop */ "./resources/js/components/NavbarTop.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Addresses_AddressSelector__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Addresses/AddressSelector */ "./resources/js/components/Addresses/AddressSelector.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -83113,6 +83284,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 
 
+
 var LessonNew =
 /*#__PURE__*/
 function (_Component) {
@@ -83125,16 +83297,18 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(LessonNew).call(this, props));
     _this.state = {
+      addresses: [],
+      students: [],
       start_date: '',
       end_date: '',
       start_time: '12:00',
       end_time: '13:00',
       rate: '',
       subject: '',
-      student_id: '',
-      location: '',
-      students: []
+      location_id: null,
+      student_id: null
     };
+    _this.handleAddress = _this.handleAddress.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleDate = _this.handleDate.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleTime = _this.handleTime.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleInputChange = _this.handleInputChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
@@ -83192,11 +83366,22 @@ function (_Component) {
   }, {
     key: "handleSelect",
     value: function handleSelect(event) {
-      var student_id = event.target.value;
+      var student_id = parseInt(event.target.value);
+      var addresses = this.state.students.find(function (x) {
+        return x.id === student_id;
+      }).addresses;
       var rate = event.target.options[event.target.selectedIndex].dataset.rate;
       this.setState({
         student_id: student_id,
-        rate: rate
+        rate: rate,
+        addresses: addresses
+      });
+    }
+  }, {
+    key: "handleAddress",
+    value: function handleAddress(id) {
+      this.setState({
+        location_id: id
       });
     }
   }, {
@@ -83209,15 +83394,16 @@ function (_Component) {
       var endTime = this.state.end_date + ' ' + this.state.end_time;
       var unixTime = new Date(startTime.replace(/-/g, '/'));
       unixTime = unixTime.getTime();
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/lesson', {
+      var data = {
         start_time: startTime,
         end_time: endTime,
         unix_time: Math.round(unixTime / 1000),
         rate: Math.trunc(Number(this.state.rate)),
         subject: this.state.subject,
         student_id: parseInt(this.state.student_id),
-        location: this.state.location
-      }).then(function (response) {
+        location_id: parseInt(this.state.location_id)
+      };
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/lesson', data).then(function (response) {
         if (response.request.status === 200) {
           _this3.props.history.push('/lessons');
         } else {
@@ -83301,7 +83487,11 @@ function (_Component) {
         name: "subject",
         value: this.state.subject,
         onChange: this.handleInputChange
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), this.state.student_id && this.state.addresses.length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Addresses_AddressSelector__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        locationId: this.state.location_id,
+        studentId: this.state.student_id,
+        onSelectAddress: this.handleAddress
+      }) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "date-time form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "start_date"
