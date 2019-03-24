@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 
 //address routes
 Route::get('/address/{address}', 'AddressController@show');
+Route::get('/addresses/{id}', 'AddressController@index');
 Route::post('/address', 'AddressController@store');
 Route::put('/address/{address}', 'AddressController@update');
 Route::delete('/address/{address}', 'AddressController@destroy');
