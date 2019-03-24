@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import NavbarTop from '../NavbarTop';
 import moment from 'moment';
+import AddressSelector from '../Addresses/AddressSelector';
 
 class LessonNew extends Component {
 	constructor(props) {
@@ -9,20 +10,20 @@ class LessonNew extends Component {
 		this.state = {
 			addresses: [],
 			students: [],
-			location: '',
 			start_date: '',
 			end_date: '',
 			start_time: '12:00',
 			end_time: '13:00',
 			rate: '',
 			subject: '',
-			student_id: '',
+			location_id: null,
+			student_id: null,
 		};
 
+		this.handleAddress = this.handleAddress.bind(this);
 		this.handleDate = this.handleDate.bind(this);
 		this.handleTime = this.handleTime.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this);
-		this.handleLocation = this.handleLocation.bind(this);
 		this.handleSelect = this.handleSelect.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
@@ -85,10 +86,9 @@ class LessonNew extends Component {
 		})
 	}
 
-	handleLocation(event) {
-		const address_id = parseInt(event.target.value);
+	handleAddress(id) {
 		this.setState({
-			location: address_id
+			location_id: id
 		})
 	}
 
@@ -98,16 +98,18 @@ class LessonNew extends Component {
 		var endTime = this.state.end_date + ' ' + this.state.end_time;
 		var unixTime = new Date(startTime.replace(/-/g, '/'));
 		unixTime = unixTime.getTime();
-		
-		Axios.post('/api/lesson', {
+
+		let data = {
 			start_time: startTime,
 			end_time: endTime,
 			unix_time: Math.round(unixTime/1000),
 			rate: Math.trunc(Number(this.state.rate)),
 			subject: this.state.subject,
 			student_id: parseInt(this.state.student_id),
-			location_id: parseInt(this.state.location)
-		})
+			location_id: parseInt(this.state.location_id)
+		}
+		
+		Axios.post('/api/lesson', data)
 		.then((response) => {
 			if (response.request.status === 200) {
 				this.props.history.push('/lessons');
@@ -138,9 +140,6 @@ class LessonNew extends Component {
 		const students = this.state.students.map((student) =>
 			<option key={student.id} data-rate={student.rate} value={student.id}>{student.first_name} {student.last_name}</option>
 		)
-
-		const venues = this.state.addresses.length > 0 ? this.state.addresses.map((venue) =>
-			<option key={venue.id} value={venue.id}>{venue.venue}</option>) : '';
 
 		return (
 			<div className="row">
@@ -194,20 +193,12 @@ class LessonNew extends Component {
 							/>
 						</div>
 
-						{ venues && venues.length > 0 ?
-						<div className="form-group">
-							<label htmlFor="location">Location</label>
-
-							<select
-								className="form-control"
-								id="location"
-								name="location"
-								onChange={this.handleLocation}
-								required
-							>
-								{ venues }
-							</select>
-						</div>
+						{this.state.student_id && this.state.addresses.length > 0 ? 
+						<AddressSelector
+							locationId={this.state.location_id}
+							studentId={this.state.student_id}
+							onSelectAddress={this.handleAddress}
+						/>
 						: null }
 
 						<div className="date-time form-group">

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import moment from 'moment';
 import NavbarTop from '../NavbarTop';
+import AddressSelector from '../Addresses/AddressSelector';
 
 class LessonEdit extends Component {
 	constructor(props) {
@@ -15,8 +16,10 @@ class LessonEdit extends Component {
 			end_date: '',
 			start_time: '',
 			end_time: '',
+			locationId: '',
+			studentId: null
 		};
-
+		this.handleAddress = this.handleAddress.bind(this);
 		this.handleDelete = this.handleDelete.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handlePayment = this.handlePayment.bind(this);
@@ -29,7 +32,8 @@ class LessonEdit extends Component {
 		axios.get(url
 		)
 		.then((response) => {
-			var lesson = response.data[0];
+			console.log('lessonEdit', response);
+			var lesson = response.data;
 			var start_date = new Date(lesson.start_time.replace(/-/g, '/'));
 			var end_date = new Date(lesson.end_time.replace(/-/g, '/'));
 			var start_time = moment(start_date).format('HH:mm');
@@ -44,9 +48,11 @@ class LessonEdit extends Component {
 					end_date: end_date,
 					start_time: start_time,
 					end_time: end_time,
+					locationId: lesson.location_id,
 					payment: lesson.payment,
 					rate: lesson.rate,
 					subject: lesson.subject,
+					studentId: lesson.student_id
 				});
 		})
 		.catch((error) => {
@@ -93,6 +99,12 @@ class LessonEdit extends Component {
 		});
 	};
 
+	handleAddress(id) {
+		this.setState({
+			locationId: id
+		});
+	}
+
 	handleSubmit(event) {
 		event.preventDefault();
 		var startTime = this.state.start_date + ' ' + this.state.start_time;
@@ -108,6 +120,7 @@ class LessonEdit extends Component {
 			rate: Math.trunc(Number(this.state.rate)),
 			subject: this.state.subject,
 			student_id: parseInt(this.state.lesson.student_id),
+			location_id: parseInt(this.state.locationId),
 			payment: Number(Number(this.state.payment).toFixed(2))
 		})
 		.then((response) => {
@@ -173,6 +186,14 @@ class LessonEdit extends Component {
 								onChange={this.handleInputChange}
 							/>
 						</div>
+
+						{this.state.studentId && this.state.locationId ? 
+						<AddressSelector
+							locationId={this.state.locationId}
+							studentId={this.state.studentId}
+							onSelectAddress={this.handleAddress}
+						/>
+						: null }
 
 						<div className="date-time form-group">
 							<label htmlFor="start_date">Date:</label>
