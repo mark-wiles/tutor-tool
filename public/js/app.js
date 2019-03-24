@@ -82772,8 +82772,6 @@ function (_Component) {
 
       var url = '/api/lesson/' + this.props.match.params.id;
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(url).then(function (response) {
-        console.log(response.data);
-
         _this2.setState({
           lesson: response.data,
           location: response.data.location
@@ -82994,7 +82992,6 @@ function (_Component) {
 
       var url = '/api/lesson/' + this.props.match.params.id;
       axios.get(url).then(function (response) {
-        console.log('lessonEdit', response);
         var lesson = response.data;
         var start_date = new Date(lesson.start_time.replace(/-/g, '/'));
         var end_date = new Date(lesson.end_time.replace(/-/g, '/'));
@@ -83148,7 +83145,7 @@ function (_Component) {
         name: "subject",
         value: this.state.subject ? this.state.subject : '',
         onChange: this.handleInputChange
-      })), this.state.studentId && this.state.locationId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Addresses_AddressSelector__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      })), this.state.studentId && this.state.lesson.addresses.length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Addresses_AddressSelector__WEBPACK_IMPORTED_MODULE_4__["default"], {
         locationId: this.state.locationId,
         studentId: this.state.studentId,
         onSelectAddress: this.handleAddress

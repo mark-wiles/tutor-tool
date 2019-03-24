@@ -19,7 +19,6 @@ class Lesson extends Component {
 		axios.get(url
 		)
 		.then((response) => {
-			console.log(response.data);
 			this.setState(
 				{
 					lesson: response.data,

@@ -32,7 +32,6 @@ class LessonEdit extends Component {
 		axios.get(url
 		)
 		.then((response) => {
-			console.log('lessonEdit', response);
 			var lesson = response.data;
 			var start_date = new Date(lesson.start_time.replace(/-/g, '/'));
 			var end_date = new Date(lesson.end_time.replace(/-/g, '/'));
@@ -187,7 +186,7 @@ class LessonEdit extends Component {
 							/>
 						</div>
 
-						{this.state.studentId && this.state.locationId ? 
+						{this.state.studentId && this.state.lesson.addresses.length > 0 ? 
 						<AddressSelector
 							locationId={this.state.locationId}
 							studentId={this.state.studentId}

@@ -107,6 +107,12 @@ class LessonController extends Controller
 
             ->first();
 
+        $addresses = Address::where(['student_id' => $lesson->student_id])
+            ->select('addresses.id','addresses.venue')
+            ->get();
+
+        $lesson['addresses'] = $addresses;
+
         $location = Address::where(['id' => $lesson->location_id])->first();
 
         $lesson['location'] = $location;
