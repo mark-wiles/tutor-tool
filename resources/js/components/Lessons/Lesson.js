@@ -8,7 +8,8 @@ class Lesson extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			lesson: []
+			lesson: [],
+			location: null
 		};
 	}
 
@@ -18,12 +19,22 @@ class Lesson extends Component {
 		axios.get(url
 		)
 		.then((response) => {
-			var lesson = response.data[0];
-			this.setState({lesson});
+			console.log(response.data);
+			this.setState(
+				{
+					lesson: response.data,
+					location: response.data.location
+				}
+			);
 		})
 		.catch((error) => {
 			console.log(error)
 		});
+	}
+
+	handleAddressClick() {
+		var id = '#address-options' + event.target.dataset.id;
+		$(id).toggleClass('hidden');
 	}
 
 	handleDate(date) {
@@ -43,7 +54,8 @@ class Lesson extends Component {
 	}
 
 	render() {
-		var lesson = this.state.lesson;
+		const lesson = this.state.lesson;
+		const address = this.state.location;
 
 		return(
 			<div className="row">
@@ -60,10 +72,12 @@ class Lesson extends Component {
 						<h5 className="info">{this.handleDate(lesson.start_time)}</h5>
 					</div>
 
+					{lesson.subject ? 
 					<div className="d-flex justify-content-between bb-1-s">
 						<h5 className="info-title">Subject</h5>
 						<h5 className="info">{lesson.subject}</h5>
 					</div>
+					: null }
 
 					<div className="d-flex justify-content-between bb-1-s">
 						<h5 className="info-title">Hourly Rate</h5>
@@ -75,21 +89,47 @@ class Lesson extends Component {
 						<h5 className="info">{this.handleTime(lesson.start_time)}</h5>
 					</div>
 
-					<div className="d-flex justify-content-between bb-1-s">
+					<div className="d-flex justify-content-between">
 						<h5 className="info-title">End Time</h5>
 						<h5 className="info">{this.handleTime(lesson.end_time)}</h5>
 					</div>
 
-					{lesson.payment > 0 ? 
-						<div className="d-flex justify-content-between bb-1-s">
-							<h5 className="info-title orange">Paid</h5>
-							<h5 className="info orange">{`$${lesson.payment}`}</h5>
+					{ address ?
+					<div className="row">
+						<div className="col-md-12 p-0">
+							<h5 className="info-header"><b>Location</b></h5>
+
+							<div className="container">
+								<div className="summary" data-id={address.id} key={address.id} onClick={this.handleAddressClick}>
+									<h5 className="m-0" data-id={address.id}>{address.venue}</h5>
+									<h5 className="m-0" data-id={address.id}>{address.street}</h5>
+									<h5 className="m-0" data-id={address.id}>{address.city ? address.city + ', ' : ''}{address.state}</h5>
+									<h5 className="m-0" data-id={address.id}>{address.zip}</h5>
+
+									<div className="address-options hidden" id={'address-options' + address.id}>
+										<a href={`https://www.google.com/maps/place/${address.street}+${address.city}+${address.state}+${address.zip}`} target="_blank">
+											<h5 className="orange">Show on Map</h5>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>	
+					</div>
+					: null }
+
+					<div className="row">
+						<div className="col-md-12 p-0">
+							<h5 className="info-header"><b>Status</b></h5>
+								<div className="container">
+
+								{lesson.payment > 0 ? 
+									<h5 className="info orange">{`Paid: $${lesson.payment}`}</h5>
+								:
+									<h5 className="info-title orange">Unsubmitted</h5>
+								}
+							</div>
 						</div>
-						:
-						<div className="d-flex justify-content-between">
-							<h5 className="info-title orange">Unsubmitted</h5>
-						</div>
-					}
+					</div>
 				</div>
 			</div>
 		);
