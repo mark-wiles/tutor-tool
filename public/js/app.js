@@ -82864,7 +82864,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Location")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "summary",
+        className: "pb-2 pt-2",
         "data-id": address.id,
         key: address.id,
         onClick: this.handleAddressClick
@@ -85096,7 +85096,7 @@ function (_Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           to: '/student/' + student.id
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          className: "font-weight-bold mb-1"
+          className: "mb-1"
         }, student.first_name, " ", student.last_name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
           className: "mb-0"
         }, student.addresses[0] ? student.addresses[0].city + ', ' : '', student.addresses[0] ? student.addresses[0].state : '')));
