@@ -99,7 +99,7 @@ class Lesson extends Component {
 							<h5 className="info-header"><b>Location</b></h5>
 
 							<div className="container">
-								<div className="summary" data-id={address.id} key={address.id} onClick={this.handleAddressClick}>
+								<div className="pb-2 pt-2" data-id={address.id} key={address.id} onClick={this.handleAddressClick}>
 									<h5 className="m-0" data-id={address.id}>{address.venue}</h5>
 									<h5 className="m-0" data-id={address.id}>{address.street}</h5>
 									<h5 className="m-0" data-id={address.id}>{address.city ? address.city + ', ' : ''}{address.state}</h5>
