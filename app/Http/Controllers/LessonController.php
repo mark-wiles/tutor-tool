@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Lesson;
+use App\Address;
 use Illuminate\Http\Request;
 
 class LessonController extends Controller
@@ -104,7 +105,11 @@ class LessonController extends Controller
 
             ->select('lessons.*', 'students.first_name', 'students.last_name')
 
-            ->get();
+            ->first();
+
+        $location = Address::where(['id' => $lesson->location_id])->first();
+
+        $lesson['location'] = $location;
 
         return($lesson);
     }
@@ -152,6 +157,8 @@ class LessonController extends Controller
             'unix_time' => ['required'],
 
             'student_id' => ['required', 'integer'],
+
+            'location_id' => ['nullable', 'integer'],
 
             'rate' => ['required', 'integer', 'min:1', 'max:1000'],
 
