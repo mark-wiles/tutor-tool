@@ -201,9 +201,11 @@ class LessonNew extends Component {
 						/>
 						: null }
 
-						<div className="date-time form-group">
-							<label htmlFor="start_date">Date:</label>
+						<div>
+							<h6>Start: <span className="pl-1">{moment(dateTime1).format('dddd, MMMM D, h:mm a')}</span></h6>
+						</div>
 
+						<div className="date-time form-group">
 							<input
 								type="date"
 								className="form-control"
@@ -216,8 +218,6 @@ class LessonNew extends Component {
 						</div>
 
 						<div className="date-time form-group">
-							<label htmlFor="start_time">Start:</label>
-
 							<input
 								type="time"
 								className="form-control"
@@ -231,9 +231,11 @@ class LessonNew extends Component {
 							/>
 						</div>
 
-						<div className="date-time form-group">
-							<label htmlFor="end_date">Date:</label>
+						<div>
+							<h6>End: <span className="pl-1">{moment(dateTime2).format('dddd, MMMM D, h:mm a')}</span></h6>
+						</div>
 
+						<div className="date-time form-group">
 							<input
 								type="date"
 								className={`form-control ${ dateError ? 'error' : ''}`}
@@ -246,8 +248,6 @@ class LessonNew extends Component {
 						</div>
 
 						<div className="date-time form-group">
-							<label htmlFor="end_time">End:</label>
-
 							<input
 								type="time"
 								className={`form-control ${ timeError ? 'error' : ''}`}
@@ -267,7 +267,7 @@ class LessonNew extends Component {
 							<h6>Lesson Total: ${isNaN(payAmount) ? '' : payAmount}</h6>
 						</div>
 
-						<button type="submit" className="btn btn-primary mb-5"  disabled={disableBtn ? true : false} >Submit</button>
+						<button type="submit" className="btn bg-orange text-white mb-5"  disabled={disableBtn ? true : false} >Submit</button>
 					</form>
 				</div>
 			</div>

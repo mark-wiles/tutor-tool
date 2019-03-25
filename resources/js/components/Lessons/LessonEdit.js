@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import moment from 'moment';
+import Icon from '../Icon';
 import NavbarTop from '../NavbarTop';
 import AddressSelector from '../Addresses/AddressSelector';
 
@@ -139,6 +140,7 @@ class LessonEdit extends Component {
 	render() {
 		const lesson = this.state.lesson;
 		const currentTime = new Date();
+		const dateTime1 = new Date(this.state.start_date.replace(/-/g, '/') + ' ' + this.state.start_time);
 		const lessonTime = new Date(this.state.end_date.replace(/-/g, '/') + ' ' + this.state.end_time);
 		const isPast = lessonTime.getTime() < currentTime.getTime();
 		const dateError = new Date(this.state.start_date.replace(/-/g, '/')) > new Date(this.state.end_date.replace(/-/g, '/'));
@@ -194,9 +196,11 @@ class LessonEdit extends Component {
 						/>
 						: null }
 
-						<div className="date-time form-group">
-							<label htmlFor="start_date">Date:</label>
+						<div>
+							<h6>Start: <span className="pl-1">{moment(dateTime1).format('dddd, MMMM D, h:mm a')}</span></h6>
+						</div>
 
+						<div className="date-time form-group">
 							<input
 								type="date"
 								className="form-control"
@@ -209,8 +213,6 @@ class LessonEdit extends Component {
 						</div>
 
 						<div className="date-time form-group">
-							<label htmlFor="start_time">Start:</label>
-
 							<input
 								type="time"
 								className="form-control"
@@ -224,9 +226,11 @@ class LessonEdit extends Component {
 							/>
 						</div>
 
-						<div className="date-time form-group">
-							<label htmlFor="end_date">Date:</label>
+						<div>
+							<h6>End: <span className="pl-1">{moment(lessonTime).format('dddd, MMMM D, h:mm a')}</span></h6>
+						</div>
 
+						<div className="date-time form-group">
 							<input
 								type="date"
 								className={`form-control ${ dateError ? 'error' : ''}`}
@@ -239,8 +243,6 @@ class LessonEdit extends Component {
 						</div>
 
 						<div className="date-time form-group">
-							<label htmlFor="end_time">End:</label>
-
 							<input
 								type="time"
 								className={`form-control ${ timeError ? 'error' : ''}`}
@@ -276,7 +278,7 @@ class LessonEdit extends Component {
 						: null
 						}
 
-						<button type="submit" className="btn btn-primary mb-5"  disabled={disableBtn ? true : false} >Submit</button>
+						<button type="submit" className="btn bg-orange text-white mb-4"  disabled={disableBtn ? true : false} >Submit</button>
 					</form>
 
 					<div className="row">
