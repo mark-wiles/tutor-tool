@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import moment from 'moment';
+import Icon from '../Icon';
 import NavbarTop from '../NavbarTop';
 
 class Lesson extends Component {
@@ -61,6 +62,24 @@ class Lesson extends Component {
 				<NavbarTop classLeft="fas fa-arrow-left orange" classRight="fas fa-edit orange" linkLeft="/lessons" linkRight={`/lesson/edit/${lesson.id}`} title={lesson.first_name} />
 
 				<div className="container content-container">
+					<div className="lesson-icons row">
+						<a className={!lesson.email ? "disabled-link" : ""} href={`mailto:${lesson.email}`} target="_blank">
+							<Icon className="far fa-envelope" title="Email" />
+						</a>
+						<a className={!lesson.phone ? "disabled-link" : ""} href={`tel:${lesson.phone}`}>
+							<Icon className="fas fa-mobile-alt" title="Call" />
+						</a>
+						<a className={!lesson.phone ? "disabled-link" : ""} href={`sms:${lesson.phone}`}>
+							<Icon className="far fa-comment" title="Text" />
+						</a>
+					</div>
+
+					<div className="row p-0">
+						<div className="col-md-12 p-0">
+							<h5 className="info-header"><b>Info</b></h5>
+						</div>
+					</div>
+
 					<div className="d-flex justify-content-between bb-1-s">
 						<h5 className="info-title">Name</h5>
 						<h5 className="info">{lesson.first_name} {lesson.last_name}</h5>
@@ -99,7 +118,7 @@ class Lesson extends Component {
 							<h5 className="info-header"><b>Location</b></h5>
 
 							<div className="container">
-								<div className="pb-2 pt-2" data-id={address.id} key={address.id} onClick={this.handleAddressClick}>
+								<div className="pb-2 pt-2 pointer" data-id={address.id} key={address.id} onClick={this.handleAddressClick}>
 									<h5 className="m-0" data-id={address.id}>{address.venue}</h5>
 									<h5 className="m-0" data-id={address.id}>{address.street}</h5>
 									<h5 className="m-0" data-id={address.id}>{address.city ? address.city + ', ' : ''}{address.state}</h5>

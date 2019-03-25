@@ -103,7 +103,7 @@ class LessonController extends Controller
 
             ->join('students', 'lessons.student_id', '=', 'students.id')
 
-            ->select('lessons.*', 'students.first_name', 'students.last_name')
+            ->select('lessons.*', 'students.first_name', 'students.last_name', 'students.email', 'students.phone')
 
             ->first();
 
