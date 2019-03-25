@@ -82926,8 +82926,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _NavbarTop__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../NavbarTop */ "./resources/js/components/NavbarTop.js");
-/* harmony import */ var _Addresses_AddressSelector__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Addresses/AddressSelector */ "./resources/js/components/Addresses/AddressSelector.js");
+/* harmony import */ var _Icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Icon */ "./resources/js/components/Icon.js");
+/* harmony import */ var _NavbarTop__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../NavbarTop */ "./resources/js/components/NavbarTop.js");
+/* harmony import */ var _Addresses_AddressSelector__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Addresses/AddressSelector */ "./resources/js/components/Addresses/AddressSelector.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -82947,6 +82948,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 
 
 
@@ -83096,6 +83098,7 @@ function (_Component) {
     value: function render() {
       var lesson = this.state.lesson;
       var currentTime = new Date();
+      var dateTime1 = new Date(this.state.start_date.replace(/-/g, '/') + ' ' + this.state.start_time);
       var lessonTime = new Date(this.state.end_date.replace(/-/g, '/') + ' ' + this.state.end_time);
       var isPast = lessonTime.getTime() < currentTime.getTime();
       var dateError = new Date(this.state.start_date.replace(/-/g, '/')) > new Date(this.state.end_date.replace(/-/g, '/'));
@@ -83106,7 +83109,7 @@ function (_Component) {
       var disableBtn = rateError || dateError || subjectError || timeError;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NavbarTop__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NavbarTop__WEBPACK_IMPORTED_MODULE_4__["default"], {
         classLeft: "fas fa-arrow-left orange",
         classRight: "fas fa-times orange",
         linkLeft: "/lesson/".concat(this.props.match.params.id),
@@ -83145,15 +83148,15 @@ function (_Component) {
         name: "subject",
         value: this.state.subject ? this.state.subject : '',
         onChange: this.handleInputChange
-      })), this.state.studentId && this.state.lesson.addresses.length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Addresses_AddressSelector__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      })), this.state.studentId && this.state.lesson.addresses.length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Addresses_AddressSelector__WEBPACK_IMPORTED_MODULE_5__["default"], {
         locationId: this.state.locationId,
         studentId: this.state.studentId,
         onSelectAddress: this.handleAddress
-      }) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Start: ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "pl-1"
+      }, moment__WEBPACK_IMPORTED_MODULE_2___default()(dateTime1).format('dddd, MMMM D, h:mm a')))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "date-time form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "start_date"
-      }, "Date:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "date",
         className: "form-control",
         value: this.state.start_date,
@@ -83163,9 +83166,7 @@ function (_Component) {
         required: true
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "date-time form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "start_time"
-      }, "Start:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "time",
         className: "form-control",
         value: this.state.start_time,
@@ -83175,11 +83176,11 @@ function (_Component) {
         pattern: "[0-9]{2}:[0-9]{2}",
         required: true,
         step: "300"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "End: ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "pl-1"
+      }, moment__WEBPACK_IMPORTED_MODULE_2___default()(lessonTime).format('dddd, MMMM D, h:mm a')))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "date-time form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "end_date"
-      }, "Date:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "date",
         className: "form-control ".concat(dateError ? 'error' : ''),
         value: this.state.end_date,
@@ -83189,9 +83190,7 @@ function (_Component) {
         required: true
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "date-time form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "end_time"
-      }, "End:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "time",
         className: "form-control ".concat(timeError ? 'error' : ''),
         value: this.state.end_time,
@@ -83221,7 +83220,7 @@ function (_Component) {
         required: true
       })) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
-        className: "btn btn-primary mb-5",
+        className: "btn bg-orange text-white mb-4",
         disabled: disableBtn ? true : false
       }, "Submit")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
@@ -83488,11 +83487,11 @@ function (_Component) {
         locationId: this.state.location_id,
         studentId: this.state.student_id,
         onSelectAddress: this.handleAddress
-      }) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Start: ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "pl-1"
+      }, moment__WEBPACK_IMPORTED_MODULE_3___default()(dateTime1).format('dddd, MMMM D, h:mm a')))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "date-time form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "start_date"
-      }, "Date:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "date",
         className: "form-control",
         defaultValue: this.state.start_date,
@@ -83502,9 +83501,7 @@ function (_Component) {
         required: true
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "date-time form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "start_time"
-      }, "Start:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "time",
         className: "form-control",
         defaultValue: this.state.start_time,
@@ -83514,11 +83511,11 @@ function (_Component) {
         pattern: "[0-9]{2}:[0-9]{2}",
         required: true,
         step: "300"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "End: ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "pl-1"
+      }, moment__WEBPACK_IMPORTED_MODULE_3___default()(dateTime2).format('dddd, MMMM D, h:mm a')))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "date-time form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "end_date"
-      }, "Date:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "date",
         className: "form-control ".concat(dateError ? 'error' : ''),
         defaultValue: this.state.start_date,
@@ -83529,9 +83526,7 @@ function (_Component) {
         required: true
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "date-time form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "end_time"
-      }, "End:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "time",
         className: "form-control ".concat(timeError ? 'error' : ''),
         value: this.state.end_time,
@@ -83545,7 +83540,7 @@ function (_Component) {
         id: "duration"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Rate: $", this.state.rate), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Duration: ", isNaN(duration) ? '' : duration, " ", duration === 1 ? 'hour' : 'hours'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Lesson Total: $", isNaN(payAmount) ? '' : payAmount)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
-        className: "btn btn-primary mb-5",
+        className: "btn bg-orange text-white mb-5",
         disabled: disableBtn ? true : false
       }, "Submit"))));
     }
