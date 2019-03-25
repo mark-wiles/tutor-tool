@@ -10619,13 +10619,15 @@ textarea {
   cursor: pointer;
 }
 
-.content-container .student-icons {
+.content-container .student-icons,
+.content-container .lesson-icons {
   border-bottom: 1px solid silver;
   justify-content: space-around;
   padding: 10px;
 }
 
-.content-container .student-icons i {
+.content-container .student-icons i,
+.content-container .lesson-icons i {
   font-size: 1.3rem;
 }
 
