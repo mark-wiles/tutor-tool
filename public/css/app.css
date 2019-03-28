@@ -10512,6 +10512,17 @@ body,
   height: 100vh;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 i {
   font-size: 1.2rem;
 }
@@ -10641,7 +10652,7 @@ textarea {
 
 .content-container .info {
   align-items: center;
-  display: flex;
+  max-width: 75%;
 }
 
 .content-container .info-title {

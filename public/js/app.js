@@ -83963,7 +83963,7 @@ var NavbarTop = function NavbarTop(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Icon__WEBPACK_IMPORTED_MODULE_2__["default"], {
     className: props.classLeft
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
-    className: "mb-0 text-center"
+    className: "mb-0 pl-3 pr-3 text-center"
   }, props.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: props.linkRight
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Icon__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -84582,7 +84582,7 @@ function (_Component) {
         className: "d-flex justify-content-between bb-1-s"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info-title"
-      }, "Hourly Rate"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+      }, "Rate"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "info"
       }, "$".concat(student.rate))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "d-flex justify-content-between bb-1-s"
