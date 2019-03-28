@@ -117,7 +117,7 @@ class Student extends Component {
 							</div>
 
 							<div className="d-flex justify-content-between bb-1-s">
-								<h5 className="info-title">Hourly Rate</h5>
+								<h5 className="info-title">Rate</h5>
 								<h5 className="info">{`$${student.rate}`}</h5>
 							</div>
 
