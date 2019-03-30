@@ -141,8 +141,10 @@ class LessonEdit extends Component {
 		const lesson = this.state.lesson;
 		const currentTime = new Date();
 		const dateTime1 = new Date(this.state.start_date.replace(/-/g, '/') + ' ' + this.state.start_time);
-		const lessonTime = new Date(this.state.end_date.replace(/-/g, '/') + ' ' + this.state.end_time);
-		const isPast = lessonTime.getTime() < currentTime.getTime();
+		const dateTime2 = new Date(this.state.end_date.replace(/-/g, '/') + ' ' + this.state.end_time);
+		const duration = Math.round(100 * Number(dateTime2.getTime() - dateTime1.getTime()) / (1000 * 60 * 60))/100;
+		const payAmount = (this.state.rate * duration).toFixed(2);
+		const isPast = dateTime2.getTime() < currentTime.getTime();
 		const dateError = new Date(this.state.start_date.replace(/-/g, '/')) > new Date(this.state.end_date.replace(/-/g, '/'));
 		const timeError = new Date(this.state.start_date.replace(/-/g, '/')).getDate() === new Date(this.state.end_date.replace(/-/g, '/')).getDate() && this.state.start_time >= this.state.end_time;
 		const rateError = parseInt(this.state.rate) > 1000;
@@ -158,7 +160,7 @@ class LessonEdit extends Component {
 					<h3 className="pt-2">{lesson.first_name} {lesson.last_name}</h3>
 					<form onSubmit={this.handleSubmit}>
 						<div className="form-group">
-							<label htmlFor="rate">Hourly Rate:</label>
+							<label htmlFor="rate">Rate:</label>
 							
 							{rateError ? <span className="text-danger"> Please enter a reasonable hourly rate</span> : ''}
 
@@ -227,7 +229,7 @@ class LessonEdit extends Component {
 						</div>
 
 						<div>
-							<h6>End: <span className="pl-1">{moment(lessonTime).format('dddd, MMMM D, h:mm a')}</span></h6>
+							<h6>End: <span className="pl-1">{moment(dateTime2).format('dddd, MMMM D, h:mm a')}</span></h6>
 						</div>
 
 						<div className="date-time form-group">
@@ -254,6 +256,12 @@ class LessonEdit extends Component {
 								required
 								step="300"
 							/>
+						</div>
+
+						<div className="pb-2">
+							<h6>Rate: ${this.state.rate}</h6>
+							<h6>Duration: {isNaN(duration) ? '' : duration} {duration === 1 ? 'hour' : 'hours'}</h6>
+							<h6>Lesson Total: ${isNaN(payAmount) ? '' : payAmount}</h6>
 						</div>
 
 						{isPast ?
