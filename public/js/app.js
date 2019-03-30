@@ -83128,8 +83128,10 @@ function (_Component) {
       var lesson = this.state.lesson;
       var currentTime = new Date();
       var dateTime1 = new Date(this.state.start_date.replace(/-/g, '/') + ' ' + this.state.start_time);
-      var lessonTime = new Date(this.state.end_date.replace(/-/g, '/') + ' ' + this.state.end_time);
-      var isPast = lessonTime.getTime() < currentTime.getTime();
+      var dateTime2 = new Date(this.state.end_date.replace(/-/g, '/') + ' ' + this.state.end_time);
+      var duration = Math.round(100 * Number(dateTime2.getTime() - dateTime1.getTime()) / (1000 * 60 * 60)) / 100;
+      var payAmount = (this.state.rate * duration).toFixed(2);
+      var isPast = dateTime2.getTime() < currentTime.getTime();
       var dateError = new Date(this.state.start_date.replace(/-/g, '/')) > new Date(this.state.end_date.replace(/-/g, '/'));
       var timeError = new Date(this.state.start_date.replace(/-/g, '/')).getDate() === new Date(this.state.end_date.replace(/-/g, '/')).getDate() && this.state.start_time >= this.state.end_time;
       var rateError = parseInt(this.state.rate) > 1000;
@@ -83154,7 +83156,7 @@ function (_Component) {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "rate"
-      }, "Hourly Rate:"), rateError ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      }, "Rate:"), rateError ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "text-danger"
       }, " Please enter a reasonable hourly rate") : '', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "number",
@@ -83207,7 +83209,7 @@ function (_Component) {
         step: "300"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "End: ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "pl-1"
-      }, moment__WEBPACK_IMPORTED_MODULE_2___default()(lessonTime).format('dddd, MMMM D, h:mm a')))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, moment__WEBPACK_IMPORTED_MODULE_2___default()(dateTime2).format('dddd, MMMM D, h:mm a')))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "date-time form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "date",
@@ -83229,7 +83231,9 @@ function (_Component) {
         pattern: "[0-9]{2}:[0-9]{2}",
         required: true,
         step: "300"
-      })), isPast ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pb-2"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Rate: $", this.state.rate), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Duration: ", isNaN(duration) ? '' : duration, " ", duration === 1 ? 'hour' : 'hours'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Lesson Total: $", isNaN(payAmount) ? '' : payAmount)), isPast ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "orange",
@@ -83566,7 +83570,7 @@ function (_Component) {
         required: true,
         step: "300"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "duration"
+        className: "pb-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Rate: $", this.state.rate), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Duration: ", isNaN(duration) ? '' : duration, " ", duration === 1 ? 'hour' : 'hours'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Lesson Total: $", isNaN(payAmount) ? '' : payAmount)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
         className: "btn bg-orange text-white mb-5",

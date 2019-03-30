@@ -10667,7 +10667,7 @@ textarea {
 }
 
 .date-time {
-  float: left;
+  display: inline-block;
   width: 50%;
 }
 
