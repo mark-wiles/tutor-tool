@@ -261,7 +261,7 @@ class LessonNew extends Component {
 							/>
 						</div>
 
-						<div id="duration">
+						<div className="pb-2">
 							<h6>Rate: ${this.state.rate}</h6>
 							<h6>Duration: {isNaN(duration) ? '' : duration} {duration === 1 ? 'hour' : 'hours'}</h6>
 							<h6>Lesson Total: ${isNaN(payAmount) ? '' : payAmount}</h6>
