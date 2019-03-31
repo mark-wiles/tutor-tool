@@ -5,6 +5,15 @@
 </head>
 
 <style>
+
+	body{
+		font-family: Arial, Helvetica, sans-serif;
+	}
+
+	a {
+		text-decoration: none;
+	}
+
 	header {
 		background-color: #FFA500;
 		color: #FFF;
@@ -18,13 +27,11 @@
 		padding: 10px;
 	}
 
-	h2 {
-		font-family: cursive;
-		text-transform: uppercase;
+	h3 {
+		font-weight: 600;
 	}
 
-	h3 {
-		font-family: cursive;
+	h4 {
 		font-weight: 200;
 	}
 
@@ -49,13 +56,13 @@
 
 	<div class="container">
 		
-		<h2>{{$user['name']}},</h2>
+		<h3>{{$user['name']}},</h3>
 
-		<h3>Welcome to TutorApp</h3>
+		<h4>Welcome to TutorApp.</h4>
 
-		<h3>Your registered email is <span class="orange">{{$user['email']}}<span></h3>
+		<h4>Your registered email is <span class="orange">{{$user['email']}}.<span></h4>
 
-		<h3>If you have any questions you can contact us at <a href="mailto:support@tutorapp.com"><span class="orange">support@tutorapp.app</span></a></h3>
+		<h4>If you have any questions you can contact us at <a href="mailto:support@tutorapp.app"><span class="orange">support@tutorapp.app</span></a></h4>
 
 	</div>
 
