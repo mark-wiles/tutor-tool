@@ -14,14 +14,16 @@ class Settings extends Component {
 
 	handleLogout() {
 		event.preventDefault();
+		var el = document.getElementById(event.target.id);
+		el.classList.add('opacity-5');
 		axios.post('/logout', {
 		  })
-		  .then((response) => {
-			window.location.replace('/login');
+		  .then(() => {
+				window.location.replace('/login');
 		  })
-		  .catch(function (error) {
-			console.log(error);
-		  });
+		  .catch(error => {
+				console.log(error);
+			});
 	}
 
 	render() {
@@ -34,7 +36,7 @@ class Settings extends Component {
 						<h5 className="orange pb-2 pt-2 bb-1-s">View Hidden Students</h5>
 					</Link>
 
-					<h5 className="orange pointer pt-2" onClick={this.handleLogout}>Logout</h5>
+					<h5 className="orange pointer pt-2" id="logout-btn" onClick={this.handleLogout}>Logout</h5>
 				</div>
 			</div>
 		);
