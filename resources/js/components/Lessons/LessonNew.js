@@ -35,13 +35,18 @@ class LessonNew extends Component {
 		)
 		.then((response) => {
 			var students = response.data;
-			this.setState(
-				{
-					students: students,
-					start_date: theDate,
-					end_date: theDate
-				}
-			);
+			if (students.length === 0) {
+				alert('You do not have any active students yet. No problem, you can add one now.');
+				this.props.history.push('/student/new');
+			} else {
+				this.setState(
+					{
+						students: students,
+						start_date: theDate,
+						end_date: theDate
+					}
+				);
+			}
 		})
 		.catch((error) => {
 			console.log(error)
