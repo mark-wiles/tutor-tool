@@ -83356,11 +83356,17 @@ function (_Component) {
       axios.get('/api/students').then(function (response) {
         var students = response.data;
 
-        _this2.setState({
-          students: students,
-          start_date: theDate,
-          end_date: theDate
-        });
+        if (students.length === 0) {
+          alert('You do not have any active students yet. No problem, you can add one now.');
+
+          _this2.props.history.push('/student/new');
+        } else {
+          _this2.setState({
+            students: students,
+            start_date: theDate,
+            end_date: theDate
+          });
+        }
       }).catch(function (error) {
         console.log(error);
       });
@@ -83686,12 +83692,10 @@ function (_Component) {
       var _this3 = this;
 
       event.preventDefault();
-      this.setState({
-        activeBtn: event.target.id
-      });
+      var btnId = event.target.id;
       var url;
 
-      switch (event.target.id) {
+      switch (btnId) {
         case 'unsubmitted':
           url = '/api/lessons/unsubmitted';
           break;
@@ -83708,6 +83712,7 @@ function (_Component) {
         var lessons = response.data;
 
         _this3.setState({
+          activeBtn: btnId,
           lessons: lessons
         });
       }).catch(function (error) {
@@ -83738,6 +83743,17 @@ function (_Component) {
           className: "mb-0 mt-1 orange"
         }, '$' + lesson.payment) : null));
       });
+      var noSubmitted = this.state.activeBtn === 'submitted' && allLessons.length === 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+        className: "orange pb-2 pt-2"
+      }, "No Submissions Yet!") : '';
+      var noUnsubmitted = this.state.activeBtn === 'unsubmitted' && allLessons.length === 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+        className: "orange pb-2 pt-2"
+      }, "All Caught Up!") : noSubmitted;
+      var lessonMessage = this.state.activeBtn === 'upcoming' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/lesson/new"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+        className: "orange pb-2 pt-2"
+      }, "Add Lesson")) : noUnsubmitted;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NavbarTop__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -83762,11 +83778,7 @@ function (_Component) {
         className: "lesson-btn orange pl-1 pr-1 " + submitted,
         id: "submitted",
         onClick: this.handleClick
-      }, "Submitted")), allLessons, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/lesson/new"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-        className: "orange pb-2 pt-2"
-      }, "Add Lesson"))));
+      }, "Submitted")), allLessons, lessonMessage));
     }
   }]);
 
