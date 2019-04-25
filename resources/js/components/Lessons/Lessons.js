@@ -9,6 +9,7 @@ class Lessons extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			activeBtn: 'upcoming',
 			moment: moment().format("MM-DD-YYYY"),
 			lessons: []
 		};
@@ -45,6 +46,7 @@ class Lessons extends Component {
 
 	handleClick() {
 		event.preventDefault();
+		this.setState({activeBtn: event.target.id});
 		var url;
 		switch (event.target.id) {
 			case 'unsubmitted':
@@ -68,6 +70,9 @@ class Lessons extends Component {
 	}
 
 	render() {
+		const upcoming = this.state.activeBtn === 'upcoming' ? 'b-1-orange' : '';
+		const unsubmitted = this.state.activeBtn === 'unsubmitted' ? 'b-1-orange' : '';
+		const submitted = this.state.activeBtn === 'submitted' ? 'b-1-orange' : '';
 		
 		const allLessons = this.state.lessons.map((lesson) =>
 				<div className="summary" key={lesson.id}>
@@ -94,11 +99,11 @@ class Lessons extends Component {
 				<div className="container content-container">
 
 					<div className="lesson-buttons row">
-							<div className="lesson-btn orange" id="upcoming" onClick={this.handleClick}>Upcoming</div>
+							<div className={"lesson-btn orange pl-1 pr-1 " + upcoming} id="upcoming" onClick={this.handleClick}>Upcoming</div>
 
-							<div className="lesson-btn orange" id="unsubmitted" onClick={this.handleClick}>Unsubmitted</div>
+							<div className={"lesson-btn orange pl-1 pr-1 " + unsubmitted} id="unsubmitted" onClick={this.handleClick}>Unsubmitted</div>
 
-							<div className="lesson-btn orange" id="submitted" onClick={this.handleClick}>Submitted</div>
+							<div className={"lesson-btn orange pl-1 pr-1 " + submitted} id="submitted" onClick={this.handleClick}>Submitted</div>
 					</div>
 
 					{ allLessons }
