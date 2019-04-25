@@ -82651,25 +82651,25 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "earnings-title"
       }, "7 Days: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-        className: "info mb-0 orange"
+        className: "d-flex info mb-0 orange"
       }, '$' + this.state.earnings.week)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "d-flex justify-content-between bb-1-s"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "earnings-title"
       }, "30 Days: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-        className: "info mb-0 orange"
+        className: "d-flex info mb-0 orange"
       }, '$' + this.state.earnings.month)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "d-flex justify-content-between bb-1-s"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "earnings-title"
       }, "YTD: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-        className: "info mb-0 orange"
+        className: "d-flex info mb-0 orange"
       }, '$' + this.state.earnings.year)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "d-flex justify-content-between bb-1-s"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "earnings-title"
       }, "All Time: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-        className: "info mb-0 orange"
+        className: "d-flex info mb-0 orange"
       }, '$' + this.state.earnings.total))));
     }
   }]);
@@ -83639,6 +83639,7 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Lessons).call(this, props));
     _this.state = {
+      activeBtn: 'upcoming',
       moment: moment__WEBPACK_IMPORTED_MODULE_4___default()().format("MM-DD-YYYY"),
       lessons: []
     };
@@ -83685,6 +83686,9 @@ function (_Component) {
       var _this3 = this;
 
       event.preventDefault();
+      this.setState({
+        activeBtn: event.target.id
+      });
       var url;
 
       switch (event.target.id) {
@@ -83715,6 +83719,9 @@ function (_Component) {
     value: function render() {
       var _this4 = this;
 
+      var upcoming = this.state.activeBtn === 'upcoming' ? 'b-1-orange' : '';
+      var unsubmitted = this.state.activeBtn === 'unsubmitted' ? 'b-1-orange' : '';
+      var submitted = this.state.activeBtn === 'submitted' ? 'b-1-orange' : '';
       var allLessons = this.state.lessons.map(function (lesson) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "summary",
@@ -83744,15 +83751,15 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "lesson-buttons row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "lesson-btn orange",
+        className: "lesson-btn orange pl-1 pr-1 " + upcoming,
         id: "upcoming",
         onClick: this.handleClick
       }, "Upcoming"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "lesson-btn orange",
+        className: "lesson-btn orange pl-1 pr-1 " + unsubmitted,
         id: "unsubmitted",
         onClick: this.handleClick
       }, "Unsubmitted"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "lesson-btn orange",
+        className: "lesson-btn orange pl-1 pr-1 " + submitted,
         id: "submitted",
         onClick: this.handleClick
       }, "Submitted")), allLessons, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -84348,7 +84355,9 @@ function (_Component) {
     key: "handleLogout",
     value: function handleLogout() {
       event.preventDefault();
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/logout', {}).then(function (response) {
+      var el = document.getElementById(event.target.id);
+      el.classList.add('opacity-5');
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/logout', {}).then(function () {
         window.location.replace('/login');
       }).catch(function (error) {
         console.log(error);
@@ -84373,6 +84382,7 @@ function (_Component) {
         className: "orange pb-2 pt-2 bb-1-s"
       }, "View Hidden Students")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "orange pointer pt-2",
+        id: "logout-btn",
         onClick: this.handleLogout
       }, "Logout")));
     }

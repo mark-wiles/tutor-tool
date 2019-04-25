@@ -10582,6 +10582,10 @@ textarea {
   padding: 0;
 }
 
+.b-1-orange {
+  border: 1px solid #FFA500;
+}
+
 .bb-1-s {
   border-bottom: 1px solid #C0C0C0;
 }
@@ -10695,6 +10699,10 @@ textarea {
 .navbar-laravel {
   background-color: #FFF;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.opacity-5 {
+  opacity: 0.5;
 }
 
 .orange {
