@@ -38,22 +38,22 @@ class Earnings extends Component {
 				<div className="container content-container">
 					<div className="d-flex justify-content-between bb-1-s">
 						<h5 className="earnings-title">7 Days: </h5>
-						<h5 className="info mb-0 orange">{'$' + this.state.earnings.week}</h5>
+						<h5 className="d-flex info mb-0 orange">{'$' + this.state.earnings.week}</h5>
 					</div>
 
 					<div className="d-flex justify-content-between bb-1-s">
 						<h5 className="earnings-title">30 Days: </h5>
-						<h5 className="info mb-0 orange">{'$' + this.state.earnings.month}</h5>
+						<h5 className="d-flex info mb-0 orange">{'$' + this.state.earnings.month}</h5>
 					</div>
 
 					<div className="d-flex justify-content-between bb-1-s">
 						<h5 className="earnings-title">YTD: </h5>
-						<h5 className="info mb-0 orange">{'$' + this.state.earnings.year}</h5>
+						<h5 className="d-flex info mb-0 orange">{'$' + this.state.earnings.year}</h5>
 					</div>
 
 					<div className="d-flex justify-content-between bb-1-s">
 						<h5 className="earnings-title">All Time: </h5>
-						<h5 className="info mb-0 orange">{'$' + this.state.earnings.total}</h5>
+						<h5 className="d-flex info mb-0 orange">{'$' + this.state.earnings.total}</h5>
 					</div>
 				</div>
 			</div>
