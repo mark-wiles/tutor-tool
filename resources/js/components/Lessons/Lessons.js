@@ -46,9 +46,9 @@ class Lessons extends Component {
 
 	handleClick() {
 		event.preventDefault();
-		this.setState({activeBtn: event.target.id});
+		var btnId = event.target.id;
 		var url;
-		switch (event.target.id) {
+		switch (btnId) {
 			case 'unsubmitted':
 				url = '/api/lessons/unsubmitted';
 				break;
@@ -62,7 +62,10 @@ class Lessons extends Component {
 		)
 		.then((response) => {
 			var lessons = response.data;
-			this.setState({lessons});
+			this.setState({
+				activeBtn: btnId,
+				lessons: lessons
+			});
 		})
 		.catch((error) => {
 			console.log(error);
@@ -71,20 +74,30 @@ class Lessons extends Component {
 
 	render() {
 		const upcoming = this.state.activeBtn === 'upcoming' ? 'b-1-orange' : '';
+
 		const unsubmitted = this.state.activeBtn === 'unsubmitted' ? 'b-1-orange' : '';
+
 		const submitted = this.state.activeBtn === 'submitted' ? 'b-1-orange' : '';
 		
 		const allLessons = this.state.lessons.map((lesson) =>
-				<div className="summary" key={lesson.id}>
-					<Link to={'lesson/' + lesson.id}>
-						<h5 className="font-weight-bold">{ this.handleDate(lesson.start_time) }</h5>
-						<h5 className="mb-1">{lesson.first_name} {lesson.last_name}</h5>
-						<h6 className="mb-0">{ this.handleTime(lesson.start_time) } - { this.handleTime(lesson.end_time) }</h6>
-						{Number(lesson.payment) > 0 ? <h6 className="mb-0 mt-1 orange">{'$' + lesson.payment}</h6> : null }
-					</Link>
-				</div>
-			
-		)
+			<div className="summary" key={lesson.id}>
+				<Link to={'lesson/' + lesson.id}>
+					<h5 className="font-weight-bold">{ this.handleDate(lesson.start_time) }</h5>
+					<h5 className="mb-1">{lesson.first_name} {lesson.last_name}</h5>
+					<h6 className="mb-0">{ this.handleTime(lesson.start_time) } - { this.handleTime(lesson.end_time) }</h6>
+					{ Number(lesson.payment) > 0 ? <h6 className="mb-0 mt-1 orange">{'$' + lesson.payment}</h6> : null }
+				</Link>
+			</div>
+		);
+
+		const noSubmitted = this.state.activeBtn === 'submitted' && allLessons.length === 0 ? <h5 className="orange pb-2 pt-2">No Submissions Yet!</h5> : '';
+
+		const noUnsubmitted = this.state.activeBtn === 'unsubmitted' && allLessons.length === 0 ? <h5 className="orange pb-2 pt-2">All Caught Up!</h5> : noSubmitted;
+
+		const lessonMessage = this.state.activeBtn === 'upcoming' ? 
+			<Link to='/lesson/new'>
+				<h5 className="orange pb-2 pt-2">Add Lesson</h5>
+			</Link> : noUnsubmitted
 
 		return(
 			<div className="row">
@@ -108,9 +121,8 @@ class Lessons extends Component {
 
 					{ allLessons }
 
-					<Link to='/lesson/new'>
-						<h5 className="orange pb-2 pt-2">Add Lesson</h5>
-					</Link>
+					{ lessonMessage }
+
 				</div>
 			</div>
 		);
