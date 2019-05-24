@@ -26,6 +26,14 @@
                 margin: 0;
             }
 
+            .content {
+                text-align: center;
+            }
+
+            .flex-basis-100 {
+                flex-basis: 100%;
+            }
+
             .flex-center {
                 align-items: center;
                 display: flex;
@@ -52,6 +60,26 @@
                 min-height: 100vh;
             }
 
+            .links > a {
+                color: #636b6f;
+                padding: 0 25px;
+                font-size: 13px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+                -webkit-transition: font-size 1s, color 1s; /* Safari */
+                transition: font-size 1s, color 1s; 
+            }
+
+            .m-b-0 {
+                margin-bottom: 0;
+            }
+
+            .m-b-md {
+                margin-bottom: 30px;
+            }
+
             .more-btn {
                 background: #636b6f;
                 border: 7px double silver;
@@ -63,7 +91,7 @@
                 padding: 10px;
             }
 
-            .more-btn:hover, #to-top-btn:hover {
+            .more-btn:hover, #to-top-btn:hover, #to-top-btn {
                 cursor: pointer;
             }
 
@@ -85,22 +113,17 @@
             }
 
             .more-image-text {
-                font-weight: 200;
-                color: #fff;
+                font-weight: 600;
+                color: #636b6f;
             }
 
             .position-ref {
                 position: relative;
             }
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
+            .sign-up-text a:hover {
+                color: #fff;
+                font-size: 16px;
             }
 
             .subtitle {
@@ -111,30 +134,19 @@
                 margin-top: 0;
             }
 
+            .text-white{
+                color: #fff;
+            }
+
             .title {
                 font-size: 84px;
                 margin: 0;
             }
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-
-            #to-top-btn {
-                color: #fff;
-                padding-top: 20px;
+            .top-right {
                 position: absolute;
-                bottom: 0;
+                right: 10px;
+                top: 18px;
             }
         </style>
     </head>
@@ -191,7 +203,8 @@
                 >
             </div>
 
-            <p id="to-top-btn" onclick="handleToTop()">back to top</p>
+            <p class="flex-basis-100 flex-center m-b-0 links sign-up-text"><a href="/register">Sign up today for a free account!</a></p>
+            <p class="flex-basis-100 flex-center text-white" id="to-top-btn" onclick="handleToTop()">back to top</p>
         </div>
 
     <script>
