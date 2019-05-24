@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Tutor Tools') }}</title>
+    <title>{{ config('app.name', 'Tutor App') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -30,39 +30,22 @@
 <body>
         @guest
         <div class="container-fluid" id="container">
-            <nav class="fixed-top navbar navbar-expand-md navbar-light">
-                <div class="container">
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Tutor App') }}
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+            <a class="top-left" href="{{ url('/') }}">
+                {{ config('app.name', 'Tutor App') }}
+            </a>
+            
+            <!-- Authentication Links -->
+            @if (\Route::current()->getName() !== 'login')
+            <div class="top-right links">
+                <a href="{{ route('login') }}">{{ __('Login') }}</a>
+            </div>
+            @endif
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <!-- Left Side Of Navbar -->
-                        <ul class="navbar-nav mr-auto">
-
-                        </ul>
-
-                        <!-- Right Side Of Navbar -->
-                        <ul class="navbar-nav ml-auto">
-                            <!-- Authentication Links -->
-                                @if (\Route::current()->getName() !== 'login')
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                                @endif
-
-                                @if (\Route::current()->getName() !== 'register')
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                    </li>
-                                @endif
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+            @if (\Route::current()->getName() !== 'register')
+            <div class="top-right links">
+                <a href="{{ route('register') }}">{{ __('Register') }}</a>
+            </div>
+            @endif
 
             <main class="align-items-center d-flex guest h-100 justify-content-center row">
                 @yield('content')

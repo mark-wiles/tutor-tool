@@ -10696,6 +10696,16 @@ textarea {
   font-size: 0.7rem;
 }
 
+.links > a {
+  color: #636b6f;
+  padding: 0 25px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.15rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
 .navbar-laravel {
   background-color: #FFF;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
@@ -10711,6 +10721,26 @@ textarea {
 
 .pointer {
   cursor: pointer;
+}
+
+.top-left {
+  color: #636b6f;
+  font-size: 20px;
+  font-weight: bold;
+  left: 60px;
+  letter-spacing: 0.1rem;
+  position: fixed;
+  top: 18px;
+}
+
+.top-left:hover {
+  color: #636b6f;
+}
+
+.top-right {
+  position: absolute;
+  right: 40px;
+  top: 18px;
 }
 
 .v-adjust {
