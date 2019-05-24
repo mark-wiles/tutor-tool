@@ -180,7 +180,7 @@
                 <h3 class="flex-center more-image-text">Add Students</h3>
                 <img
                     class="more-image"
-                    src="https://res.cloudinary.com/dfonttj4w/image/upload/v1558634953/tutorApp/students.png"
+                    src="https://res.cloudinary.com/dfonttj4w/image/upload/c_scale,h_700,q_100/v1558634953/tutorApp/students.png"
                     alt="Image of an iPhone opened to the students page."
                 >
             </div>
@@ -189,7 +189,7 @@
                 <h3 class="flex-center more-image-text">Schedule Lessons</h3>
                 <img
                     class="more-image"
-                    src="https://res.cloudinary.com/dfonttj4w/image/upload/v1558634961/tutorApp/lessons.png"
+                    src="https://res.cloudinary.com/dfonttj4w/image/upload/c_scale,h_700,q_100/v1558634961/tutorApp/lessons.png"
                     alt="Image of an iPhone opened to the Lessons page."
                 >
             </div>
@@ -198,7 +198,7 @@
                 <h3 class="flex-center more-image-text">Track Earnings</h3>
                 <img
                     class="more-image"
-                    src="https://res.cloudinary.com/dfonttj4w/image/upload/v1558637082/tutorApp/earnings.png"
+                    src="https://res.cloudinary.com/dfonttj4w/image/upload/c_scale,h_700,q_100/v1558637082/tutorApp/earnings.png"
                     alt="Image of an iPhone opened to the students page."
                 >
             </div>
