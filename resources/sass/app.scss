@@ -243,12 +243,20 @@ textarea {
   &:hover {
     color: #636b6f;
   }
+
+  @media screen and (max-width: 420px) {
+    left: 40px;
+  }
 }
 
 .top-right {
   position: absolute;
   right: 40px;
-  top: 18px;
+  top: 23px;
+
+  @media screen and (max-width: 420px) {
+    right: 20px;
+  }
 }
 
 .v-adjust {
