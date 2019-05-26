@@ -100,7 +100,9 @@
             }
 
             .more-image {
+                display: block;
                 height: 70vh;
+                margin: auto;
                 position: relative;
                 width: auto;
             }
