@@ -150,6 +150,12 @@
                 right: 10px;
                 top: 18px;
             }
+            
+            @media screen and (max-width: 420px) {
+                .title {
+                    font-size: 64px;
+                }
+            }
         </style>
     </head>
     <body>
