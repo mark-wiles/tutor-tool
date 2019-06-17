@@ -2,6 +2,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
+    <meta name="description" content="Manage your tutoring business. Add students, schedule lessons, and track income.">
+    <meta name="keywords" content="tutor, tutoring, app, student, lesson, schedule, income, business, resource">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
