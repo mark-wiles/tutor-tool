@@ -25,8 +25,8 @@
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
-                height: 100vh;
                 margin: 0;
+                min-height: 100vh;
             }
 
             .content {
@@ -65,10 +65,10 @@
 
             .links > a {
                 color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
+                padding: 0 1.5rem;
+                font-size: 0.8rem;
                 font-weight: 600;
-                letter-spacing: .1rem;
+                letter-spacing: 0.075rem;
                 text-decoration: none;
                 text-transform: uppercase;
                 -webkit-transition: font-size 1s, color 1s; /* Safari */
@@ -80,18 +80,18 @@
             }
 
             .m-b-md {
-                margin-bottom: 30px;
+                margin-bottom: 1.8rem;
             }
 
             .more-btn {
                 background: #636b6f;
-                border: 7px double silver;
+                border: 0.44rem double silver;
                 border-radius: 50%;
                 color: white;
-                font-size: 16px;
-                letter-spacing: 1px;
-                margin-top: 20px;
-                padding: 10px;
+                font-size: 1rem;
+                letter-spacing: 0.075rem;
+                margin-top: 1.25rem;
+                padding: 0.625rem;
             }
 
             .more-btn:hover, #to-top-btn:hover, #to-top-btn {
@@ -112,8 +112,8 @@
 
             .more-image-container {
                 display: inline-block;
-                letter-spacing: 1px;
-                padding: 0 20px;
+                letter-spacing: 0.075rem;
+                padding: 0 1.25rem;
                 position: relative;
             }
 
@@ -128,14 +128,14 @@
 
             .sign-up-text a:hover {
                 color: #fff;
-                font-size: 16px;
+                font-size: 1rem;
             }
 
             .subtitle {
-                font-size: 24px;
+                font-size: 1.5rem;
                 font-style: italic;
                 font-weight: 200;
-                letter-spacing: 1.2px;
+                letter-spacing: 0.075rem;
                 margin-top: 0;
             }
 
@@ -144,19 +144,19 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 5.25rem;
                 margin: 0;
             }
 
             .top-right {
                 position: absolute;
-                right: 10px;
-                top: 18px;
+                right: 0.7rem;
+                top: 1.2rem;
             }
             
             @media screen and (max-width: 420px) {
                 .title {
-                    font-size: 64px;
+                    font-size: 4rem;
                 }
             }
         </style>
