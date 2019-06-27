@@ -155,6 +155,11 @@
             }
             
             @media screen and (max-width: 420px) {
+                .more-image {
+                    height: auto;
+                    width: 70vw;
+                }
+                
                 .title {
                     font-size: 4rem;
                 }
