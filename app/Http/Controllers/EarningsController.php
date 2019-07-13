@@ -14,9 +14,29 @@ class EarningsController extends Controller
 
     public function index()
     {
-        $d1 = date('Y', time());
-        $d2 = ('-01-01 00:00:00');
-        $yearStart = strtotime($d1 . $d2);
+        $currentYear = date('Y', time()); //get current year
+        $yearStart = strtotime($currentYear . '-01-01 00:00:00');
+        $yearEnd = $currentYear . '-12-31 23:59:59';
+        $timeStrings = [];
+        $monthlyEarnings = [];
+
+        for ($i = 0; $i < 12; $i++) {
+            $k = $i + 1;
+            if ($i < 9) {
+                $timeStrings[$i] = $currentYear . '-0' . $k . '-01 00:00:00';
+            } else {
+                $timeStrings[$i] = $currentYear . '-' . $k . '-01 00:00:00';
+            }
+        }
+
+        $timeStrings[12] = $yearEnd;
+
+        for ($j = 0; $j < 12; $j++) {
+            $l = $j + 1;
+             $monthly = Lesson::where([['user_id', '=', auth()->id()], ['payment', '>', 0],['unix_time', '<', strtotime($timeStrings[$l])], ['unix_time', '>=', strtotime($timeStrings[$j])]])
+            ->sum('payment');
+            $monthlyEarnings[$j] = $monthly;
+        }
 
         $week = Lesson::where([['user_id', '=', auth()->id()], ['payment', '>', 0], ['unix_time', '>', (time() + (60 * 60 * 24 * -7))]])
             ->sum('payment');
@@ -34,6 +54,7 @@ class EarningsController extends Controller
         $earnings['month'] = $month;
         $earnings['year'] = $year;
         $earnings['total'] = $total;
+        $earnings['monthly'] = $monthlyEarnings;
 
         return($earnings);
     }
