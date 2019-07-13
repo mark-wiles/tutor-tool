@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NavbarTop from '../NavbarTop';
 import axios from 'axios';
+import EarningsChart from './EarningsChart';
 
 class Earnings extends Component {
 
@@ -14,27 +15,27 @@ class Earnings extends Component {
 	componentDidMount() {
 		axios.get('/api/earnings'
 		)
-		.then((response) => {
-			var earnings = response.data;
-			this.setState({earnings});
-		})
-		.catch((error) => {
-			console.log(error)
-		});
+			.then((response) => {
+				var earnings = response.data;
+				this.setState({ earnings });
+			})
+			.catch((error) => {
+				console.log(error)
+			});
 	}
 
 	render() {
 
-		return(
+		return (
 			<div className="row">
-				<NavbarTop 
+				<NavbarTop
 					classLeft="fas fa-arrow-left orange"
 					classRight=""
 					linkLeft="/home"
 					linkRight=""
 					title="Earnings"
 				/>
-				
+
 				<div className="container content-container">
 					<div className="d-flex justify-content-between bb-1-s">
 						<h5 className="earnings-title">7 Days: </h5>
@@ -54,6 +55,12 @@ class Earnings extends Component {
 					<div className="d-flex justify-content-between bb-1-s">
 						<h5 className="earnings-title">All Time: </h5>
 						<h5 className="d-flex info mb-0 orange">{'$' + this.state.earnings.total}</h5>
+					</div>
+
+					<div className="d-flex justify-content-center pt-3">
+						{this.state.earnings.monthly ? (
+							<EarningsChart monthly={this.state.earnings.monthly} />
+						) : null}
 					</div>
 				</div>
 			</div>
