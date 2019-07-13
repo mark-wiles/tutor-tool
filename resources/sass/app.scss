@@ -271,6 +271,12 @@ textarea {
   height: 100vh;
 }
 
+#earnings-chart {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+
 // login and register css----------------------------------
 :root {
 	--input-padding-x: 1.5rem;
