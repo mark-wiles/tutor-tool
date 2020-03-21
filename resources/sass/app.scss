@@ -162,6 +162,17 @@ textarea {
     width: 50%;
   }
 
+  .earnings-year {
+    font-size: 16px;
+    position: relative;
+    top: -30px;
+
+    span {
+      font-weight: 600;
+      padding: 0 10px;
+    }
+  }
+
   .info {
     align-items: center;
     max-width: 75%;

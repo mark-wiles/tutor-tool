@@ -47217,7 +47217,7 @@ return jQuery;
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
  * @license
  * Lodash <https://lodash.com/>
- * Copyright JS Foundation and other contributors <https://js.foundation/>
+ * Copyright OpenJS Foundation and other contributors <https://openjsf.org/>
  * Released under MIT license <https://lodash.com/license>
  * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
  * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -47228,7 +47228,7 @@ return jQuery;
   var undefined;
 
   /** Used as the semantic version number. */
-  var VERSION = '4.17.11';
+  var VERSION = '4.17.15';
 
   /** Used as the size to enable large array optimizations. */
   var LARGE_ARRAY_SIZE = 200;
@@ -49887,16 +49887,10 @@ return jQuery;
         value.forEach(function(subValue) {
           result.add(baseClone(subValue, bitmask, customizer, subValue, value, stack));
         });
-
-        return result;
-      }
-
-      if (isMap(value)) {
+      } else if (isMap(value)) {
         value.forEach(function(subValue, key) {
           result.set(key, baseClone(subValue, bitmask, customizer, key, value, stack));
         });
-
-        return result;
       }
 
       var keysFunc = isFull
@@ -50820,8 +50814,8 @@ return jQuery;
         return;
       }
       baseFor(source, function(srcValue, key) {
+        stack || (stack = new Stack);
         if (isObject(srcValue)) {
-          stack || (stack = new Stack);
           baseMergeDeep(object, source, key, srcIndex, baseMerge, customizer, stack);
         }
         else {
@@ -52638,7 +52632,7 @@ return jQuery;
       return function(number, precision) {
         number = toNumber(number);
         precision = precision == null ? 0 : nativeMin(toInteger(precision), 292);
-        if (precision) {
+        if (precision && nativeIsFinite(number)) {
           // Shift with exponential notation to avoid floating-point issues.
           // See [MDN](https://mdn.io/round#Examples) for more details.
           var pair = (toString(number) + 'e').split('e'),
@@ -53821,7 +53815,7 @@ return jQuery;
     }
 
     /**
-     * Gets the value at `key`, unless `key` is "__proto__".
+     * Gets the value at `key`, unless `key` is "__proto__" or "constructor".
      *
      * @private
      * @param {Object} object The object to query.
@@ -53829,6 +53823,10 @@ return jQuery;
      * @returns {*} Returns the property value.
      */
     function safeGet(object, key) {
+      if (key === 'constructor' && typeof object[key] === 'function') {
+        return;
+      }
+
       if (key == '__proto__') {
         return;
       }
@@ -57629,6 +57627,7 @@ return jQuery;
           }
           if (maxing) {
             // Handle invocations in a tight loop.
+            clearTimeout(timerId);
             timerId = setTimeout(timerExpired, wait);
             return invokeFunc(lastCallTime);
           }
@@ -62015,9 +62014,12 @@ return jQuery;
       , 'g');
 
       // Use a sourceURL for easier debugging.
+      // The sourceURL gets injected into the source that's eval-ed, so be careful
+      // with lookup (in case of e.g. prototype pollution), and strip newlines if any.
+      // A newline wouldn't be a valid sourceURL anyway, and it'd enable code injection.
       var sourceURL = '//# sourceURL=' +
-        ('sourceURL' in options
-          ? options.sourceURL
+        (hasOwnProperty.call(options, 'sourceURL')
+          ? (options.sourceURL + '').replace(/[\r\n]/g, ' ')
           : ('lodash.templateSources[' + (++templateCounter) + ']')
         ) + '\n';
 
@@ -62050,7 +62052,9 @@ return jQuery;
 
       // If `variable` is not specified wrap a with-statement around the generated
       // code to add the data object to the top of the scope chain.
-      var variable = options.variable;
+      // Like with sourceURL, we take care to not check the option's prototype,
+      // as this configuration is a code injection vector.
+      var variable = hasOwnProperty.call(options, 'variable') && options.variable;
       if (!variable) {
         source = 'with (obj) {\n' + source + '\n}\n';
       }
@@ -64255,10 +64259,11 @@ return jQuery;
     baseForOwn(LazyWrapper.prototype, function(func, methodName) {
       var lodashFunc = lodash[methodName];
       if (lodashFunc) {
-        var key = (lodashFunc.name + ''),
-            names = realNames[key] || (realNames[key] = []);
-
-        names.push({ 'name': methodName, 'func': lodashFunc });
+        var key = lodashFunc.name + '';
+        if (!hasOwnProperty.call(realNames, key)) {
+          realNames[key] = [];
+        }
+        realNames[key].push({ 'name': methodName, 'func': lodashFunc });
       }
     });
 
@@ -112299,17 +112304,37 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Earnings).call(this, props));
     _this.state = {
-      earnings: []
+      earnings: [],
+      year: new Date().getFullYear()
     };
     return _this;
   }
 
   _createClass(Earnings, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
+    key: "prevMonth",
+    value: function prevMonth() {
+      var year = this.state.year - 1;
+      this.setState({
+        year: year
+      });
+      this.getChartData(year);
+    }
+  }, {
+    key: "nextMonth",
+    value: function nextMonth() {
+      var year = this.state.year + 1;
+      this.setState({
+        year: year
+      });
+      this.getChartData(year);
+    }
+  }, {
+    key: "getChartData",
+    value: function getChartData(year) {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/earnings').then(function (response) {
+      var url = '/api/earnings/' + year;
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(url).then(function (response) {
         var earnings = response.data;
 
         _this2.setState({
@@ -112318,6 +112343,11 @@ function (_Component) {
       })["catch"](function (error) {
         console.log(error);
       });
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.getChartData(this.state.year);
     }
   }, {
     key: "render",
@@ -112359,8 +112389,17 @@ function (_Component) {
       }, '$' + this.state.earnings.total)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "d-flex justify-content-center pt-3"
       }, this.state.earnings.monthly ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EarningsChart__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        monthly: this.state.earnings.monthly
-      }) : null)));
+        monthly: this.state.earnings.monthly,
+        year: this.state.year
+      }) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "text-center earnings-year"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "pointer",
+        onClick: this.prevMonth.bind(this)
+      }, "< "), "Monthly Earnings ", this.state.year, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "pointer",
+        onClick: this.nextMonth.bind(this)
+      }, " >"))));
     }
   }]);
 
@@ -112410,14 +112449,16 @@ var EarningsChart =
 function (_Component) {
   _inherits(EarningsChart, _Component);
 
-  function EarningsChart(props) {
-    var _this;
-
+  function EarningsChart() {
     _classCallCheck(this, EarningsChart);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(EarningsChart).call(this, props));
-    _this.state = {
-      options: {
+    return _possibleConstructorReturn(this, _getPrototypeOf(EarningsChart).apply(this, arguments));
+  }
+
+  _createClass(EarningsChart, [{
+    key: "render",
+    value: function render() {
+      var options = {
         chart: {
           toolbar: {
             show: false
@@ -112446,7 +112487,7 @@ function (_Component) {
           categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
           position: 'top',
           labels: {
-            offsetY: -24
+            offsetY: -20
           },
           axisBorder: {
             show: false
@@ -112496,32 +112537,16 @@ function (_Component) {
               return "$" + val;
             }
           }
-        },
-        title: {
-          text: 'Monthly Earnings ' + new Date().getFullYear(),
-          floating: true,
-          offsetY: 300,
-          align: 'center',
-          style: {
-            color: '#444'
-          }
         }
-      },
-      series: [{
+      };
+      var series = [{
         name: 'Monthly Earnings',
-        data: _this.props.monthly
-      }]
-    };
-    return _this;
-  }
-
-  _createClass(EarningsChart, [{
-    key: "render",
-    value: function render() {
+        data: this.props.monthly
+      }];
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_apexcharts__WEBPACK_IMPORTED_MODULE_1___default.a, {
         id: "earnings-chart",
-        options: this.state.options,
-        series: this.state.series,
+        options: options,
+        series: series,
         type: "bar",
         width: '100%',
         height: 320
@@ -115155,8 +115180,8 @@ function (_Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\hartb\code\laravel\tutor\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\hartb\code\laravel\tutor\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\hartb\Code\Laravel\React\tutor-tool\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\hartb\Code\Laravel\React\tutor-tool\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
