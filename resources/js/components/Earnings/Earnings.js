@@ -8,12 +8,26 @@ class Earnings extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			earnings: []
+			earnings: [],
+			year: new Date().getFullYear()
 		};
 	}
 
-	componentDidMount() {
-		axios.get('/api/earnings'
+	prevMonth() {
+		let year = this.state.year - 1;
+		this.setState({ year });
+		this.getChartData(year);
+	}
+
+	nextMonth() {
+		let year = this.state.year + 1;
+		this.setState({ year });
+		this.getChartData(year);
+	}
+
+	getChartData(year) {
+		const url = '/api/earnings/' + year;
+		axios.get(url
 		)
 			.then((response) => {
 				var earnings = response.data;
@@ -22,6 +36,10 @@ class Earnings extends Component {
 			.catch((error) => {
 				console.log(error)
 			});
+	}
+
+	componentDidMount() {
+		this.getChartData(this.state.year);
 	}
 
 	render() {
@@ -59,8 +77,13 @@ class Earnings extends Component {
 
 					<div className="d-flex justify-content-center pt-3">
 						{this.state.earnings.monthly ? (
-							<EarningsChart monthly={this.state.earnings.monthly} />
+							<EarningsChart monthly={this.state.earnings.monthly} year={this.state.year} />
 						) : null}
+					</div>
+					<div className="text-center earnings-year">
+						<span className="pointer" onClick={this.prevMonth.bind(this)}>&lt; </span>
+						Monthly Earnings {this.state.year}
+						<span className="pointer" onClick={this.nextMonth.bind(this)}> &gt;</span>
 					</div>
 				</div>
 			</div>
