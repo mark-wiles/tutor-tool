@@ -12,9 +12,10 @@ class EarningsController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index($year)
     {
-        $currentYear = date('Y', time()); //get current year
+        // $currentYear = date('Y', time()); //get current year
+        $currentYear = $year;
         $yearStart = strtotime($currentYear . '-01-01 00:00:00');
         $yearEnd = $currentYear . '-12-31 23:59:59';
         $timeStrings = [];
