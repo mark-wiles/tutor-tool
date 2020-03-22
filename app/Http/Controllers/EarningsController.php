@@ -15,18 +15,18 @@ class EarningsController extends Controller
     public function index($year)
     {
         // $currentYear = date('Y', time()); //get current year
-        $currentYear = $year;
-        $yearStart = strtotime($currentYear . '-01-01 00:00:00');
-        $yearEnd = $currentYear . '-12-31 23:59:59';
+        $selectedYear = $year;
+        $yearStart = strtotime($selectedYear . '-01-01 00:00:00');
+        $yearEnd = $selectedYear . '-12-31 23:59:59';
         $timeStrings = [];
         $monthlyEarnings = [];
 
         for ($i = 0; $i < 12; $i++) {
             $k = $i + 1;
             if ($i < 9) {
-                $timeStrings[$i] = $currentYear . '-0' . $k . '-01 00:00:00';
+                $timeStrings[$i] = $selectedYear . '-0' . $k . '-01 00:00:00';
             } else {
-                $timeStrings[$i] = $currentYear . '-' . $k . '-01 00:00:00';
+                $timeStrings[$i] = $selectedYear . '-' . $k . '-01 00:00:00';
             }
         }
 
@@ -45,7 +45,7 @@ class EarningsController extends Controller
         $month = Lesson::where([['user_id', '=', auth()->id()], ['payment', '>', 0], ['unix_time', '>', (time() + (60 * 60 * 24 * -30))]])
         ->sum('payment');
 
-        $year = Lesson::where([['user_id', '=', auth()->id()], ['payment', '>', 0], ['unix_time', '>', $yearStart]])
+        $year = Lesson::where([['user_id', '=', auth()->id()], ['payment', '>', 0], ['unix_time', '>', $yearStart], ['unix_time', '<', strtotime($yearEnd)]])
         ->sum('payment');
         
         $total = Lesson::where([['user_id', '=', auth()->id()], ['payment', '>', 0]])
